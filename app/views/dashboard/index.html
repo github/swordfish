@@ -1,0 +1,26 @@
+<% content_for :head do %>
+  <script>
+    jQuery(function() {
+      window.app = new Application
+    })
+  </script>
+<% end %>
+
+<a href="#create-vault">New Vault</a>
+
+<form id="create-vault">
+  <label for="vault_name">Name</label>
+  <input id="vault_name" type="text" name="name">
+
+  <label for="vault_password">Password</label>
+  <input id="vault_password" type="password" name="password">
+
+  <button type="submit">Create Vault</button>
+</form>
+
+<ul id="vaults">
+</ul>
+
+<script type="text/plain" id="vault-template">
+  <li>{{name}}</li>
+</script>
