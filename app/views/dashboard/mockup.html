@@ -1,0 +1,220 @@
+<html>
+<head>
+  <title>Swordfish</title>
+  <%= stylesheet_link_tag :mockup %>
+  <%= javascript_include_tag :mockup %>
+</head>
+<body>
+  <div id="container">
+    <header id="header">
+      <h1>Swordfish</h1>
+      <form id="search">
+        <input type="search" placeholder="Search…">
+      </form>
+    </header>
+    <div id="vaults">
+      <h1>
+        My Vaults
+        <a class="add" href="">+</a>
+      </h1>
+      <div class="vault selected">
+        <a href="#">
+          <%= image_tag 'mockup/person.png' %>
+          Personal
+        </a>
+      </div>
+
+      <h1>
+        Shared Vaults
+        <a class="add" href="">+</a>
+      </h1>
+      <div class="vault">
+        <a href="#">
+          <img src="https://github.com/favicon.ico">
+          GitHub
+        </a>
+      </div>
+      <div class="vault">
+        <a href="#">
+          <img src="http://6.mshcdn.com/wp-content/uploads/2011/01/ruby.jpg">
+          GR Ruby Group
+        </a>
+      </div>
+      <div class="vault">
+        <a href="#">
+          <%= image_tag 'mockup/home.png' %>
+          Home
+        </a>
+      </div>
+    </div>
+    <div id="items">
+      <div class="item">
+        <a href="#">
+          <img src="http://apple.com/favicon.ico" class="icon">
+          Apple
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <%= image_tag 'mockup/web.png', :class => 'icon' %>
+          exceptional.io
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://browserstack.com/favicon.ico" class="icon">
+          BrowserStack
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="https://www.dropbox.com/static/30168/images/favicon.ico" class="icon">
+          Dropbox
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://facebook.com/favicon.ico" class="icon">
+          Facebook
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://foursquare.com/favicon.ico" class="icon">
+          Foursquare
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://gaug.es/favicon.ico" class="icon">
+          Gaug.es
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://github.com/favicon.ico" class="icon">
+          GitHub
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://gravatar.com/favicon.ico" class="icon">
+          Gravatar
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://groupon.com/favicon.ico" class="icon">
+          Groupon
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://heroku.com/favicon.ico" class="icon">
+          Heroku
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://instapaper.com/favicon.ico" class="icon">
+          Instapaper
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://mongohq.com/favicon.ico" class="icon">
+          MongoHQ
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://assets0.posterous.com/images/favicon.png" class="icon">
+          Posterous
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://rdio.com/favicon.ico" class="icon">
+          Rdio
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://readernaut.com/favicon.ico" class="icon">
+          Readernaut
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://d2b4ufapzmnxpw.cloudfront.net/build/3819/static/kronos/images/favicon.ico" class="icon">
+          Runkeeper
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://sifterapp.com/favicon.ico" class="icon">
+          Sifter
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://banksimple.com/favicon.png" class="icon">
+          Simple
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <img src="http://speakerdeck.com/favicon.ico" class="icon">
+          Speaker Deck
+        </a>
+      </div>
+    </div>
+    <div id="details">
+      <header>
+        <h1>Speaker Deck</h1>
+        <a class="url" href="">http://speakerdeck.com<span>/signin</span></a>
+      </header>
+
+      <section>
+        <div class="preview">
+          <img src="http://f.cl.ly/items/230g2U353c120w0L0Q28/Screen%20Shot%202012-07-25%20at%203.15.59%20PM.png">
+        </div>
+        <dl>
+          <dt>Username</dt> <dd>brandon@opensoul.org</dd>
+          <dt>Password</dt> <dd>••••••••••</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>Access Log</h2>
+        <table id="log">
+          <tr>
+            <td><a href="">Shawn Davenport</a></td>
+            <td>July 25, 9:14am</td>
+            <td><a href="" class="info icon">Info</a></td>
+          </tr>
+          <tr class="detailed-info">
+            <td colspan="3">
+              <dl>
+                <dt>IP</dt>         <dd>208.83.31.194</dd>
+                <dt>User Agent</dt> <dd>Chrome 20.0.1132.57</dd>
+                <dt>Location</dt>   <dd>New Orleans, LA</dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><a href="">Brandon Keepers</a></td>
+            <td>July 23, 3:14pm</td>
+            <td><a href="" class="info icon">Info</a></td>
+          </tr>
+        </table>
+      </section>
+
+      <section>
+        <button>Edit</button>
+        <button>Delete</button>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

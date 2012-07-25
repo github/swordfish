@@ -7,6 +7,7 @@ gem 'toystore-mongo', :require => 'toystore-mongo'
 
 group :assets do
   gem 'sass-rails'
+  gem 'compass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
 end
