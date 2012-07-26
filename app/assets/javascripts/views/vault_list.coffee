@@ -1,4 +1,6 @@
 class @VaultList extends Backbone.View
+  tagName: 'ul'
+
   constructor: ->
     super
     @collection.on 'add',   @add
@@ -6,12 +8,8 @@ class @VaultList extends Backbone.View
     @collection.fetch()
 
   reset: =>
-    @$el.empty()
-    @collection.each (vault) => @add(vault)
+    @collection.each @add
+    @render()
 
-  add: (vault) =>
-    @$el.append(@template(vault))
-
-  template: (vault) =>
-    # fixme: do this right
-    Mustache.render $('#vault-template').text(), vault.toJSON()
+  add: (model) =>
+    @insertView new VaultListItem(model: model)

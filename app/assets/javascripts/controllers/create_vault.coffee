@@ -1,6 +1,8 @@
 class @CreateVault extends Backbone.View
+  template: '#new-vault-template'
+
   events:
-    'submit': 'submit'
+    'submit form': 'submit'
 
   submit: (event) =>
     event.preventDefault()
@@ -9,6 +11,6 @@ class @CreateVault extends Backbone.View
 
   params: =>
     result = {}
-    for input in @$el.serializeArray()
+    for input in @$('form').serializeArray()
       result[input.name] = input.value
     result

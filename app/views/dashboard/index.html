@@ -6,21 +6,65 @@
   </script>
 <% end %>
 
-<a href="#create-vault">New Vault</a>
+<% content_for :foot do %>
+  <script type="text/plain" id="main-template">
+    <a href="#/vaults/new">New Vault</a>
 
-<form id="create-vault">
-  <label for="vault_name">Name</label>
-  <input id="vault_name" type="text" name="name">
+    <div id="new-vault"></div>
 
-  <label for="vault_password">Password</label>
-  <input id="vault_password" type="password" name="password">
+    <div id="vault-list"></div>
 
-  <button type="submit">Create Vault</button>
-</form>
+    <div id="content"></div>
+  </script>
 
-<ul id="vaults">
-</ul>
+  <script type="text/plain" id="new-vault-template">
+    <form>
+      <label for="vault_name">Name</label>
+      <input id="vault_name" type="text" name="name">
 
-<script type="text/plain" id="vault-template">
-  <li>{{name}}</li>
-</script>
+      <label for="vault_password">Password</label>
+      <input id="vault_password" type="password" name="password">
+
+      <button type="submit">Create Vault</button>
+    </form>
+  </script>
+
+  <script type="text/plain" id="vault-template">
+    <a href="#/vaults/{{id}}">{{name}}</a>
+  </script>
+
+  <script type="text/plain" id="unlock-vault-template">
+    <form>
+      <label for="unlock-vault-password">
+        Enter the password to unlock <strong>{{name}}</strong>.
+      </label>
+      <input id="unlock-vault-password" name="password" type="password">
+      <button type="submit">Unlock</button>
+    </form>
+  </script>
+
+  <script type="text/plain" id="show-vault-template">
+    <h1>{{name}}</h1>
+
+    <a href="#/vaults/{{id}}/items/new">New Item</a>
+
+    passwordz
+  </script>
+
+  <script type="text/plain" id="new-item-template">
+    <form>
+      <h1>New Item</h1>
+
+      <label for="item-hostname">Hostname</label>
+      <input id="item-hostname" type="text" name="hostname">
+
+      <label for="item-username">Username</label>
+      <input id="item-username" type="text" name="username">
+
+      <label for="item-password">Password</label>
+      <input id="item-password" type="password" name="password">
+
+      <button type="submit">Create</button>
+    </form>
+  </script>
+<% end %>
