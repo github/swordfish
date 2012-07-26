@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Passwords</title>
+  <title>Swordfish</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div id="container">
+    <%= yield %>
+  </div>
 </body>
 </html>
