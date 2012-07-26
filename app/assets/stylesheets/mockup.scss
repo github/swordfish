@@ -109,14 +109,9 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
 
     .add {
-      display: none;
       position: absolute;
       top: 0;
       right: 9px;
-    }
-
-    &:hover .add {
-      display: block;
     }
   }
 
@@ -232,5 +227,13 @@ dl {
     padding-right: 9px;
     color: #999;
     font-weight: normal;
+  }
+}
+
+.hover {
+  display: none;
+
+  .hover-target:hover &, .test & {
+    display: block;
   }
 }
