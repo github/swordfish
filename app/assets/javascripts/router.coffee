@@ -12,17 +12,21 @@ class @Router extends Backbone.Router
       template: "#main-template",
 
       views:
-        "#new-vault":  new CreateVault(collection: @vaults)
-        "#vault-list": new VaultList(collection: @vaults)
-        "#content":    @main = new Backbone.View()
+        "#vaults":    new VaultList(collection: @vaults)
+        "#items":     @items = new Backbone.View()
+        "#details":   @details = new Backbone.View()
     })
 
   new: =>
-    # @create = new CreateVault collection: @vaults, el: $('#create-vault')
+    @content new CreateVault(collection: @vaults)
 
   show: (id) =>
     @vaults.load id, (vault) =>
-      @content new ShowVault(model: vault)
+      view = new ShowVault(
+        model: vault
+        views: {'.items': new ItemList(collection: vault.items)}
+      )
+      @items.setView(view).render()
 
   newItem: (id) =>
     @vaults.load id, (vault) =>
@@ -35,4 +39,4 @@ class @Router extends Backbone.Router
       @content new UnlockVault(model: vault, complete: fn)
 
   content: (view) ->
-    @main.setView(view).render()
+    @details.setView(view).render()

@@ -113,14 +113,6 @@ h1, h2, h3, h4, h5, h6 {
       position: absolute;
       top: 0;
       right: 9px;
-      width: 18px;
-      line-height: 18px;
-      background: #ccc;
-      color: #FFF;
-      border-radius: 9px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: bold;
     }
 
     &:hover .add {
@@ -128,14 +120,11 @@ h1, h2, h3, h4, h5, h6 {
     }
   }
 
-  a {
-    color: #000;
-  }
-
   .vault {
     border-radius: 4px 0 0 4px;
 
     a {
+      color: #000;
       display: block;
       padding: 18px;
     }
@@ -220,27 +209,18 @@ h1, h2, h3, h4, h5, h6 {
   text-indent: -2000px;
   overflow: hidden;
 
-  &.info {
+  &.text {
     position: relative;
-    &:after {
-      font-family: "Times New Roman", serif;
-      text-indent: 0;
-      content: "i";
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      text-align: center;
-      background: #ccc;
-      color: #FFF;
-      border-radius: 9px;
-      font-weight: bold;
-      font-size: 14px;
-      font-style: italic;
-      line-height: 19px;
-    }
+    font-family: "Times New Roman", serif;
+    text-indent: 0;
+    background: #ccc;
+    color: #FFF;
+    border-radius: 9px;
+    font-weight: bold;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 19px;
+    text-align: center;
   }
 }
 

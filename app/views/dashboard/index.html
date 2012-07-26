@@ -8,13 +8,25 @@
 
 <% content_for :foot do %>
   <script type="text/plain" id="main-template">
-    <a href="#/vaults/new">New Vault</a>
+    <header id="header">
+      <h1>Swordfish</h1>
+      <form id="search">
+        <input type="search" placeholder="Search…">
+      </form>
+    </header>
 
-    <div id="new-vault"></div>
+    <div id="vaults"></div>
 
-    <div id="vault-list"></div>
+    <div id="items"></div>
 
-    <div id="content"></div>
+    <div id="details"></div>
+  </script>
+
+  <script type="text/plain" id="vault-list-template">
+    <h1>
+      Shared Vaults
+      <a class="add icon text" title="New Vault" href="#/vaults/new">+</a>
+    </h1>
   </script>
 
   <script type="text/plain" id="new-vault-template">
@@ -33,6 +45,10 @@
     <a href="#/vaults/{{id}}">{{name}}</a>
   </script>
 
+  <script type="text/plain" id="item-template">
+    <a href="#/vaults/{{vault_id}}/items/{{item}}">{{hostname}}</a>
+  </script>
+
   <script type="text/plain" id="unlock-vault-template">
     <form>
       <label for="unlock-vault-password">
@@ -44,11 +60,10 @@
   </script>
 
   <script type="text/plain" id="show-vault-template">
-    <h1>{{name}}</h1>
-
     <a href="#/vaults/{{id}}/items/new">New Item</a>
 
-    passwordz
+    <div class="items">
+    </div>
   </script>
 
   <script type="text/plain" id="new-item-template">

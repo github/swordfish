@@ -1,5 +1,5 @@
 class @VaultList extends Backbone.View
-  tagName: 'ul'
+  template: '#vault-list-template'
 
   constructor: ->
     super
