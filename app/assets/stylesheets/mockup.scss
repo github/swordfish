@@ -42,8 +42,32 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 45px;
   bottom: 18px;
-  padding: 9px 0;
-  overflow: auto;
+  overflow: hidden;
+
+  footer {
+    height: 54px;
+    line-height: 54px;
+    border-top: 1px solid #f7f7f7;
+    border-bottom-left-radius: 4px;
+    @include background(linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,1)));
+    padding: 0 18px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+  }
+
+  .pane-content {
+    z-index: 2;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 9px 0 72px 0;
+    overflow: auto;
+  }
 }
 
 #container {
@@ -55,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: -480px;
   background-color: #f7f7f7;
   border-radius: 4px;
-  box-shadow: 0px 0px 10px rgba(100,100,100,0.2);
+  box-shadow: 0px 0px 20px rgba(0,0,0,1);
 }
 
 @import 'compass/css3';
@@ -96,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 
   .selected {
     background: #fff;
-    box-shadow: -1px 0px 2px rgba(100,100,100,0.2);
+    box-shadow: -1px 2px 4px rgba(0,0,0,0.1);
   }
 
   h1 {
@@ -137,9 +161,9 @@ h1, h2, h3, h4, h5, h6 {
 
   left: 210px;
   right: 50%;
-  border-right: 1px solid #f1f1f1;
+  border-right: 1px dotted #f7f7f7;
 
-  box-shadow: -1px 0px 2px rgba(100,100,100,0.2);
+  box-shadow: -1px 2px 4px rgba(0,0,0,0.1);
   border-radius: 4px 0 0 4px;
 
   .item {
@@ -157,12 +181,16 @@ h1, h2, h3, h4, h5, h6 {
   background: #fff;
   left: 50%;
   right: 18px;
-  padding: 18px;
   border-radius: 0 4px 4px 0;
-  box-shadow: 1px 0px 2px rgba(0,0,0,0.2);
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.1);
 
   header {
     margin-bottom: 36px;
+    padding: 0 18px;
+  }
+
+  .pane-content {
+    padding: 0 18px;
   }
 
   section {
@@ -174,6 +202,7 @@ h1, h2, h3, h4, h5, h6 {
   h1 {
     margin-bottom: 0;
     font-weight: 100;
+    line-height: 54px;
   }
 
   .url {
@@ -198,14 +227,13 @@ h1, h2, h3, h4, h5, h6 {
 .icon {
   width: 18px;
   height: 18px;
-  vertical-align: bottom;
+  vertical-align: middle;
   display: inline-block;
   margin-right: 4px;
   text-indent: -2000px;
   overflow: hidden;
 
   &.text {
-    position: relative;
     font-family: "Times New Roman", serif;
     text-indent: 0;
     background: #ccc;
@@ -222,11 +250,14 @@ h1, h2, h3, h4, h5, h6 {
 dl {
   dt {
     float: left;
-    width: 80px;
+    width: 84px;
     text-align: right;
     padding-right: 9px;
     color: #999;
     font-weight: normal;
+  }
+  dd {
+    margin-left: 92px;
   }
 }
 
@@ -236,4 +267,25 @@ dl {
   .hover-target:hover &, .test & {
     display: block;
   }
+}
+
+form {
+  p {
+    @include clearfix;
+
+    label {
+      display: block;
+      float: left;
+      width: 84px;
+      margin-right: 9px;
+      color: #999;
+      text-align: right;
+      line-height: 36px;
+    }
+  }
+}
+
+
+input[type=text], input[type=password], textarea {
+  font-size: 22px;
 }
