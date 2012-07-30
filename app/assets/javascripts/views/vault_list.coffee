@@ -3,7 +3,7 @@ class @VaultList extends Backbone.View
 
   constructor: ->
     super
-    @collection.on 'add',   @add
+    @collection.on 'add',   @addOne
     @collection.on 'reset', @reset
     @collection.fetch()
 
@@ -13,3 +13,6 @@ class @VaultList extends Backbone.View
 
   add: (model) =>
     @insertView new VaultListItem(model: model)
+
+  addOne: (model) =>
+    @add(model).render()
