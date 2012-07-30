@@ -1,12 +1,13 @@
 class @Router extends Backbone.Router
   routes:
-    'vaults/new': 'new'
-    'vaults/:id': 'show'
+    'vaults/new': 'newVault'
+    'vaults/:id': 'vault'
     'vaults/:id/items/new': 'newItem'
 
   constructor: (options) ->
     super
     @vaults = options.vaults
+    @active = {}
 
     @layout = new Backbone.LayoutManager({
       template: "#main-template",
@@ -17,15 +18,16 @@ class @Router extends Backbone.Router
         "#details":   @details = new Backbone.View()
     })
 
-  new: =>
+  newVault: =>
     @content new CreateVault(collection: @vaults)
 
-  show: (id) =>
+  vault: (id) =>
     @vaults.load id, (vault) =>
       view = new ShowVault(
         model: vault
         views: {'.items': new ItemList(collection: vault.items)}
       )
+      @activate vault
       @items.setView(view).render()
 
   newItem: (id) =>
@@ -40,3 +42,8 @@ class @Router extends Backbone.Router
 
   content: (view) ->
     @details.setView(view).render()
+
+  activate: (object) ->
+    @active[object.constructor]?.trigger('deactivate')
+    @active[object.constructor] = object
+    object.trigger('activate')
