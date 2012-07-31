@@ -262,10 +262,10 @@ dl {
 }
 
 .hover {
-  display: none;
+  visibility: hidden;
 
   .hover-target:hover &, .test & {
-    display: block;
+    visibility: visible;
   }
 }
 
