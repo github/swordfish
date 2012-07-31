@@ -15,17 +15,4 @@ class ItemsController < ApplicationController
     )
     render :json => ItemPresenter.new(@item)
   end
-
-  class ItemPresenter
-    def initialize(item)
-      @item = item
-    end
-
-    def as_json(options = {})
-      @item.serializable_hash.merge(
-        'id'       => @item.id.to_s,
-        'vault_id' => @item.vault_id.to_s
-      )
-    end
-  end
 end
