@@ -9,12 +9,3 @@ class @Vaults extends Backbone.Collection
     super attrs
 
   createKey: (password) ->
-
-  load: (id, callback) ->
-    if record = @get(id)
-      callback(record)
-    else
-      finder = =>
-        @off 'reset', finder
-        callback(@get(id))
-      @on 'reset', finder
