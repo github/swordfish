@@ -14,37 +14,37 @@ class @Router extends Backbone.Router
       template: "#main-template",
 
       views:
-        "#vaults":    new VaultList(collection: @vaults)
+        "#vaults":    new Vault.Views.List(collection: @vaults)
         "#items":     @items = new Backbone.View()
         "#details":   @details = new Backbone.View()
     })
 
   newVault: =>
-    @content new CreateVault(collection: @vaults)
+    @content new Vault.Views.New(collection: @vaults)
 
   vault: (id) =>
     @vaults.load(id).then (vault) =>
-      view = new ShowVault(
+      view = new Vault.Views.Show(
         model: vault
-        views: {'.items': new ItemList(collection: vault.items)}
+        views: {'.items': new Item.Views.List(collection: vault.items)}
       )
       @activate vault
       @items.setView(view).render()
 
   newItem: (id) =>
     @vaults.load(id).then (vault) =>
-      @unlock vault, => @content(new NewItem(model: vault, collection: vault.items))
+      @unlock vault, => @content(new Item.Views.New(model: vault, collection: vault.items))
 
   item: (vaultId, itemId) =>
     @vaults.load(vaultId).then (vault) =>
       vault.items.load(itemId).then (item) =>
-        @content(new ShowItem(model: item))
+        @content(new Item.Views.Show(model: item))
 
   unlock: (vault, fn) ->
     if vault.key.isUnlocked()
       fn()
     else
-      @content new UnlockVault(model: vault, complete: fn)
+      @content new Vault.Views.Unlock(model: vault, complete: fn)
 
   content: (view) ->
     @details.setView(view).render()

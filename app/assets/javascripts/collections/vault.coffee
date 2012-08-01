@@ -1,4 +1,4 @@
-class @Vaults extends Backbone.Collection
+class Vault.Collection extends Backbone.Collection
   model: Vault
   url: '/vaults'
 

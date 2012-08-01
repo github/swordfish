@@ -1,4 +1,6 @@
-class @CreateVault extends Backbone.View
+Vault.Views ?= {}
+
+class Vault.Views.New extends Backbone.View
   template: '#new-vault-template'
 
   events:
@@ -10,9 +12,3 @@ class @CreateVault extends Backbone.View
       Backbone.history.navigate "#/vaults/#{vault.id}", true
 
     false
-
-  params: =>
-    result = {}
-    for input in @$('form').serializeArray()
-      result[input.name] = input.value
-    result

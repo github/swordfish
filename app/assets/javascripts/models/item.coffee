@@ -1,5 +1,3 @@
-@Model ?= {}
-
-class @Model.Item extends Backbone.Model
+class @Item extends Backbone.Model
   reveal: ->
     @fetch()

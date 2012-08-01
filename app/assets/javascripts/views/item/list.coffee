@@ -1,4 +1,6 @@
-class @ItemList extends Backbone.View
+Item.Views ?= {}
+
+class Item.Views.List extends Backbone.View
   tagName: 'ul'
 
   constructor: ->
@@ -12,7 +14,7 @@ class @ItemList extends Backbone.View
     @render()
 
   add: (model) =>
-    @insertView new ItemListItem(model: model)
+    @insertView new Item.Views.ListItem(model: model)
 
   addOne: (model) =>
     @add(model).render()

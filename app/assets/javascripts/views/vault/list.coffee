@@ -1,4 +1,6 @@
-class @VaultList extends Backbone.View
+Vault.Views ?= {}
+
+class Vault.Views.List extends Backbone.View
   template: '#vault-list-template'
 
   constructor: ->
@@ -12,7 +14,7 @@ class @VaultList extends Backbone.View
     @render()
 
   add: (model) =>
-    @insertView new VaultListItem(model: model)
+    @insertView new Vault.Views.ListItem(model: model)
 
   addOne: (model) =>
     @add(model).render()

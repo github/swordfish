@@ -1,6 +1,6 @@
 require '/assets/application.js'
 
-describe 'UnlockVault', ->
+describe 'Vault.Views.Unlock', ->
   beforeEach ->
     @key =
       isUnlocked: -> false
@@ -8,7 +8,7 @@ describe 'UnlockVault', ->
 
     @complete = jasmine.createSpy('complete')
     @model = {key: @key, toJSON: -> {}}
-    @controller = new UnlockVault(model: @model, complete: @complete)
+    @controller = new Vault.Views.Unlock(model: @model, complete: @complete)
 
   describe 'unlock', ->
     describe 'with the correct password', ->

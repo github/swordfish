@@ -1,4 +1,6 @@
-class @NewItem extends Backbone.View
+Item.Views ?= {}
+
+class Item.Views.New extends Backbone.View
   template: '#new-item-template'
 
   events:

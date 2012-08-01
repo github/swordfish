@@ -3,7 +3,7 @@ class @Vault extends Backbone.Model
     super
     @key = new Key(@get('key'))
 
-    @items = new Collection.Items [], vault: @
+    @items = new Item.Collection [], vault: @
 
   isUnlocked: ->
     false

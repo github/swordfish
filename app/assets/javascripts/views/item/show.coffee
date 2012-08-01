@@ -1,4 +1,6 @@
-class @ShowItem extends Backbone.View
+Item.Views ?= {}
+
+class Item.Views.Show extends Backbone.View
   template: '#show-item-template'
 
   events:

@@ -1,4 +1,6 @@
-class @VaultListItem extends Backbone.View
+Vault.Views ?= {}
+
+class Vault.Views.ListItem extends Backbone.View
   template: '#vault-template'
   className: 'vault'
 

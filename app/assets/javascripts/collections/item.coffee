@@ -1,7 +1,5 @@
-@Collection ?= {}
-
-class @Collection.Items extends Backbone.Collection
-  model: Model.Item
+class Item.Collection extends Backbone.Collection
+  model: Item
 
   constructor: (models, options) ->
     @vault = options.vault

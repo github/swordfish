@@ -1,4 +1,6 @@
-class @ShowVault extends Backbone.View
+Vault.Views ?= {}
+
+class Vault.Views.Show extends Backbone.View
   template: '#show-vault-template'
 
   serialize: ->

@@ -1,8 +1,8 @@
 require '/assets/application.js'
 
-describe 'Vaults', ->
+describe 'Vault.Collection', ->
   beforeEach ->
-    @collection = new Vaults()
+    @collection = new Vault.Collection()
 
   describe 'create', ->
     beforeEach ->

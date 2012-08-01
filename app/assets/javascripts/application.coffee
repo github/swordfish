@@ -5,7 +5,6 @@
 #= require_tree ./lib
 #= require_tree ./models
 #= require_tree ./collections
-#= require_tree ./controllers
 #= require_tree ./views
 #= require router
 #= require_self
@@ -35,7 +34,7 @@ _.extend Backbone.Collection.prototype,
 
 class @Application
   constructor: ->
-    @vaults = new Vaults()
+    @vaults = new Vault.Collection()
 
     @router = new Router(vaults: @vaults)
 

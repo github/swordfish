@@ -1,4 +1,6 @@
-class @UnlockVault extends Backbone.View
+Vault.Views ?= {}
+
+class Vault.Views.Unlock extends Backbone.View
   template: '#unlock-vault-template'
   className: 'unlock-vault'
 
