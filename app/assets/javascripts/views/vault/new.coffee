@@ -1,7 +1,7 @@
 Vault.Views ?= {}
 
 class Vault.Views.New extends Backbone.View
-  template: '#new-vault-template'
+  template: 'templates/vault/new'
 
   events:
     'submit form': 'submit'

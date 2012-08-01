@@ -1,7 +1,7 @@
 Vault.Views ?= {}
 
 class Vault.Views.Unlock extends Backbone.View
-  template: '#unlock-vault-template'
+  template: 'templates/vault/unlock'
   className: 'unlock-vault'
 
   events:

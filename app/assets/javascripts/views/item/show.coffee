@@ -1,7 +1,7 @@
 Item.Views ?= {}
 
 class Item.Views.Show extends Backbone.View
-  template: '#show-item-template'
+  template: 'templates/item/show'
 
   events:
     'click a.reveal': 'reveal'

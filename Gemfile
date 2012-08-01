@@ -10,6 +10,7 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem 'hogan_assets'
 end
 
 group :development, :test do

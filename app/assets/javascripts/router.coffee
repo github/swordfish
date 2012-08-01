@@ -11,7 +11,7 @@ class @Router extends Backbone.Router
     @active = {}
 
     @layout = new Backbone.LayoutManager({
-      template: "#main-template",
+      template: "templates/main",
 
       views:
         "#vaults":    new Vault.Views.List(collection: @vaults)

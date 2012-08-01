@@ -3,6 +3,8 @@
 #= require lib/backbone
 #= require csrf
 #= require_tree ./lib
+#= require hogan
+#= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views
@@ -11,10 +13,10 @@
 
 Backbone.LayoutManager.configure(
   fetch: (path) ->
-    return Mustache.compile($(path).html());
+    HoganTemplates[path]
 
   render: (template, context) ->
-    template(context || {})
+    template.render(context || {})
 )
 
 _.extend Backbone.Collection.prototype,

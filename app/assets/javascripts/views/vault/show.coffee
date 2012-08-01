@@ -1,7 +1,7 @@
 Vault.Views ?= {}
 
 class Vault.Views.Show extends Backbone.View
-  template: '#show-vault-template'
+  template: 'templates/vault/show'
 
   serialize: ->
     @model.toJSON()

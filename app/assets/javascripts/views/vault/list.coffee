@@ -1,7 +1,7 @@
 Vault.Views ?= {}
 
 class Vault.Views.List extends Backbone.View
-  template: '#vault-list-template'
+  template: 'templates/vault/list'
 
   constructor: ->
     super

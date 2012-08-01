@@ -1,7 +1,7 @@
 Item.Views ?= {}
 
 class Item.Views.New extends Backbone.View
-  template: '#new-item-template'
+  template: 'templates/item/new'
 
   events:
     'submit form': 'submit'
