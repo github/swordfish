@@ -6,7 +6,9 @@ class @CreateVault extends Backbone.View
 
   submit: (event) =>
     event.preventDefault()
-    @collection.create(@params())
+    vault = @collection.create @params(), success: (vault) =>
+      Backbone.history.navigate "#/vaults/#{vault.id}", true
+
     false
 
   params: =>

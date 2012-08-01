@@ -3,8 +3,7 @@ class @Vault extends Backbone.Model
     super
     @key = new Key(@get('key'))
 
-    @items = new Collection.Items
-    @items.url = "/vaults/#{@id}/items"
+    @items = new Collection.Items [], vault: @
 
   isUnlocked: ->
     false

@@ -2,10 +2,10 @@ class @Vaults extends Backbone.Collection
   model: Vault
   url: '/vaults'
 
-  create: (attrs) ->
+  create: (attrs, options) ->
     password = attrs.password
     delete attrs.password
     attrs.key = Key.create(password)
-    super attrs
+    super attrs, options
 
   createKey: (password) ->
