@@ -5,5 +5,6 @@ class @NewItem extends Backbone.View
     'submit form': 'submit'
 
   submit: (event) =>
-    @collection.create @$('form').serializeObject()
+    @collection.create @$('form').serializeObject(), success: (item) =>
+      Backbone.history.navigate "#/vaults/#{@model.id}/items/#{item.id}", true
     false
