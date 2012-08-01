@@ -51,7 +51,7 @@
   </script>
 
   <script type="text/plain" id="item-template">
-    <a href="#/vaults/{{vault_id}}/items/{{item}}">{{hostname}}</a>
+    <a href="#/vaults/{{vault_id}}/items/{{id}}">{{hostname}}</a>
   </script>
 
   <script type="text/plain" id="unlock-vault-template">
@@ -94,5 +94,18 @@
         <button type="submit">Create</button>
       </footer>
     </form>
+  </script>
+
+  <script type="text/plain" id="show-item-template">
+    <header><h1>{{hostname}}</h1></header>
+    <dl>
+      <dt>Username</dt>
+      <dd>{{username}}</dd>
+      <dt>Password</dt>
+      <dd class="hover-target">
+        <span class="password">••••••••••••</span>
+        <a class="hover reveal" href="">reveal</a>
+      </dd>
+    </dl>
   </script>
 <% end %>

@@ -15,4 +15,10 @@ class ItemsController < ApplicationController
     )
     render :json => ItemPresenter.new(@item)
   end
+
+  def show
+    @vault = Vault.get(params[:vault_id])
+    @item = Item.first(:id => params[:id], :vault_id => @vault.id)
+    render :json => SecureItemPresenter.new(@item)
+  end
 end

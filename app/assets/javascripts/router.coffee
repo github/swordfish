@@ -3,6 +3,7 @@ class @Router extends Backbone.Router
     'vaults/new': 'newVault'
     'vaults/:id': 'vault'
     'vaults/:id/items/new': 'newItem'
+    'vaults/:id/items/:id': 'item'
 
   constructor: (options) ->
     super
@@ -33,6 +34,11 @@ class @Router extends Backbone.Router
   newItem: (id) =>
     @vaults.load(id).then (vault) =>
       @unlock vault, => @content(new NewItem(model: vault, collection: vault.items))
+
+  item: (vaultId, itemId) =>
+    @vaults.load(vaultId).then (vault) =>
+      vault.items.load(itemId).then (item) =>
+        @content(new ShowItem(model: item))
 
   unlock: (vault, fn) ->
     if vault.key.isUnlocked()

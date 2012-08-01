@@ -20,3 +20,8 @@ Feature: Passwords
     When I go to the homepage
     And I follow "Honeypot"
     Then I should see "example.com"
+
+    When I follow "example.com"
+    Then I should see "myusername"
+    When I follow "reveal"
+    Then I should see "mypassword"
