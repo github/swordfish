@@ -16,3 +16,10 @@ class @Key
     if result.sigBytes == @constructor.keySize / 4
       @decrypted = result.toString(CryptoJS.enc.Utf8)
     @isUnlocked()
+
+  encrypt: (data) ->
+    @constructor.cipher.encrypt(data, @decrypted).toString()
+
+  decrypt: (data) ->
+    result = @constructor.cipher.decrypt(data, @decrypted)
+    result.toString(CryptoJS.enc.Utf8)

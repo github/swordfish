@@ -6,12 +6,16 @@ class Item.Views.Show extends Backbone.View
   events:
     'click a.reveal': 'reveal'
 
+  constructor: ->
+    super
+    @model.on 'reveal', @display
+
   serialize: ->
     @model.toJSON()
 
   reveal: (e) =>
     e.preventDefault()
-    @model.reveal().then(@display)
+    @model.reveal()
 
-  display: =>
-    @$('.password').text(@model.get('password'))
+  display: (password) =>
+    @$('.password').text(password)

@@ -38,7 +38,7 @@ class @Router extends Backbone.Router
   item: (vaultId, itemId) =>
     @vaults.load(vaultId).then (vault) =>
       vault.items.load(itemId).then (item) =>
-        @content(new Item.Views.Show(model: item))
+        @unlock vault, => @content(new Item.Views.Show(model: item))
 
   unlock: (vault, fn) ->
     if vault.key.isUnlocked()

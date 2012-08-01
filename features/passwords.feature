@@ -22,6 +22,9 @@ Feature: Passwords
     Then I should see "example.com"
 
     When I follow "example.com"
+    And I fill in "Enter the password" with "password"
+    And I press "Unlock"
+
     Then I should see "myusername"
     When I follow "reveal"
     Then I should see "mypassword"
