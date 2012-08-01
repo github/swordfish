@@ -1,4 +1,4 @@
-Passwords::Application.routes.draw do
+Swordfish::Application.routes.draw do
   resources :vaults do
     resources :items
   end

@@ -23,7 +23,7 @@ RSpec.configure do |config|
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
   config.before do
-    Passwords::Application.config.mongo.collections.each do |c|
+    Swordfish::Application.config.mongo.collections.each do |c|
       c.remove
       c.drop_indexes
     end

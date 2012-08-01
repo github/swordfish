@@ -30,7 +30,7 @@ Capybara.default_selector = :css
 ActionController::Base.allow_rescue = false
 
 Before do
-  Passwords::Application.config.mongo.collections.each do |c|
+  Swordfish::Application.config.mongo.collections.each do |c|
     c.remove
     c.drop_indexes
   end

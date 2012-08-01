@@ -4,6 +4,6 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Passwords::Application.load_tasks
+Swordfish::Application.load_tasks
 
 task :default => [:spec, 'spec:javascripts', :cucumber]
