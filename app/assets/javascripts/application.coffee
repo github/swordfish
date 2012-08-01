@@ -35,6 +35,7 @@ _.extend Backbone.Collection.prototype,
 class @Application
   constructor: ->
     @vaults = new Vault.Collection()
+    @vaults.fetch()
 
     @router = new Router(vaults: @vaults)
 

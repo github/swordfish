@@ -7,7 +7,6 @@ class Vault.Views.List extends Backbone.View
     super
     @collection.on 'add',   @addOne
     @collection.on 'reset', @reset
-    @collection.fetch()
 
   reset: =>
     @collection.each @add
