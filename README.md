@@ -1,6 +1,6 @@
 # Swordfish
 
-Swordfish is a group-optimized password management app.
+Swordfish is an experiment in builidng a group-optimized password management app. It is not functional. See [Current Status below](#current-status).
 
 ![mockup](http://cl.ly/image/1R1Q0U3i1X19/content)
 
