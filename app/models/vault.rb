@@ -6,4 +6,7 @@ class Vault
 
   attribute :name, String
   attribute :key,  String
+
+  attribute :items_id, String
+  attribute :items_key, String
 end

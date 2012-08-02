@@ -10,4 +10,12 @@ class VaultsController < ApplicationController
     )
     render :json => VaultPresenter.new(@vault)
   end
+
+  def update
+    @vault = Vault.find(params[:id])
+    @vault.items_id  = params[:items_id]
+    @vault.items_key = params[:items_key]
+    @vault.save
+    render :json => VaultPresenter.new(@vault)
+  end
 end
