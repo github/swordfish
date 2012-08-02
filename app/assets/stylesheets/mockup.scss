@@ -45,9 +45,9 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 
   footer {
-    height: 54px;
-    line-height: 54px;
+    height: 53px;
     border-top: 1px solid #f7f7f7;
+    line-height: 54px;
     border-bottom-left-radius: 4px;
     @include background(linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,1)));
     padding: 0 18px;
@@ -186,11 +186,11 @@ h1, h2, h3, h4, h5, h6 {
 
   header {
     margin-bottom: 36px;
-    padding: 0 18px;
   }
 
   .pane-content {
-    padding: 0 18px;
+    padding-left: 18px;
+    padding-right: 18px;
   }
 
   section {
@@ -206,7 +206,10 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .url {
-    color: #aaa;
+    color: #bbb;
+    span {
+      color: #ddd;
+    }
   }
 
   .preview {
@@ -250,14 +253,14 @@ h1, h2, h3, h4, h5, h6 {
 dl {
   dt {
     float: left;
-    width: 84px;
+    width: 63px;
     text-align: right;
     padding-right: 9px;
     color: #999;
     font-weight: normal;
   }
   dd {
-    margin-left: 92px;
+    margin-left: 72px;
   }
 }
 
