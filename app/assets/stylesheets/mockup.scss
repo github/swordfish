@@ -97,9 +97,10 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 2px;
   }
 
-  #search {
+  #search, nav   {
+    line-height: 27px;
     position: absolute;
-    top: 10px;
+    top: 9px;
     right: 18px;
     float: right;
 

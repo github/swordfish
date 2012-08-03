@@ -2,7 +2,7 @@ Feature: Passwords
 
   Scenario: creating a password
     Given a vault named "Honeypot"
-    And I am on the homepage
+    And I am signed in as "winnie@thepooh.com"
     When I follow "Honeypot"
     And I follow "New Item"
     Then I should see "Enter the password to unlock Honeypot"
@@ -17,7 +17,7 @@ Feature: Passwords
     And I press "Create"
     Then I should see "example.com"
 
-    When I go to the homepage
+    When I go to the dashboard
     And I follow "Honeypot"
     Then I should see "example.com"
 

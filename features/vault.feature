@@ -1,7 +1,7 @@
 Feature: Vaults
 
   Scenario: creating a vault
-    Given I am on the homepage
+    Given I am signed in as "winnie@thepooh.com"
     When I follow "New Vault"
     And I fill in "Name" with "Project Honeypot"
     And I fill in "Password" with "s3cr3t"
