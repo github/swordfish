@@ -1,4 +1,4 @@
-# Swordfish
+# Swordfish [![Build Status](https://secure.travis-ci.org/bkeepers/swordfish.png)](http://travis-ci.org/bkeepers/swordfish)
 
 Swordfish is an experiment in builidng a group-optimized password management app. It is not functional. See [Current Status below](#current-status).
 
