@@ -1,4 +1,4 @@
-# Swordfish
+# Swordfish [![Build Status](https://secure.travis-ci.org/bkeepers/swordfish.png)](http://travis-ci.org/bkeepers/swordfish)
 
 Swordfish is an experiment in builidng a group-optimized password management app. It is not functional. See [Current Status below](#current-status).
 
@@ -34,5 +34,5 @@ If you want to contribute an enhancement or a fix:
 
 1. Fork the project on GitHub.
 2. Make your changes with tests.
-3. Commit the changes without making changes to the Rakefile, Gemfile, gemspec, or any other files that aren't related to your enhancement or fix
+3. Commit the changes without making changes to the Rakefile, Gemfile, gemspec, or any other files that aren't related to your enhancement or fix.
 4. Send a pull request.
