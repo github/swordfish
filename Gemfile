@@ -16,10 +16,10 @@ end
 group :development, :test do
   gem 'evergreen', :require => 'evergreen/rails'
   gem 'rspec-rails'
-  gem 'cucumber-rails'
 end
 
 group :test do
+  gem 'cucumber-rails'
   gem 'capybara-webkit'
 end
 
