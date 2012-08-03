@@ -1,13 +1,14 @@
 class VaultsController < ApplicationController
   def index
-    render :json => Vault.all.map {|vault| VaultPresenter.new(vault) }
+    render :json => current_user.vaults.map {|vault| VaultPresenter.new(vault) }
   end
 
   def create
-    @vault = Vault.create!(
+    vault = Vault.create!(
       :name => params[:name],
       :key  => params[:key]
     )
-    render :json => VaultPresenter.new(@vault)
+    current_user.add_vault vault
+    render :json => VaultPresenter.new(vault)
   end
 end

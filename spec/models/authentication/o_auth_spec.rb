@@ -24,6 +24,10 @@ describe Authentication::OAuth do
         expect(oauth.user).to have(1).credential
         expect(oauth.user.credentials.first).to eql(auth_hash)
       end
+
+      it 'sets email' do
+        expect(oauth.user.email).to eql('bkeepers@github.com')
+      end
     end
 
     context 'with an existing user' do
@@ -38,6 +42,11 @@ describe Authentication::OAuth do
       it 'updates stored credential' do
         auth_hash.info.email = 'brandon@opensoul.org'
         expect(oauth.user.credentials.first).to eql(auth_hash)
+      end
+
+      it 'updates email' do
+        auth_hash.info.email = 'brandon@opensoul.org'
+        expect(oauth.user.email).to eql('brandon@opensoul.org')
       end
     end
   end

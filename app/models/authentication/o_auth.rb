@@ -20,6 +20,7 @@ module Authentication
             c['provider'] == @auth.provider && c['uid'] == @auth.uid
           end
           credential.update @auth
+          user.email = @auth.info.email
           user.save!
         end
       end
@@ -28,6 +29,7 @@ module Authentication
     def create
       User.new.tap do |user|
         user.credentials << @auth
+        user.email = @auth.info.email
         user.save!
       end
     end

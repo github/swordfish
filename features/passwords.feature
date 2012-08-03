@@ -1,8 +1,10 @@
 Feature: Passwords
 
   Scenario: creating a password
+    Given I am signed in as "winnie@thepooh.com"
     Given a vault named "Honeypot"
-    And I am signed in as "winnie@thepooh.com"
+    And "Honeypot" is shared with "winnie@thepooh.com"
+    And I am on the dashboard
     When I follow "Honeypot"
     And I follow "New Item"
     Then I should see "Enter the password to unlock Honeypot"
