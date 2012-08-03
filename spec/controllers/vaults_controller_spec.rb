@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe VaultsController do
+  before do
+    sign_in_as double(:user, :id => BSON::ObjectId)
+  end
+
   describe 'create' do
     it 'renders json' do
       post :create, :name => 'Honeypot', :key => 'abc123'
