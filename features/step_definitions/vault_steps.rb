@@ -10,3 +10,8 @@ FeJcdpgPzpvaeUVemC6tSg==
 EOF
   )
 end
+
+Given '"$name" is shared with "$email"' do |name, email|
+  user = User.first(:email => email)
+  user.add_vault(Vault.first(:name => name))
+end
