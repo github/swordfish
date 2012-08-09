@@ -1,11 +1,9 @@
 Feature: Key Generation
 
+  Background:
+    Given I am signed in as "bkeepers@github.com"
+
   Scenario: Creating a key
-    Given I signed up using GitHub as:
-      | nickname | name            | email               |
-      | bkeepers | Brandon Keepers | bkeepers@github.com |
-    When I go to the sign in page
-    And I follow "Sign In with GitHub"
     Then I should see "Create a Key"
 
     When I fill in "passphrase" with "this is my secret"
@@ -14,4 +12,12 @@ Feature: Key Generation
     Then I should see "Download Private Key"
 
     When I follow "Done"
-    Then I should see "Shared Vaults"
+    Then I should see "+"
+
+  Scenario: Successfully Unlocking key
+    Given "bkeepers@github.com" has generated a key
+    When I go to the dashboard
+    Then I should see "Unlock"
+    When I fill in "passphrase" with "testing"
+    And I press "Unlock"
+    Then I should see "+"
