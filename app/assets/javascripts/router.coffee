@@ -1,5 +1,6 @@
 class @Router extends Backbone.Router
   routes:
+    '': 'vaults'
     'vaults/new': 'newVault'
     'vaults/:id': 'vault'
     'vaults/:id/items/new': 'newItem'
@@ -7,7 +8,12 @@ class @Router extends Backbone.Router
 
   constructor: (options) ->
     super
-    @vaults = options.vaults
+
+    @app = options.app
+    @on 'all', @ensureLayout
+
+    @vaults = new Vault.Collection()
+    @vaults.fetch()
     @active = {}
 
     @layout = new Backbone.LayoutManager({
@@ -18,6 +24,12 @@ class @Router extends Backbone.Router
         "#items":     @items = new Backbone.View()
         "#details":   @details = new Backbone.View()
     })
+
+  ensureLayout: =>
+    @app.layout @layout
+
+  vaults: =>
+    # noop
 
   newVault: =>
     @content new Vault.Views.New(collection: @vaults)

@@ -1,6 +1,7 @@
 #= require lib/jquery
 #= require lib/underscore
 #= require lib/backbone
+#= require forge
 #= require csrf
 #= require_tree ./lib
 #= require hogan
@@ -8,6 +9,7 @@
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views
+#= require_tree ./routers
 #= require router
 #= require_self
 
@@ -35,14 +37,14 @@ _.extend Backbone.Collection.prototype,
     jQuery.Deferred()
 
 class @Application
-  constructor: ->
-    @vaults = new Vault.Collection()
-    @vaults.fetch()
 
-    @router = new Router(vaults: @vaults)
-
-    $('#container').html(@router.layout.el)
-
-    @router.layout.render()
-
+  constructor: (@user) ->
+    new KeyRouter(app: @)
+    new Router(app: @)
     Backbone.history.start()
+
+  layout: (layout) ->
+    unless layout == @current_layout
+      @current_layout = layout
+      $(document.body).html(layout.el)
+      layout.render()

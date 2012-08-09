@@ -21,5 +21,5 @@ class Keypair.Views.New extends Backbone.View
     @keypair.save()
 
     view = new Keypair.Views.Download(key: privateKey)
-    @setView '#status', view
+    @setView view
     view.render()

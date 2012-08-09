@@ -3,11 +3,12 @@ Swordfish::Application.routes.draw do
     resources :items
   end
 
-
   match '/signin' => 'sessions#new', :as => :sign_in
   match '/signout' => 'sessions#destroy', :as => :sign_out
   match '/auth/failure' => 'sessions#failure'
   match '/auth/:provider/callback' => 'sessions#create'
+
+  resource :key
 
   match 'mockup', :to => 'dashboard#mockup'
   root :to => 'dashboard#index'

@@ -56,6 +56,7 @@ h1, h2, h3, h4, h5, h6 {
     right: 0;
     bottom: 0;
     z-index: 3;
+    text-align: right;
   }
 
   .pane-content {
@@ -80,8 +81,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: rgba(255,255,255,0.5);
   border-radius: 4px;
 
-  .sessions & {
-    width: 960px;
+  &.sessions {
     top: 40%;
     width: 240px;
     margin-left: -120px;
@@ -91,6 +91,25 @@ h1, h2, h3, h4, h5, h6 {
 
     .button {
       display: block;
+    }
+  }
+
+  &.setup {
+    top: 30%;
+    width: 480px;
+    margin-left: -240px;
+    bottom: 30%;
+
+    #content {
+      @include pane;
+      background: #fff;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      box-shadow: 0px 0px 4px $shadow-color;
+      border-radius: 4px;
+      padding: 18px;
+
     }
   }
 
@@ -311,6 +330,13 @@ form {
 
 input[type=text], input[type=password], textarea {
   font-size: 22px;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+input.wide {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 button, .button {

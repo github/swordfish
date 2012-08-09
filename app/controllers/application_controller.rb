@@ -1,11 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :sign_in_required
+  before_filter :sign_in_required, :key_required
 
 private
 
   def sign_in_required
-    redirect_to sign_in_path unless signed_in?
+    unless signed_in?
+      respond_to do |f|
+        f.html { redirect_to sign_in_path }
+        f.any  { head 401 }
+      end
+    end
+  end
+
+  def key_required
+    if signed_in? && current_user.public_key.blank?
+      head :precondition_failed, :location => key_path
+    end
   end
 
   def current_user

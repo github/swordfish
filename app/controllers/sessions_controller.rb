@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
-  layout 'sessions'
-  skip_before_filter :sign_in_required
+  skip_before_filter :sign_in_required, :key_required
 
   def create
     self.current_user = Authentication::OAuth.new(auth_hash).user

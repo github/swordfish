@@ -7,9 +7,10 @@ class User
 
   self.include_root_in_json = false
 
-  attribute :email, String
+  attribute :email,       String
   attribute :credentials, Array
-  attribute :vaults, Array
+  attribute :vaults,      Array
+  attribute :public_key,  String
 
   def add_vault(vault)
     hash = {'id' => vault.id}
