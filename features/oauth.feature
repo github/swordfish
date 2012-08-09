@@ -11,9 +11,6 @@ Feature: Authenticating with GitHub
     When I follow "Sign In with GitHub"
     Then I should be on the dashboard
 
-    When I follow "Sign Out"
-    Then I should be on the sign in page
-
   Scenario: Sign in with GitHub
     Given I signed up using GitHub as:
       | nickname | name           | email          |
