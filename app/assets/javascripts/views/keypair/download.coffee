@@ -4,11 +4,11 @@ class Keypair.Views.Download extends Backbone.View
   template: 'templates/keypair/download'
 
   constructor: (options) ->
-    @key = options.key
+    @app = options.app
     super
 
   serialize: ->
     {href: @dataUri()}
 
   dataUri: ->
-    "data:application/x-pem-file,#{encodeURIComponent(@key)}"
+    "data:application/x-pem-file,#{encodeURIComponent(@app.keypair.privateKey)}"

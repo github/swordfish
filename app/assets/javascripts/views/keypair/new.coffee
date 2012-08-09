@@ -6,6 +6,10 @@ class Keypair.Views.New extends Backbone.View
   events:
     'submit form':  'generate'
 
+  constructor: (options) ->
+    super
+    @app = options.app
+
   generate: (event) =>
     passphrase = @$('input[name=passphrase]').val()
     generator = new KeypairGenerator(passphrase).start()
@@ -17,9 +21,5 @@ class Keypair.Views.New extends Backbone.View
     @$('#status').text('Generating keys…')
 
   done: (publicKey, privateKey) =>
-    @keypair = new Keypair(publicKey, privateKey)
-    @keypair.save()
-
-    view = new Keypair.Views.Download(key: privateKey)
-    @setView view
-    view.render()
+    @app.keypair = Keypair.create(publicKey, privateKey)
+    Backbone.history.navigate "key/download", true
