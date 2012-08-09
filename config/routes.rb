@@ -2,6 +2,7 @@ Swordfish::Application.routes.draw do
   resources :vaults do
     resources :items
   end
+  resources :objects
 
 
   match '/signin' => 'sessions#new', :as => :sign_in
