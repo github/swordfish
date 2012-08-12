@@ -3,18 +3,16 @@ class @Keypair
   @ajax: jQuery.ajax
 
   @create: (publicKey, privateKeyPem) ->
-    keypair = new @(forge.pki.publicKeyFromPem(publicKey), privateKeyPem)
+    keypair = new @(publicKey, privateKeyPem)
     keypair.savePublicKey()
     keypair.savePrivateKey()
     keypair
 
   @load: (publicKey) ->
-    if publicKey
-      publicKey = forge.pki.publicKeyFromPem(publicKey) if typeof publicKey == 'string'
-      new @(publicKey, @localStorage['privateKey'])
+    new @(publicKey, @localStorage['privateKey']) if publicKey
 
-
-  constructor: (@publicKey, @privateKeyPem) ->
+  constructor: (@publicKeyPem, @privateKeyPem) ->
+    @publicKey = forge.pki.publicKeyFromPem(@publicKeyPem)
 
   savePrivateKey: (key) ->
     @privateKeyPem = key || @privateKeyPem
@@ -24,7 +22,7 @@ class @Keypair
     @constructor.ajax(
       type:     'POST'
       url:      '/key'
-      data:     forge.pki.publicKeyToPem(@publicKey)
+      data:     @publicKeyPem
     )
 
   unlock: (password) ->

@@ -7,8 +7,7 @@ describe 'Keypair', ->
     Keypair.ajax = @ajax = jasmine.createSpy('ajax')
     Keypair.localStorage = @local = {}
 
-    @publicKey = forge.pki.publicKeyFromPem(publicKey)
-    @keypair = new Keypair(@publicKey, privateKey)
+    @keypair = new Keypair(publicKey, privateKey)
 
   describe 'savePublicKey', ->
     it 'saves public key to server', ->
@@ -25,7 +24,7 @@ describe 'Keypair', ->
       expect(@local['privateKey']).toEqual(privateKey)
 
     it 'updates private key with provided', ->
-      keypair = new Keypair('public', 'private')
+      keypair = new Keypair(publicKey, 'private')
       keypair.savePrivateKey('changed')
       expect(keypair.privateKeyPem).toEqual('changed')
 
@@ -34,9 +33,9 @@ describe 'Keypair', ->
       beforeEach -> @local['privateKey'] = 'private'
 
       it 'returns keypair with public/private key', ->
-        keypair = Keypair.load(@publicKey)
+        keypair = Keypair.load(publicKey)
         expect(keypair).toBeTruthy()
-        expect(keypair.publicKey).toEqual(@publicKey)
+        expect(keypair.publicKeyPem).toEqual(publicKey)
         expect(keypair.privateKeyPem).toBe('private')
 
       it 'converts public key from PEM', ->
@@ -45,10 +44,10 @@ describe 'Keypair', ->
 
     describe 'when private key is not set', ->
       it 'returns keypair with blank private key', ->
-        keypair = Keypair.load(@publicKey)
+        keypair = Keypair.load(publicKey)
         expect(keypair).toBeTruthy()
-        expect(keypair.publicKey).toBe(@publicKey)
-        expect(keypair.privateKey).toBe(undefined)
+        expect(keypair.publicKeyPem).toBe(publicKey)
+        expect(keypair.privateKeyPem).toBe(undefined)
 
     describe 'when public key is blank', ->
       it 'returns nothing', ->
