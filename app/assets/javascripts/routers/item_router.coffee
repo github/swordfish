@@ -3,6 +3,7 @@ class @ItemRouter extends Backbone.Router
     '': 'items'
     'items/new': 'newItem'
     'items/:id': 'item'
+    'items/:id/edit': 'edit'
 
   constructor: (options) ->
     super
@@ -32,6 +33,10 @@ class @ItemRouter extends Backbone.Router
   item: (id) =>
     @items.load(id).then (item) =>
       @content new Item.Views.Show(model: item)
+
+  edit: (id) =>
+    @items.load(id).then (item) =>
+      @content new Item.Views.Edit(model: item)
 
   content: (view) ->
     @details.setView(view).render()

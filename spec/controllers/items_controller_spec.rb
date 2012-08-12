@@ -27,6 +27,32 @@ describe ItemsController do
 
       it { expect(subject.status).to be(200) }
     end
+
+    describe 'update' do
+      let(:item) { Item.create! }
+
+      subject do
+        put :update, :id => item.id.to_s, :title => 'Updated'
+      end
+
+      context 'when user has access' do
+        before do
+          item.share_with current_user, 'key'
+        end
+
+        it { expect(subject.status).to be(200) }
+
+        it 'updates item' do
+          subject
+          item.reload
+          expect(item.title).to eql('Updated')
+        end
+      end
+
+      context 'when user does not have access' do
+        it { expect(subject.status).to be(404) }
+      end
+    end
   end
 
   context 'when signed out' do
