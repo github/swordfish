@@ -15,9 +15,9 @@ class @KeyRouter extends Backbone.Router
 
     if !@app.keypair
       window.location.hash = "#key/new"
-    else if !@app.keypair.privateKey
+    else if !@app.keypair.privateKeyPem
       window.location.hash = "#key/load"
-    else
+    else if !@app.keypair.isUnlocked()
       window.location.hash = "#key/unlock"
 
   newKey: ->

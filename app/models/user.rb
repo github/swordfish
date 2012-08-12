@@ -9,16 +9,5 @@ class User
 
   attribute :email,       String
   attribute :credentials, Array
-  attribute :vaults,      Array
   attribute :public_key,  String
-
-  def add_vault(vault)
-    hash = {'id' => vault.id}
-    self[:vaults] << hash
-    atomic_update '$push' => {'vaults' => hash}
-  end
-
-  def vaults
-    Vault.all(:id => super.map {|v| v['id'] })
-  end
 end

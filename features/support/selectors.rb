@@ -9,6 +9,10 @@ module HtmlSelectorsHelpers
     case locator
     when "the page"
       'body'
+
+    when 'the item list'
+      '#items'
+
     else
       raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"

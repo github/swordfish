@@ -10,6 +10,9 @@ class Keypair.Views.Unlock extends Backbone.View
     super
     @app = options.app
 
+  afterRender: ->
+    @$('input:first').focus()
+
   submit: (e) =>
     @app.keypair.unlock(@$('input[type=password]').val())
     Backbone.history.navigate '', true

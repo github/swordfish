@@ -7,7 +7,8 @@ describe 'Keypair', ->
     Keypair.ajax = @ajax = jasmine.createSpy('ajax')
     Keypair.localStorage = @local = {}
 
-    @keypair = new Keypair('public', 'private')
+    @publicKey = forge.pki.publicKeyFromPem(publicKey)
+    @keypair = new Keypair(@publicKey, privateKey)
 
   describe 'savePublicKey', ->
     it 'saves public key to server', ->
@@ -16,33 +17,37 @@ describe 'Keypair', ->
 
       params = @ajax.mostRecentCall.args[0]
       expect(params.url).toEqual('/key')
-      expect(params.data).toEqual(@keypair.publicKey)
+      expect(params.data.replace(/\s/g, '')).toEqual(publicKey.replace(/\s/g, ''))
 
   describe 'savePrivateKey', ->
     it 'saves private key to local storage', ->
       @keypair.savePrivateKey()
-      expect(@local['privateKey']).toEqual('private')
+      expect(@local['privateKey']).toEqual(privateKey)
 
     it 'updates private key with provided', ->
       keypair = new Keypair('public', 'private')
       keypair.savePrivateKey('changed')
-      expect(keypair.privateKey).toEqual('changed')
+      expect(keypair.privateKeyPem).toEqual('changed')
 
   describe 'load', ->
     describe 'when private key is set', ->
       beforeEach -> @local['privateKey'] = 'private'
 
       it 'returns keypair with public/private key', ->
-        keypair = Keypair.load('public')
+        keypair = Keypair.load(@publicKey)
         expect(keypair).toBeTruthy()
-        expect(keypair.privateKey).toEqual('private')
-        expect(keypair.publicKey).toEqual('public')
+        expect(keypair.publicKey).toEqual(@publicKey)
+        expect(keypair.privateKeyPem).toBe('private')
+
+      it 'converts public key from PEM', ->
+        keypair = Keypair.load(publicKey)
+        expect(keypair.publicKey.encrypt).not.toBe(undefined)
 
     describe 'when private key is not set', ->
       it 'returns keypair with blank private key', ->
-        keypair = Keypair.load('public')
+        keypair = Keypair.load(@publicKey)
         expect(keypair).toBeTruthy()
-        expect(keypair.publicKey).toBe('public')
+        expect(keypair.publicKey).toBe(@publicKey)
         expect(keypair.privateKey).toBe(undefined)
 
     describe 'when public key is blank', ->
@@ -50,9 +55,6 @@ describe 'Keypair', ->
         expect(Keypair.load(undefined)).toBe(undefined)
 
   describe 'unlock', ->
-    beforeEach ->
-      @keypair = new Keypair(publicKey, privateKey)
-
     describe 'with the correct password', ->
       it 'returns true', ->
         expect(@keypair.unlock('testing')).toBe(true)

@@ -1,5 +1,6 @@
 <div class="pane-content">
-  <header><h1>{{hostname}}</h1></header>
+  <header><h1>{{title}}</h1></header>
+  {{#data}}
   <dl>
     <dt>Username</dt>
     <dd>{{username}}</dd>
@@ -9,4 +10,5 @@
       <a class="hover reveal" href="">reveal</a>
     </dd>
   </dl>
+  {{/data}}
 </div>

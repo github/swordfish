@@ -10,10 +10,11 @@
 #= require_tree ./collections
 #= require_tree ./views
 #= require_tree ./routers
-#= require router
 #= require_self
 
 Backbone.LayoutManager.configure(
+  manage: true
+
   fetch: (path) ->
     HoganTemplates[path]
 
@@ -42,7 +43,7 @@ class @Application
     @keypair = Keypair.load(@user.public_key)
 
     new KeyRouter(app: @, keypair: @keypair)
-    new Router(app: @, keypair: @keypair)
+    new ItemRouter(app: @, keypair: @keypair)
     Backbone.history.start()
 
   layout: (layout) ->

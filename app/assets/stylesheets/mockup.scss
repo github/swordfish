@@ -99,10 +99,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   &.setup {
-    top: 30%;
+    top: 50%;
     width: 480px;
+    height: 300px;
     margin-left: -240px;
-    bottom: 30%;
+    margin-top: -150px;
 
     #content {
       @include pane;

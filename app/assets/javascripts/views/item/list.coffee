@@ -1,20 +1,15 @@
 Item.Views ?= {}
 
 class Item.Views.List extends Backbone.View
-  tagName: 'ul'
+  template: 'templates/item/list'
 
   constructor: ->
     super
-    @collection.on 'add',   @addOne
-    @collection.on 'reset', @reset
+    @collection.on 'add reset', @render, @
     @collection.fetch()
 
-  reset: =>
+  beforeRender: =>
     @collection.each @add
-    @render()
 
   add: (model) =>
-    @insertView new Item.Views.ListItem(model: model)
-
-  addOne: (model) =>
-    @add(model).render()
+    @insertView '.items', new Item.Views.ListItem(model: model)
