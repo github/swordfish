@@ -14,7 +14,7 @@ Storing passwords on a server might seem like filling a lake in Alaska with hone
 
 Even if an attacker gets access to your server or database, all secure items are encrypted client side. The server has no idea what it is storing and no way of decrypting it.
 
-All items stored in a vault are encrypted with a *vault key*, which is randomly generated on the client when the vault is created and encrypted (currently with [AES](http://code.google.com/p/crypto-js/#AES) and a master password, eventually it will use [PKI](#12)). The encrypted vault key is stored on the server, but the password is not. No sensitive data is ever transmitted over the wire unless it is encrypted using secrets only available on the client.
+When you sign up, a RSA public/private keypair is generated in your browser. All sensitive data is encrypted with your private key, which is password-protected and never transferred to the server. No sensitive data is ever transmitted over the wire unless it is encrypted with secrets only available on the client.
 
 ## Contributing
 
