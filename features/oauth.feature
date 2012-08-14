@@ -17,6 +17,7 @@ Feature: Authenticating with GitHub
       | lcuke    | Larry Cucumber | larry@cucumber.com |
     When I go to the sign in page
     And I follow "Sign In with GitHub"
+    Then print the page
     Then I should be on the dashboard
 
   Scenario: Failed GitHub sign in
