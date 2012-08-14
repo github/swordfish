@@ -1,4 +1,4 @@
-# Swordfish [![Build Status](https://secure.travis-ci.org/bkeepers/swordfish.png)](http://travis-ci.org/bkeepers/swordfish)
+# Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png)](http://travis-ci.org/github/swordfish)
 
 Swordfish is an experiment in builidng a group-optimized password management app. It is not functional. See [Current Status below](#current-status).
 
@@ -6,7 +6,7 @@ Swordfish is an experiment in builidng a group-optimized password management app
 
 ## Current status
 
-It is currently very alpha. Some very basic features are working, but it is buggy and there is no support for authenticating users. See the [Alpha milestone](https://github.com/bkeepers/swordfish/issues?milestone=1&state=open) to see what is left to do before I consider it usable for a single user. [Browse all the issues](https://github.com/bkeepers/swordfish/issues?milestone=) to see what features are planned.
+It is currently very alpha. Some very basic features are working, but it is buggy and there is no support for authenticating users. See the [Alpha milestone](https://github.com/github/swordfish/issues?milestone=1&state=open) to see what is left to do before I consider it usable for a single user. [Browse all the issues](https://github.com/github/swordfish/issues?milestone=) to see what features are planned.
 
 ## Is it secure?
 
@@ -27,8 +27,8 @@ If you find a security vulnerability:
 If you find what looks like a bug:
 
 1. Search the [mailing list](https://groups.google.com/group/swordfishapp) to see if anyone else had the same issue.
-2. Check the [GitHub issue tracker](https://github.com/bkeepers/swordfish/issues) to see if anyone else has reported issue.
-3. If you don't see anything, [create an issue](https://github.com/bkeepers/swordfish/issues/new) with information on how to reproduce the issue.
+2. Check the [GitHub issue tracker](https://github.com/github/swordfish/issues) to see if anyone else has reported issue.
+3. If you don't see anything, [create an issue](https://github.com/github/swordfish/issues/new) with information on how to reproduce the issue.
 
 If you want to contribute an enhancement or a fix:
 
