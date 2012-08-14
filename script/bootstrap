@@ -1,0 +1,35 @@
+#!/bin/sh
+# Make sure all our deps exist.
+
+# Export CC to explicitly set the compiler used for cexts.
+
+export CC=cc
+
+# Generate .bundle/config instead of using env vars or command line
+# flags so that we have consistent configuration for our `bundle
+# check` and `bundle install` calls here, as well as any manual calls
+# to `bundle` that people might make.
+
+# We don't want old config hanging around right now. This is sorta
+# jank: We can do better.
+
+rm -rf .bundle
+mkdir .bundle
+
+echo "---" > .bundle/config
+echo 'BUNDLE_BIN: bin' >> .bundle/config
+echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> .bundle/config
+echo 'BUNDLE_PATH: vendor/gems' >> .bundle/config
+echo 'BUNDLE_WITHOUT: staging:production' >> .bundle/config
+
+# Tell GeoIP where to find lib and include since its extconf doesn't
+# respect $CFLAGS or $LDFLAGS. Only do this for people on The Setup.
+
+if [ ! -z "$GH_HOME" ]; then
+  flags='--with-geoip-dir=/opt/github/homebrew'
+  echo "BUNDLE_BUILD__GEOIP-C: $flags" >> .bundle/config
+fi
+
+# Bundle install unless we're already up to date.
+
+bundle check > /dev/null 2>&1 || bundle install "$@"
