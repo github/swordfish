@@ -22,6 +22,7 @@ end
 
 group :test do
   gem 'cucumber-rails', :require => false
+  gem 'webmock'
   gem 'capybara-webkit'
 end
 
