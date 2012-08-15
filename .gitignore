@@ -2,3 +2,6 @@
 /log/*.log
 /tmp
 .DS_Store
+/.rbenv-version
+/bin
+/vendor/gems
