@@ -1,24 +1,28 @@
 class ItemsController < ApplicationController
   def index
-    @vault = Vault.get(params[:vault_id])
-    @items = Item.all(:vault_id => @vault.id)
-    render :json => @items.map {|i| ItemPresenter.new(i) }
+    render :json => ItemListPresenter.new(current_user)
   end
 
   def create
-    @vault = Vault.get(params[:vault_id])
-    @item = Item.create!(
-      :hostname => params[:hostname],
-      :username => params[:username],
-      :password => params[:password],
-      :vault_id => @vault.id
-    )
-    render :json => ItemPresenter.new(@item)
+    item = Item.create!(item_params)
+    share = item.share_with(current_user, params[:key])
+    render :json => ItemPresenter.new(item, share), :status => :created
   end
 
-  def show
-    @vault = Vault.get(params[:vault_id])
-    @item = Item.first(:id => params[:id], :vault_id => @vault.id)
-    render :json => SecureItemPresenter.new(@item)
+  def update
+    item = Item.get(params[:id])
+    share = Share.first(:user_id => current_user.id, :item_id => item.id)
+    if share
+      item.update_attributes(item_params)
+      render :json => ItemPresenter.new(item, share)
+    else
+      head 404
+    end
+  end
+
+private
+
+  def item_params
+    params.slice(:title, :encrypted_data)
   end
 end

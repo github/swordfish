@@ -8,9 +8,6 @@
   <%= yield :head %>
 </head>
 <body class="<%= Rails.env %>">
-  <div id="container">
-    <%= yield %>
-  </div>
-  <%= yield :foot %>
+  <%= yield %>
 </body>
 </html>

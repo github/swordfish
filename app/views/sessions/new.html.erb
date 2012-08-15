@@ -1,4 +1,6 @@
-
-<section>
-  <%= link_to 'Sign In with GitHub', '/auth/github', :class => 'button' %>
-</section>
+<div class="sessions" id="container">
+  <section>
+    <%= flash[:error] %>
+    <%= link_to 'Sign In with GitHub', '/auth/github', :class => 'button' %>
+  </section>
+</div>

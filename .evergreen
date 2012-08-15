@@ -6,3 +6,6 @@ Evergreen.configure do |config|
   config.template_dir = 'spec/javascripts/templates'
   config.public_dir = 'public'
 end
+
+require 'webmock'
+WebMock.disable_net_connect!(:allow_localhost => true)

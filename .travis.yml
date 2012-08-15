@@ -3,4 +3,5 @@ rvm:
   - 1.9.3
 before_script:
   - "export DISPLAY=:99.0"
+  - "export CUCUMBER_FORMAT=progress"
   - "sh -e /etc/init.d/xvfb start"

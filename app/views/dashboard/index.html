@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <script>
     jQuery(function() {
-      window.app = new Application
+      window.app = new Application(<%=raw @user.to_json %>)
     })
   </script>
 <% end %>

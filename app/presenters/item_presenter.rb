@@ -1,14 +1,15 @@
 class ItemPresenter
-  def initialize(item)
+  def initialize(item, share)
     @item = item
+    @share = share
   end
 
   def as_json(options = {})
     {
-      'id'       => @item.id.to_s,
-      'vault_id' => @item.vault_id.to_s,
-      'hostname' => @item.hostname,
-      'username' => @item.username,
+      'id'             => @item.id.to_s,
+      'title'          => @item.title,
+      'encrypted_data' => @item.encrypted_data,
+      'key'            => @share.key
     }
   end
 end
