@@ -9,8 +9,7 @@ Feature: Authenticating with GitHub
     Then I should be on the sign in page
 
     When I follow "Sign In with GitHub"
-    Then print the page
-    Then I should be on the dashboard
+    Then I should see "Create a Key"
 
   Scenario: Sign in with GitHub
     Given I signed up using GitHub as:
@@ -18,8 +17,7 @@ Feature: Authenticating with GitHub
       | lcuke    | Larry Cucumber | larry@cucumber.com |
     When I go to the sign in page
     And I follow "Sign In with GitHub"
-    Then print the page
-    Then I should be on the dashboard
+    Then I should see "Create a Key"
 
   Scenario: Failed GitHub sign in
     When I fail to sign in to GitHub
