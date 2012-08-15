@@ -9,6 +9,7 @@ Feature: Authenticating with GitHub
     Then I should be on the sign in page
 
     When I follow "Sign In with GitHub"
+    Then print the page
     Then I should be on the dashboard
 
   Scenario: Sign in with GitHub
