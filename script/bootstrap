@@ -16,11 +16,12 @@ export CC=cc
 rm -rf .bundle
 mkdir .bundle
 
-echo "---" > .bundle/config
-echo 'BUNDLE_BIN: bin' >> .bundle/config
-echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> .bundle/config
-echo 'BUNDLE_PATH: vendor/gems' >> .bundle/config
-echo 'BUNDLE_WITHOUT: staging:production' >> .bundle/config
+echo "---
+BUNDLE_BIN: bin
+BUNDLE_DISABLE_SHARED_GEMS: "1"
+BUNDLE_PATH: vendor/gems
+BUNDLE_WITHOUT: staging:production
+" > .bundle/config
 
 # Bundle install unless we're already up to date.
 
