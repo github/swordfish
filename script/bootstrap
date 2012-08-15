@@ -22,14 +22,6 @@ echo 'BUNDLE_DISABLE_SHARED_GEMS: "1"' >> .bundle/config
 echo 'BUNDLE_PATH: vendor/gems' >> .bundle/config
 echo 'BUNDLE_WITHOUT: staging:production' >> .bundle/config
 
-# Tell GeoIP where to find lib and include since its extconf doesn't
-# respect $CFLAGS or $LDFLAGS. Only do this for people on The Setup.
-
-if [ ! -z "$GH_HOME" ]; then
-  flags='--with-geoip-dir=/opt/github/homebrew'
-  echo "BUNDLE_BUILD__GEOIP-C: $flags" >> .bundle/config
-fi
-
 # Bundle install unless we're already up to date.
 
 bundle check > /dev/null 2>&1 || bundle install "$@"
