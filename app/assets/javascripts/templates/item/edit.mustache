@@ -1,0 +1,23 @@
+<form class="pane-content">
+  <h1>{{title}}</h1>
+  <p>
+    <label for="item-title">Title</label>
+    <input id="item-title" type="text" name="title" value="{{title}}">
+  </p>
+
+  {{#data}}
+  <p>
+    <label for="item-username">Username</label>
+    <input id="item-username" type="text" name="data.username" value="{{username}}">
+  </p>
+
+  <p>
+    <label for="item-password">Password</label>
+    <input id="item-password" type="password" name="data.password" value="{{password}}">
+  </p>
+  {{/data}}
+
+  <footer class="buttons">
+    <button type="submit">Save</button>
+  </footer>
+</form>

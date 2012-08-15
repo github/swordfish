@@ -210,6 +210,10 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
+Then 'print the page' do
+  puts body
+end
+
 Then /^the "([^"]*)" radio should be "([^"]*)"$/ do |field, value|
   field = find(:xpath, XPath::HTML.field(field, :checked => true))
   field.value.should == value
