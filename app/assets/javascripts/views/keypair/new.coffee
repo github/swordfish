@@ -11,8 +11,8 @@ class Keypair.Views.New extends Backbone.View
     @app = options.app
 
   generate: (event) =>
-    passphrase = @$('input[name=passphrase]').val()
-    generator = new KeypairGenerator(passphrase).start()
+    @passphrase = @$('input[name=passphrase]').val()
+    generator = new KeypairGenerator(@passphrase).start()
     @start()
     generator.done @done
     false
@@ -22,4 +22,5 @@ class Keypair.Views.New extends Backbone.View
 
   done: (publicKey, privateKey) =>
     @app.keypair = Keypair.create(publicKey, privateKey)
+    @app.keypair.unlock(@passphrase)
     Backbone.history.navigate "key/download", true
