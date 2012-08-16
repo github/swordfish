@@ -1,12 +1,8 @@
 # Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png)](http://travis-ci.org/github/swordfish)
 
-Swordfish is an experiment in builidng a group-optimized password management app. It is not functional. See [Current Status below](#current-status).
+Swordfish is an experiment in builidng a group-optimized password management app. It is currently very alpha. [Browse all the issues](https://github.com/github/swordfish/issues?milestone=) to see what features are planned.
 
-![mockup](http://cl.ly/image/1R1Q0U3i1X19/content)
-
-## Current status
-
-It is currently very alpha. Some very basic features are working, but it is buggy and there is no support for authenticating users. See the [Alpha milestone](https://github.com/github/swordfish/issues?milestone=1&state=open) to see what is left to do before I consider it usable for a single user. [Browse all the issues](https://github.com/github/swordfish/issues?milestone=) to see what features are planned.
+![mockup](http://cl.ly/image/472B0N460j2I/content)
 
 ## Is it secure?
 
