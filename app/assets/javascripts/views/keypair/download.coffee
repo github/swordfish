@@ -11,4 +11,4 @@ class Keypair.Views.Download extends Backbone.View
     {href: @dataUri()}
 
   dataUri: ->
-    "data:application/x-pem-file,#{encodeURIComponent(@app.keypair.privateKey)}"
+    "data:application/x-pem-file,#{encodeURIComponent(@app.keypair.privateKeyPem)}"

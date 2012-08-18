@@ -29,6 +29,10 @@ owQY
 -----END ENCRYPTED PRIVATE KEY-----
 EOF
 
+And /^"Download Private Key" should contain the private key$/ do
+  find('a[download="swordfish.pem"]')['href'].should =~ /BEGIN%20ENCRYPTED%20PRIVATE%20KEY/
+end
+
 Given '"$email" has generated a key' do |email|
   user = User.first(:email => email)
   user.public_key = $public_key
