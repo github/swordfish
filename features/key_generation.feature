@@ -22,3 +22,16 @@ Feature: Key Generation
     When I fill in "passphrase" with "testing"
     And I press "Unlock"
     Then I should see "+"
+
+  Scenario: Failing to unlock key
+    Given "bkeepers@github.com" has generated a key
+    When I go to the dashboard
+    Then I should see "Unlock"
+
+    When I fill in "passphrase" with "wrong"
+    And I press "Unlock"
+    Then I should see "Your passphrase was incorrect!"
+
+    When I fill in "passphrase" with "testing"
+    And I press "Unlock"
+    Then I should see "+"
