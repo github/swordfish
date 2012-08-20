@@ -14,6 +14,10 @@ class Keypair.Views.Unlock extends Backbone.View
     @$('input:first').focus()
 
   submit: (e) =>
-    @app.keypair.unlock(@$('input[type=password]').val())
-    Backbone.history.navigate '', true
+    if @app.keypair.unlock(@$('input[type=password]').val())
+      Backbone.history.navigate '', true
+    else
+      @$('p.error').text('Your passphrase was incorrect!')
+      @$('input[type=password]').val('')
+
     false
