@@ -10,6 +10,7 @@ Feature: Key Generation
     And I press "Generate Key"
     And I wait an eternity
     Then I should see "Download Private Key"
+    And "Download Private Key" should contain the private key
 
     When I follow "Done"
     Then I should see "+"
