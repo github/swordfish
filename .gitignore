@@ -6,3 +6,4 @@
 /bin
 /vendor/gems
 /build
+chromedriver.log
