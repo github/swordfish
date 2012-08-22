@@ -13,6 +13,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'hogan_assets'
+  gem 'crxmake'
 end
 
 group :development, :test do
