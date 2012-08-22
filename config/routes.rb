@@ -9,5 +9,8 @@ Swordfish::Application.routes.draw do
   resource :key
 
   match 'mockup', :to => 'dashboard#mockup'
+
+  resource :test if Rails.env.test?
+
   root :to => 'dashboard#index'
 end
