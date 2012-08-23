@@ -39,9 +39,7 @@ _.extend Backbone.Collection.prototype,
 
 class @Application
 
-  constructor: (@user) ->
-    @keypair = Keypair.load(@user.public_key)
-
+  constructor: ->
     new KeyRouter(app: @, keypair: @keypair)
     new ItemRouter(app: @, keypair: @keypair)
     Backbone.history.start()

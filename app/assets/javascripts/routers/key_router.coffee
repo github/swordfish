@@ -13,12 +13,10 @@ class @KeyRouter extends Backbone.Router
     )
     @on 'all', @ensureLayout
 
+    if @app.keypair = Keypair.load()
+      window.location.hash = "#key/unlock"
     if !@app.keypair
       window.location.hash = "#key/new"
-    else if !@app.keypair.privateKeyPem
-      window.location.hash = "#key/load"
-    else if !@app.keypair.isUnlocked()
-      window.location.hash = "#key/unlock"
 
   newKey: ->
     @layout.setView('#content', new Keypair.Views.New(app: @app)).render()

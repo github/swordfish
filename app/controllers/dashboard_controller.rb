@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  skip_before_filter :key_required
+  skip_before_filter :sign_in_required, :key_required
 
   def index
     @user = UserPresenter.new(current_user)
