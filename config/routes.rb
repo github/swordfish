@@ -3,8 +3,6 @@ Swordfish::Application.routes.draw do
 
   match '/signin' => 'sessions#new', :as => :sign_in
   match '/signout' => 'sessions#destroy', :as => :sign_out
-  match '/auth/failure' => 'sessions#failure'
-  match '/auth/:provider/callback' => 'sessions#create'
 
   resource :key
 
