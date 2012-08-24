@@ -21,7 +21,7 @@ class @Keypair
     @constructor.ajax(
       type:     'POST'
       url:      '/key'
-      data:     forge.pki.publicKeyToPem(@publicKey)
+      data:     @publicKeyPem()
     )
 
   unlock: (password) ->
@@ -38,3 +38,6 @@ class @Keypair
 
   decrypt: (data) ->
     @privateKey.decrypt(data)
+
+  publicKeyPem: ->
+    forge.pki.publicKeyToPem(@publicKey)

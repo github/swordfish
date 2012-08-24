@@ -4,6 +4,7 @@ class @KeyRouter extends Backbone.Router
     'key/download': 'download'
     'key/load':     'load'
     'key/unlock':   'unlock'
+    'key/auth':     'auth'
 
   constructor: (options) ->
     super
@@ -29,6 +30,9 @@ class @KeyRouter extends Backbone.Router
 
   unlock: ->
     @layout.setView('#content', new Keypair.Views.Unlock(app: @app)).render()
+
+  auth: ->
+    new Keypair.Views.Auth(app: @app)
 
   ensureLayout: =>
     @app.layout @layout

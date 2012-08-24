@@ -1,23 +1,50 @@
 require 'spec_helper'
 
 describe Auth::RsaController do
-  let(:user) { User.create!(:public_key => fixture('pub.pem')) }
+  let(:public_key) { fixture('pub.pem') }
+  describe 'create' do
+    context 'as an existing user' do
+      let(:user) { User.create!(:public_key => public_key) }
 
-  describe 'show' do
-    it 'responds with 200' do
-      get :show, :public_key => user.public_key
-      expect(response).to be_success
+      subject do
+        raw_post :create, user.public_key
+      end
+
+      it 'responds with 200' do
+        expect(subject).to be_success
+      end
+
+      it 'returns a challenge' do
+        challenge = mock(:value => "foo")
+        RsaChallenge::Request.should_receive(:new).and_return(challenge)
+        expect(subject.body).to eql("foo")
+      end
     end
 
-    it 'returns a challenge' do
-      challenge = mock(:value => "foo")
-      RsaChallenge::Request.should_receive(:new).and_return(challenge)
-      get :show, :public_key => user.public_key
-      expect(response.body).to eql("foo")
+    context 'as a new user' do
+      subject do
+        raw_post :create, public_key
+      end
+
+      it 'creates the user' do
+        subject
+        expect(User.first(:public_key => public_key)).to be_present
+      end
+
+      it 'responds with 200' do
+        expect(subject).to be_success
+      end
+
+      it 'returns a challenge' do
+        challenge = mock(:value => "foo")
+        RsaChallenge::Request.should_receive(:new).and_return(challenge)
+        expect(subject.body).to eql("foo")
+      end
     end
   end
 
-  describe 'create' do
+  describe 'update' do
+    let(:user) { User.create!(:public_key => public_key) }
 
     context 'with a valid response' do
       before do
@@ -26,7 +53,7 @@ describe Auth::RsaController do
       end
 
       subject do
-        post :create, :challenge => 'valid'
+        put :update, :challenge => 'valid'
       end
 
       it 'returns 200' do
@@ -46,7 +73,7 @@ describe Auth::RsaController do
       end
 
       it 'does not log in a user without a valid challenge response' do
-        post :create, :challenge => "invalid"
+        put :update, :challenge => "invalid"
         expect(response.status).to eq(401)
       end
     end

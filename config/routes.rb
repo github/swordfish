@@ -7,7 +7,7 @@ Swordfish::Application.routes.draw do
   resource :key
 
   namespace :auth do
-    resource :rsa, :only => [:show, :create], :controller => 'rsa'
+    resource :rsa, :only => [:create, :update], :controller => 'rsa'
   end
 
   match 'mockup', :to => 'dashboard#mockup'
