@@ -6,6 +6,10 @@ Swordfish::Application.routes.draw do
 
   resource :key
 
+  namespace :auth do
+    resource :rsa, :only => [:show, :create], :controller => 'rsa'
+  end
+
   match 'mockup', :to => 'dashboard#mockup'
   root :to => 'dashboard#index'
 end
