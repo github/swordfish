@@ -17,21 +17,6 @@ module RsaChallenge
     end
   end
 
-  class Response
-    include Encryption
-
-    attr_reader :user_id
-
-    def initialize(value)
-      @value = value
-    end
-
-    def valid?
-      @user_id, secret, time = decrypt(@value)
-      secret == ENV["AUTH_SECRET"]
-    end
-  end
-
   class Request
     def initialize(user)
       @user = user
@@ -39,7 +24,7 @@ module RsaChallenge
     end
 
     def value
-      @public_key.public_encrypt(encrypted_challenge_values)
+      Base64.encode64 @public_key.public_encrypt(encrypted_challenge_values)
     end
 
   private
@@ -52,6 +37,21 @@ module RsaChallenge
 
     def encrypted_challenge_values
       crypt :encrypt, challenge_values.join('--')
+    end
+  end
+
+  class Response
+    include Encryption
+
+    attr_reader :user_id
+
+    def initialize(value)
+      @value = value
+    end
+
+    def valid?
+      @user_id, secret, time = decrypt(Base64.decode64(@value))
+      secret == ENV["AUTH_SECRET"]
     end
   end
 end

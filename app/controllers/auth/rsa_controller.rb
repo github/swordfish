@@ -9,7 +9,7 @@ class Auth::RsaController < ApplicationController
   end
 
   def update
-    challenge = RsaChallenge::Response.new(params[:challenge])
+    challenge = RsaChallenge::Response.new(request.raw_post)
     if challenge.valid?
       self.current_user = User.get(challenge.user_id)
       head 200

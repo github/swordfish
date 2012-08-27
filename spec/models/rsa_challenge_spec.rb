@@ -10,7 +10,8 @@ describe RsaChallenge do
       context 'with a decrypted challenge' do
         before do
           priv = OpenSSL::PKey::RSA.new(fixture('priv.pem'), 'testing')
-          @decrypted = priv.private_decrypt(challenge.value)
+          value = Base64.decode64(challenge.value)
+          @decrypted = Base64.encode64(priv.private_decrypt(value))
         end
 
         subject do

@@ -19,5 +19,5 @@ class Keypair.Views.Load extends Backbone.View
   load: (e) =>
     @app.keypair = new Keypair(e.target.result)
     @app.keypair.savePrivateKey()
-    Backbone.history.navigate '', true
+    Backbone.history.navigate 'key/unlock', true
 

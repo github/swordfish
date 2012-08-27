@@ -1,8 +1,7 @@
 Feature: Items
 
   Scenario: creating and editing an item
-    Given I am signed in as "winnie@thepooh.com"
-    And "winnie@thepooh.com" has generated a key
+    Given I have generated a key
     And I am on the dashboard
     And I fill in "passphrase" with "testing"
     And I press "Unlock"

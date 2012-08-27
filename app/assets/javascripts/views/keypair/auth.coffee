@@ -5,9 +5,9 @@ class Keypair.Views.Auth extends Backbone.View
   constructor: (options) ->
     super
     @app = options.app
-    @app.keypair.authenticate()
-    @app.keypair.bind 'authenticated', @complete
+    @auth = new KeypairAuthenticator(@app.keypair)
+    @auth.request().done(@complete)
 
   complete: =>
-    # redirect to app
+    Backbone.history.navigate '', true
 

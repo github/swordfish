@@ -14,7 +14,7 @@ Feature: Key Generation
     Then I should see "+"
 
   Scenario: Successfully Unlocking key
-    Given "bkeepers@github.com" has generated a key
+    Given I have generated a key
     When I go to the dashboard
     Then I should see "Unlock"
     When I fill in "passphrase" with "testing"
@@ -22,17 +22,16 @@ Feature: Key Generation
     Then I should see "+"
 
   Scenario: Uploading key to sign in
-    Given I am on the homepage
+    Given I am on the dashboard
     And I follow "Load existing key"
 
-    And I attach the file "features/support/key.pem" to "Key"
-    And I press "Load"
-    And I fill in "Passphrase" with "testing"
+    And I attach the file "spec/fixtures/priv.pem" to "key"
+    And I fill in "passphrase" with "testing"
     And I press "Unlock"
     Then I should see "+"
 
   Scenario: Failing to unlock key
-    Given "bkeepers@github.com" has generated a key
+    Given I have generated a key
     When I go to the dashboard
     Then I should see "Unlock"
 

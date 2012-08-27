@@ -53,7 +53,7 @@ describe Auth::RsaController do
       end
 
       subject do
-        put :update, :challenge => 'valid'
+        raw_post :update, 'valid'
       end
 
       it 'returns 200' do
@@ -73,7 +73,7 @@ describe Auth::RsaController do
       end
 
       it 'does not log in a user without a valid challenge response' do
-        put :update, :challenge => "invalid"
+        raw_post :update, 'invalid'
         expect(response.status).to eq(401)
       end
     end
