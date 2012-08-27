@@ -14,21 +14,23 @@ describe 'KeypairAuthenticator', ->
     it 'gets challenge from the server', ->
       spyOn(@keypair, 'publicKeyPem').andReturn('public key')
       @authenticator.request()
-      expect(@ajax).toHaveBeenCalledWith(
-        type: 'POST'
-        url: '/auth/rsa'
-        data: 'public key'
-      )
+
+      request = @ajax.mostRecentCall.args[0]
+
+      expect(request.url).toEqual('/auth/rsa')
+      expect(request.type).toEqual('POST')
+      expect(request.data).toEqual('public key')
 
   describe 'respond', ->
     it 'sends decrypted challenge response to server', ->
       spyOn(@keypair, 'publicKeyPem').andReturn('public key')
       spyOn(@keypair, 'decrypt').andReturn('decrypted data')
       @authenticator.request()
-      @deferred.resolve("something")
-      expect(@ajax).toHaveBeenCalledWith(
-        type: 'PUT'
-        url: '/auth/rsa'
-        data: 'decrypted data'
-      )
 
+      @deferred.resolve('encrypted data')
+
+      request = @ajax.mostRecentCall.args[0]
+
+      expect(request.url).toEqual('/auth/rsa')
+      expect(request.type).toEqual('PUT')
+      expect(request.data).toEqual(forge.util.encode64('decrypted data'))
