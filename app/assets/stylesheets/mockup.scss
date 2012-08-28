@@ -87,17 +87,6 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: inset 0px 0px 5px $shadow-color;
   border-radius: 4px;
 
-  &.sessions {
-    top: 40%;
-    width: 240px;
-    margin-left: -120px;
-    bottom: auto;
-
-    .button {
-      display: block;
-    }
-  }
-
   &.setup {
     top: 50%;
     width: 480px;
