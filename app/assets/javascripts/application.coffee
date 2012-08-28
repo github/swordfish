@@ -2,7 +2,6 @@
 #= require lib/underscore
 #= require lib/backbone
 #= require forge
-#= require csrf
 #= require_tree ./lib
 #= require hogan
 #= require_tree ./templates

@@ -2,6 +2,7 @@ class @KeypairAuthenticator
   @ajax: jQuery.ajax
 
   constructor: (@keypair) ->
+    jQuery.extend @, jQuery.Deferred()
 
   request: ->
     @constructor.ajax(
@@ -12,11 +13,14 @@ class @KeypairAuthenticator
     ).done @respond
 
   respond: (data) =>
-    challenge = @keypair.decrypt(forge.util.decode64(data))
+    challenge = @decryptChallenge(data)
 
     @constructor.ajax(
       type:     'PUT'
       url:      '/auth/rsa'
       dataType: 'text'
-      data:     forge.util.encode64(challenge)
-    )
+      data:     challenge
+    ).done => @resolve(challenge)
+
+  decryptChallenge: (challenge) ->
+    forge.util.encode64(@keypair.decrypt(forge.util.decode64(challenge)))

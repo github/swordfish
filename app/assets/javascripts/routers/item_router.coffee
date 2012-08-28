@@ -25,7 +25,7 @@ class @ItemRouter extends Backbone.Router
     @app.layout @layout
 
   items: =>
-    # noop
+    @items.fetch()
 
   newItem: (id) =>
     @content new Item.Views.New(collection: @items)
