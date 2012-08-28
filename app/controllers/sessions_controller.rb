@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def destroy
     self.current_user = nil
-    redirect_to sign_in_path
+    redirect_to root_path
   end
 
 end

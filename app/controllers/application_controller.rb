@@ -7,7 +7,7 @@ private
   def sign_in_required
     unless signed_in?
       respond_to do |f|
-        f.html { redirect_to sign_in_path }
+        f.html { redirect_to root_path }
         f.any  { head 401 }
       end
     end
