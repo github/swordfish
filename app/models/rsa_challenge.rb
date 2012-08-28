@@ -17,6 +17,15 @@ module RsaChallenge
     end
   end
 
+  # Create an RSA challenge encrypted with the given public key.
+  #
+  # Inspired by SSH RSA authentication, this class will generate a challenge
+  # encrypted with the given public key. If the client returns an unencrypted
+  # version of this challenge, then they have the private key.
+  #
+  # The challenge includes the user ID that owns this key and a secret only
+  # known by the server. The challenge is symetrically encrypted with a secret
+  # key, and then encrypted with the public key.
   class Request
     def initialize(key)
       @public_key = OpenSSL::PKey::RSA.new(key)
@@ -51,6 +60,10 @@ module RsaChallenge
     end
   end
 
+  # Verifies the challenge from the client.
+  #
+  # If the provided value can be decrypted with the secret key, then the user
+  # posesses the private key and it is a valid challenge response.
   class Response
     include Encryption
 
