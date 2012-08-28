@@ -2,9 +2,7 @@ class Auth::RsaController < ApplicationController
   skip_before_filter :sign_in_required
 
   def create
-    options = {:public_key => request.raw_post}
-    user = User.first(options) || User.create!(options)
-    challenge = RsaChallenge::Request.new(user)
+    challenge = RsaChallenge::Request.new(request.raw_post)
     render :json => challenge.value
   end
 

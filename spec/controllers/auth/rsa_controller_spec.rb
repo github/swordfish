@@ -2,44 +2,20 @@ require 'spec_helper'
 
 describe Auth::RsaController do
   let(:public_key) { fixture('pub.pem') }
+
   describe 'create' do
-    context 'as an existing user' do
-      let(:user) { User.create!(:public_key => public_key) }
-
-      subject do
-        raw_post :create, user.public_key
-      end
-
-      it 'responds with 200' do
-        expect(subject).to be_success
-      end
-
-      it 'returns a challenge' do
-        challenge = mock(:value => "foo")
-        RsaChallenge::Request.should_receive(:new).and_return(challenge)
-        expect(subject.body).to eql("foo")
-      end
+    subject do
+      raw_post :create, public_key
     end
 
-    context 'as a new user' do
-      subject do
-        raw_post :create, public_key
-      end
+    it 'responds with 200' do
+      expect(subject).to be_success
+    end
 
-      it 'creates the user' do
-        subject
-        expect(User.first(:public_key => public_key)).to be_present
-      end
-
-      it 'responds with 200' do
-        expect(subject).to be_success
-      end
-
-      it 'returns a challenge' do
-        challenge = mock(:value => "foo")
-        RsaChallenge::Request.should_receive(:new).and_return(challenge)
-        expect(subject.body).to eql("foo")
-      end
+    it 'returns a challenge' do
+      challenge = mock(:value => "foo")
+      RsaChallenge::Request.should_receive(:new).and_return(challenge)
+      expect(subject.body).to eql("foo")
     end
   end
 

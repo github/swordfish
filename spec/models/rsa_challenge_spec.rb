@@ -1,10 +1,31 @@
 require 'spec_helper'
 
 describe RsaChallenge do
-  let(:user) { User.create!(:public_key => fixture('pub.pem')) }
+  let(:public_key) { fixture('pub.pem') }
+
+  describe RsaChallenge::Request do
+    subject do
+      RsaChallenge::Request.new(public_key)
+    end
+
+    context 'with an existing user' do
+      let!(:user) { User.create!(:public_key => public_key) }
+
+      it 'finds user' do
+        expect(subject.user).to eql(user)
+      end
+    end
+
+    context 'with a new user' do
+      it 'creates a user' do
+      end
+    end
+  end
 
   describe RsaChallenge::Response do
-    let(:challenge) { RsaChallenge::Request.new(user) }
+    let!(:user) { User.create!(:public_key => public_key) }
+
+    let(:challenge) { RsaChallenge::Request.new(public_key) }
 
     describe 'valid?' do
       context 'with a decrypted challenge' do

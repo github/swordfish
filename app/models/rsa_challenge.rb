@@ -18,13 +18,16 @@ module RsaChallenge
   end
 
   class Request
-    def initialize(user)
-      @user = user
-      @public_key = OpenSSL::PKey::RSA.new(@user.public_key)
+    def initialize(key)
+      @public_key = OpenSSL::PKey::RSA.new(key)
     end
 
     def value
       Base64.encode64 @public_key.public_encrypt(encrypted_challenge_values)
+    end
+
+    def user
+      @user ||= find_user || create_user
     end
 
   private
@@ -32,11 +35,19 @@ module RsaChallenge
     include Encryption
 
     def challenge_values
-      [@user.id, ENV["AUTH_SECRET"], Time.now.to_f]
+      [user.id, ENV["AUTH_SECRET"], Time.now.to_f]
     end
 
     def encrypted_challenge_values
       crypt :encrypt, challenge_values.join('--')
+    end
+
+    def find_user
+      User.first(:fingerprint => @public_key.fingerprint)
+    end
+
+    def create_user
+      User.create!(:public_key => @public_key.to_s)
     end
   end
 

@@ -125,6 +125,7 @@ GEM
     mongo (1.6.4)
       bson (~> 1.6.4)
     multi_json (1.2.0)
+    net-ssh (2.5.2)
     nokogiri (1.5.5)
     plucky (0.5.1)
       mongo (~> 1.5)
@@ -237,6 +238,7 @@ DEPENDENCIES
   guard-rspec
   hogan_assets
   mongo
+  net-ssh
   rails (~> 3.1.0)
   rspec-rails
   sass-rails
