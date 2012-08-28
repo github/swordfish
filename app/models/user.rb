@@ -7,7 +7,5 @@ class User
 
   self.include_root_in_json = false
 
-  attribute :email,       String
-  attribute :credentials, Array
   attribute :public_key,  String
 end
