@@ -35,11 +35,6 @@ describe Auth::RsaController do
       it 'returns 200' do
         expect(subject).to be_success
       end
-
-      it 'signs user in' do
-        subject
-        expect(controller.send(:current_user)).to eql(user)
-      end
     end
 
     context 'with an invalid response' do
@@ -48,9 +43,12 @@ describe Auth::RsaController do
         RsaChallenge::Response.stub(:new).and_return(challenge)
       end
 
-      it 'does not log in a user without a valid challenge response' do
+      subject do
         raw_post :update, 'invalid'
-        expect(response.status).to eq(401)
+      end
+
+      it 'returns 401' do
+        expect(subject.status).to eq(401)
       end
     end
   end
