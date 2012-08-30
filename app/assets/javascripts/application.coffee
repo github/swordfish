@@ -2,7 +2,6 @@
 #= require lib/underscore
 #= require lib/backbone
 #= require forge
-#= require csrf
 #= require_tree ./lib
 #= require hogan
 #= require_tree ./templates
@@ -39,9 +38,7 @@ _.extend Backbone.Collection.prototype,
 
 class @Application
 
-  constructor: (@user) ->
-    @keypair = Keypair.load(@user.public_key)
-
+  constructor: ->
     new KeyRouter(app: @, keypair: @keypair)
     new ItemRouter(app: @, keypair: @keypair)
     Backbone.history.start()

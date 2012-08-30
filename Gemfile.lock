@@ -88,8 +88,6 @@ GEM
       sinatra (~> 1.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    faraday (0.8.1)
-      multipart-post (~> 1.1)
     ffi (1.1.5)
     fssm (0.2.9)
     gherkin (2.11.1)
@@ -105,18 +103,14 @@ GEM
       guard (>= 1.1.0)
     guard-rspec (1.2.0)
       guard (>= 1.1)
-    hashie (1.2.0)
     hike (1.2.1)
     hogan_assets (1.3.1)
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
-    httpauth (0.1)
     i18n (0.6.0)
     json (1.7.3)
     json_pure (1.7.3)
-    jwt (0.1.5)
-      multi_json (>= 1.0)
     launchy (2.1.0)
       addressable (~> 2.2.6)
     libwebsocket (0.1.5)
@@ -133,23 +127,8 @@ GEM
     mongo (1.6.4)
       bson (~> 1.6.4)
     multi_json (1.2.0)
-    multipart-post (1.1.5)
+    net-ssh (2.5.2)
     nokogiri (1.5.5)
-    oauth2 (0.8.0)
-      faraday (~> 0.8)
-      httpauth (~> 0.1)
-      jwt (~> 0.1.4)
-      multi_json (~> 1.0)
-      rack (~> 1.2)
-    omniauth (1.1.0)
-      hashie (~> 1.2)
-      rack
-    omniauth-github (1.0.2)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.1)
-    omniauth-oauth2 (1.1.0)
-      oauth2 (~> 0.8.0)
-      omniauth (~> 1.0)
     plucky (0.5.1)
       mongo (~> 1.5)
     polyglot (0.3.3)
@@ -263,7 +242,7 @@ DEPENDENCIES
   guard-rspec
   hogan_assets
   mongo
-  omniauth-github
+  net-ssh
   rails (~> 3.1.0)
   rspec-rails
   sass-rails

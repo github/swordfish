@@ -53,3 +53,7 @@ end
 Before("@chrome") do
   Capybara.current_driver = :selenium_chrome
 end
+
+After do
+  page.execute_script 'localStorage.clear()'
+end

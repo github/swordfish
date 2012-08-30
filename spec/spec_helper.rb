@@ -29,3 +29,7 @@ RSpec.configure do |config|
     end
   end
 end
+
+def fixture(name)
+  Rails.root.join('spec', 'fixtures', name).read
+end

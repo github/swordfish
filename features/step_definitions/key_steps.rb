@@ -33,10 +33,8 @@ And /^"Download Private Key" should contain the private key$/ do
   find('a[download="swordfish.pem"]')['href'].should =~ /BEGIN%20ENCRYPTED%20PRIVATE%20KEY/
 end
 
-Given '"$email" has generated a key' do |email|
-  user = User.first(:email => email)
-  user.public_key = $public_key
-  user.save!
-
+Given 'I have generated a key' do
+  User.create!(:public_key => $public_key)
+  visit '/'
   page.execute_script "localStorage['privateKey'] = #{$private_key.to_json}"
 end

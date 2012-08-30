@@ -11,9 +11,6 @@ module NavigationHelpers
     when 'the dashboard'
       root_path
 
-    when 'the sign in page'
-      sign_in_path
-
     when 'the test site'
       '/test'
 
