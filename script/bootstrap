@@ -5,9 +5,6 @@
 
 export CC=cc
 
-# PhantomJS required to run most of the tests
-brew install phantomjs
-
 # Generate .bundle/config instead of using env vars or command line
 # flags so that we have consistent configuration for our `bundle
 # check` and `bundle install` calls here, as well as any manual calls
