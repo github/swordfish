@@ -4,7 +4,7 @@ gem 'rails', '~>3.1.0'
 gem 'bson_ext'
 gem 'mongo'
 gem 'toystore-mongo', :require => 'toystore-mongo'
-gem 'omniauth-github'
+gem 'net-ssh' # for RSA key fingerprinting
 gem 'dotenv', :group => [:test, :development]
 
 group :assets do

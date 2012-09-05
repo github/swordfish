@@ -2,31 +2,32 @@ class @Keypair
   @localStorage: window.localStorage
   @ajax: jQuery.ajax
 
-  @create: (publicKey, privateKeyPem) ->
-    keypair = new @(publicKey, privateKeyPem)
+  @create: (privateKeyPem, passphrase) ->
+    keypair = new @(privateKeyPem)
+    keypair.unlock(passphrase)
     keypair.savePublicKey()
     keypair.savePrivateKey()
     keypair
 
-  @load: (publicKey) ->
-    new @(publicKey, @localStorage['privateKey']) if publicKey
+  @load: ->
+    new @(key) if key = @localStorage['privateKey']
 
-  constructor: (@publicKeyPem, @privateKeyPem) ->
-    @publicKey = forge.pki.publicKeyFromPem(@publicKeyPem)
+  constructor: (@privateKeyPem) ->
 
-  savePrivateKey: (key) ->
-    @privateKeyPem = key || @privateKeyPem
+  savePrivateKey: () ->
     @constructor.localStorage['privateKey'] = @privateKeyPem
 
   savePublicKey: ->
     @constructor.ajax(
       type:     'POST'
       url:      '/key'
-      data:     @publicKeyPem
+      data:     @publicKeyPem()
     )
 
   unlock: (password) ->
-    @privateKey = forge.pki.decryptRsaPrivateKey(@privateKeyPem, password)
+    if @privateKey = forge.pki.decryptRsaPrivateKey(@privateKeyPem, password)
+      @publicKey = forge.pki.rsa.setPublicKey(@privateKey.n, @privateKey.e)
+
     @isUnlocked()
 
   isUnlocked: ->
@@ -37,3 +38,6 @@ class @Keypair
 
   decrypt: (data) ->
     @privateKey.decrypt(data)
+
+  publicKeyPem: ->
+    forge.pki.publicKeyToPem(@publicKey)

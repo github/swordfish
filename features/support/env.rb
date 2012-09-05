@@ -46,3 +46,7 @@ Capybara.default_driver = ENV['SELENIUM'] ? :selenium : :webkit
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
+
+After do
+  page.execute_script 'localStorage.clear()'
+end

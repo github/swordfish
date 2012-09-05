@@ -1,9 +1,7 @@
 Feature: Key Generation
 
-  Background:
-    Given I am signed in as "bkeepers@github.com"
-
-  Scenario: Creating a key
+  Scenario: Sign up and create new key
+    Given I am on the dashboard
     Then I should see "Create a Key"
 
     When I fill in "passphrase" with "this is my secret"
@@ -16,15 +14,24 @@ Feature: Key Generation
     Then I should see "+"
 
   Scenario: Successfully Unlocking key
-    Given "bkeepers@github.com" has generated a key
+    Given I have generated a key
     When I go to the dashboard
     Then I should see "Unlock"
     When I fill in "passphrase" with "testing"
     And I press "Unlock"
     Then I should see "+"
 
+  Scenario: Uploading key to sign in
+    Given I am on the dashboard
+    And I follow "Load existing key"
+
+    And I attach the file "spec/fixtures/priv.pem" to "key"
+    And I fill in "passphrase" with "testing"
+    And I press "Unlock"
+    Then I should see "+"
+
   Scenario: Failing to unlock key
-    Given "bkeepers@github.com" has generated a key
+    Given I have generated a key
     When I go to the dashboard
     Then I should see "Unlock"
 
