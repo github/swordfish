@@ -1,12 +1,9 @@
 Swordfish::Application.routes.draw do
   resources :items
 
-  match '/signin' => 'sessions#new', :as => :sign_in
-  match '/signout' => 'sessions#destroy', :as => :sign_out
-  match '/auth/failure' => 'sessions#failure'
-  match '/auth/:provider/callback' => 'sessions#create'
-
-  resource :key
+  namespace :auth do
+    resource :rsa, :only => [:create, :update], :controller => 'rsa'
+  end
 
   match 'mockup', :to => 'dashboard#mockup'
   root :to => 'dashboard#index'

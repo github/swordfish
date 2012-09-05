@@ -11,9 +11,6 @@ module NavigationHelpers
     when 'the dashboard'
       root_path
 
-    when 'the sign in page'
-      sign_in_path
-
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
