@@ -46,9 +46,6 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
-    capybara-webkit (0.12.0)
-      capybara (>= 1.0.0, < 1.2)
-      json
     childprocess (0.3.3)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
@@ -78,6 +75,7 @@ GEM
     diff-lcs (1.1.3)
     dotenv (0.1.0)
     erubis (2.7.0)
+    eventmachine (0.12.10)
     evergreen (1.0.0)
       capybara (~> 1.0)
       coffee-script
@@ -86,6 +84,8 @@ GEM
       sinatra (~> 1.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faye-websocket (0.4.6)
+      eventmachine (>= 0.12.0)
     ffi (1.0.11)
     fssm (0.2.9)
     gherkin (2.11.1)
@@ -106,6 +106,7 @@ GEM
       execjs (>= 1.2.9)
       sprockets (>= 2.0.3)
       tilt (>= 1.3.3)
+    http_parser.rb (0.5.3)
     i18n (0.6.0)
     json (1.7.3)
     json_pure (1.7.3)
@@ -129,6 +130,12 @@ GEM
     nokogiri (1.5.5)
     plucky (0.5.1)
       mongo (~> 1.5)
+    poltergeist (0.7.0)
+      capybara (~> 1.1)
+      childprocess (~> 0.3)
+      faye-websocket (~> 0.4, >= 0.4.4)
+      http_parser.rb (~> 0.5.3)
+      multi_json (~> 1.0)
     polyglot (0.3.3)
     rack (1.3.6)
     rack-cache (1.2)
@@ -227,7 +234,6 @@ PLATFORMS
 
 DEPENDENCIES
   bson_ext
-  capybara-webkit
   coffee-rails
   compass-rails
   cucumber-rails
@@ -239,6 +245,7 @@ DEPENDENCIES
   hogan_assets
   mongo
   net-ssh
+  poltergeist
   rails (~> 3.1.0)
   rspec-rails
   sass-rails
