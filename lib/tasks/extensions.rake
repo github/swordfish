@@ -44,3 +44,5 @@ namespace :extension do
     end
   end
 end
+
+task 'cucumber:ok' => 'extension:chrome:package'
