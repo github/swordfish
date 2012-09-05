@@ -7,6 +7,12 @@ namespace :extension do
   task :environment do
     Rails.application.config.assets.paths << EXTENSIONS_DIR.to_s
     Rake::Task['assets:environment'].invoke
+
+    # load sprockets extensions
+    Rails.application.assets.context_class.instance_eval do
+      include ::Sprockets::Helpers::IsolatedHelper
+      include ::Sprockets::Helpers::RailsHelper
+    end
   end
 
   task :clean do

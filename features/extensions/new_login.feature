@@ -2,7 +2,7 @@ Feature: Signing in to a new site
 
   @chrome
   Scenario: Signing into a new site
-    Given I am signed in as "bkeepers@github.com"
+    Given I have generated a key
     Given I am on the test site
     When I fill in "Username" with "bkeepers"
     And I fill in "Password" with "testing"
