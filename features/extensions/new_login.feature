@@ -1,3 +1,4 @@
+@wip
 Feature: Signing in to a new site
 
   @chrome
