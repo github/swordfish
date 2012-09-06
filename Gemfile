@@ -31,4 +31,6 @@ group :guard do
   gem 'guard-bundler'
   gem 'guard-cucumber'
   gem 'guard-rspec'
+  gem 'guard-shell'
+
 end
