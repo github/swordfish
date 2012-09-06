@@ -19,5 +19,8 @@
     "js": ["content.js"],
     "matches": [ "http://*/*", "https://*/*" ]
   }],
-  "incognito": "spanning"
+  "incognito": "spanning",
+  "permissions": [
+    "<%= ENV['APP_HOST'] %>/"
+  ]
 }

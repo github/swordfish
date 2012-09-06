@@ -1,4 +1,6 @@
 #= require application
 
+Application.host = "<%= ENV['APP_HOST'] %>"
+
 jQuery ->
   window.app = new Application()

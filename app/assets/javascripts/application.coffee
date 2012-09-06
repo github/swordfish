@@ -37,6 +37,13 @@ _.extend Backbone.Collection.prototype,
     jQuery.Deferred()
 
 class @Application
+  # Host to make Ajax requests to
+  @host: null
+
+  # Ajax prefilter to prepend host to request url
+  @prependHost: (options, originalOptions, xhr) =>
+    if @host
+      originalOptions.url = "#{@host}#{originalOptions.url}"
 
   constructor: ->
     new KeyRouter(app: @)
@@ -48,3 +55,6 @@ class @Application
       @current_layout = layout
       $(document.body).html(layout.el)
       layout.render()
+
+
+jQuery.ajaxPrefilter Application.prependHost
