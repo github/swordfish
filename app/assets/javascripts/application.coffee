@@ -43,7 +43,8 @@ class @Application
   # Ajax prefilter to prepend host to request url
   @prependHost: (options, originalOptions, xhr) =>
     if @host
-      originalOptions.url = "#{@host}#{originalOptions.url}"
+      options.crossDomain = true
+      options.url = "#{@host}#{originalOptions.url}"
 
   constructor: ->
     new KeyRouter(app: @)
