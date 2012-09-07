@@ -15,10 +15,16 @@
     "default_icon": "images/icon-19.png",
     "default_popup": "popup.html"
   },
-  "content_scripts": [{
-    "js": ["content.js"],
-    "matches": [ "http://*/*", "https://*/*" ]
-  }],
+  "content_scripts": [
+    {
+      "js": ["content.js"],
+      "matches": ["http://*/*", "https://*/*"]
+    },
+    {
+      "js": ["content-app.js"],
+      "matches": ["<%= ENV['APP_HOST'] %>/*"]
+    }
+  ],
   "incognito": "spanning",
   "permissions": [
     "<%= ENV['APP_HOST'] %>/"
