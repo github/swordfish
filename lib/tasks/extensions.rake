@@ -6,7 +6,7 @@ namespace :extension do
   desc "Add #{EXTENSIONS_DIR} to asset paths"
   task :environment do
     Rails.application.config.assets.paths << EXTENSIONS_DIR.to_s
-    Rake::Task['assets:environment'].invoke
+    Rake::Task['environment'].invoke
 
     # load sprockets extensions
     Rails.application.assets.context_class.instance_eval do
