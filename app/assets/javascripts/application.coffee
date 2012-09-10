@@ -4,37 +4,13 @@
 #= require forge
 #= require_tree ./lib
 #= require hogan
+#= require_tree ./ext
 #= require_tree ./templates
 #= require_tree ./models
 #= require_tree ./collections
 #= require_tree ./views
 #= require_tree ./routers
 #= require_self
-
-Backbone.LayoutManager.configure(
-  manage: true
-
-  fetch: (path) ->
-    HoganTemplates[path]
-
-  render: (template, context) ->
-    template.render(context || {})
-)
-
-_.extend Backbone.Collection.prototype,
-  load: (id) ->
-    result = @deferred()
-    if record = @get(id)
-      result.resolve(record)
-    else
-      finder = =>
-        @off 'reset', finder
-        result.resolve(@get(id))
-      @on 'reset', finder
-    result
-
-  deferred: ->
-    jQuery.Deferred()
 
 class @Application
 
