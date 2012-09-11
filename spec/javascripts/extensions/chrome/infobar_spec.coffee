@@ -1,4 +1,5 @@
 require '/assets/chromemock.js'
+require '/assets/chrome/lib.js'
 require '/assets/chrome/infobar.js'
 
 describe 'Autosave', ->
