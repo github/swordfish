@@ -5,7 +5,8 @@
   "description": "Share passwords with your scros.",
   "homepage_url": "https://github.com/github/swordfish",
   "icons": {
-    "128": "images/icon-128.png"
+    "128": "images/icon-128.png",
+    "16": "images/icon-16.png"
   },
   "background": {
     "scripts": ["background.js"]
@@ -27,6 +28,10 @@
   ],
   "incognito": "spanning",
   "permissions": [
-    "<%= ENV['APP_HOST'] %>/"
+    "<%= ENV['APP_HOST'] %>/",
+    "experimental"
+  ],
+  "web_accessible_resources": [
+    "infobar.html"
   ]
 }

@@ -1,23 +1,34 @@
-window.chrome or= {}
-chrome.extension =
-  onMessage:
-    addListener: jasmine.createSpy('addListener')
-
+require '/assets/chromemock.js'
 require '/assets/chrome/background.js'
 
 describe 'Chrome background script', ->
   beforeEach ->
     Keypair.localStorage = @local = {}
-    @background = new Background
 
-  describe 'key', ->
-    @pem = 'key'
+  describe 'without a keypair', ->
+    beforeEach ->
+      @background = new Background()
 
-    it 'saves key in localStorage', ->
-      @background.key(@pem)
-      expect(@local['privateKey']).toEqual(@pem)
+    describe 'key', ->
+      it 'saves key in localStorage', ->
+        @background.key('key')
+        expect(@local['privateKey']).toEqual('key')
 
-    it 'does not override existing key', ->
-      @background.key('existing')
-      @background.key('changed')
-      expect(@local['privateKeyx']).toEqual('existing')
+      it 'does not override existing key', ->
+        @background.key('existing')
+        @background.key('changed')
+        expect(@local['privateKey']).toEqual('existing')
+
+  describe 'with a keypair', ->
+    beforeEach ->
+      @keypair = new Keypair('key')
+      @background = new Background(@keypair)
+
+    describe 'isUnlocked', ->
+      it 'responds true if unlocked', ->
+        spyOn(@keypair, 'isUnlocked').andReturn(true)
+        expect(@background.isUnlocked()).toBe(true)
+
+      it 'responds false if locked', ->
+        spyOn(@keypair, 'isUnlocked').andReturn(false)
+        expect(@background.isUnlocked()).toBe(false)
