@@ -1,6 +1,5 @@
 #= require lib/jquery
-#= require forge
-#= require models/keypair
+#= require models
 
 class @Background
   constructor: (@keypair) ->

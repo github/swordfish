@@ -1,3 +1,5 @@
+#= require lib/aes
+
 class @ItemKey
   # FIXME: replace with forge
   @cipher: CryptoJS.AES
