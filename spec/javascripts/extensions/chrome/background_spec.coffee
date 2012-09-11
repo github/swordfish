@@ -32,3 +32,12 @@ describe 'Chrome background script', ->
       it 'responds false if locked', ->
         spyOn(@keypair, 'isUnlocked').andReturn(false)
         expect(@background.isUnlocked()).toBe(false)
+
+    describe 'unlock', ->
+      it 'returns true if unlock succeeds', ->
+        spyOn(@keypair, 'unlock').andReturn(true)
+        expect(@background.unlock()).toBe(true)
+
+      it 'returns false if unlock fails', ->
+        spyOn(@keypair, 'unlock').andReturn(false)
+        expect(@background.unlock()).toBe(false)
