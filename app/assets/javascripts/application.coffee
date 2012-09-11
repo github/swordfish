@@ -1,7 +1,5 @@
 #= require lib/jquery
 #= require models
-#= require_self
-#= require ui
 
 class @Application
   _.extend @prototype, Backbone.Events
