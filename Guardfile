@@ -24,7 +24,7 @@ end
 guard 'shell' do
   watch(%r{^extensions/chrome/.+$}) do
     print "building Chrome extension..."
-    `bundle exec rake extension:chrome:build`
+    `bundle exec rake extension:chrome:package`
     puts "done"
   end
 end
