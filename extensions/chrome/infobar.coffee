@@ -1,18 +1,6 @@
+#= require chrome/extension
 #= require_self
 #= require_tree ./infobar
-
-class @Extension
-  isUnlocked: ->
-    @send isUnlocked: true
-
-  unlock: (passphrase) ->
-    @send unlock: passphrase
-
-  send: (message) ->
-    deferred = jQuery.Deferred()
-    chrome.extension.sendMessage message, ->
-      deferred.resolve.apply(deferred, arguments)
-    deferred
 
 class @Infobar extends Backbone.View
   constructor: (options) ->
