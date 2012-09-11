@@ -13,9 +13,9 @@ class Item.Views.Show extends Backbone.View
     e.preventDefault()
     command = @$('.toggle-password-visibility').text()
     if command == "reveal"
-        @$('.toggle-password-visibility').text('hide')
-        @$('.password').text(@model.data().password)
+      @$('.toggle-password-visibility').text('hide')
+      @$('.password').text(@model.data().password)
     else
-        @$('.toggle-password-visibility').text('reveal')
-        @$('.password').text('••••••••••••')
+      @$('.toggle-password-visibility').text('reveal')
+      @$('.password').text('••••••••••••')
 
