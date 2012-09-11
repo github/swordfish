@@ -21,13 +21,11 @@ describe 'Infobar.Unlock', ->
 
     describe 'on success', ->
       beforeEach ->
-        @deferred.reject()
+        @deferred.resolve()
         @view.submit()
 
       it 'calls save on infobar', ->
-        @deferred.resolve()
-
-        expect(@view.$('.error').text()).toEqual('Incorrect passphrase!')
+        expect(@infobar.save).toHaveBeenCalled()
 
     describe 'on failure', ->
       beforeEach ->
@@ -35,5 +33,4 @@ describe 'Infobar.Unlock', ->
         @view.submit()
 
       it 'shows error', ->
-        @deferred.reject()
         expect(@view.$('.error').text()).toEqual('Incorrect passphrase!')
