@@ -32,7 +32,7 @@ class @Background
     @keypair.isUnlocked()
 
   unlock: (passphrase) ->
-    @keypair.unlock()
+    @keypair.unlock(passphrase)
 
   setup: ->
     chrome.extension.onMessage.addListener @dispatch
