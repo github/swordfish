@@ -18,5 +18,10 @@ class @Infobar extends Backbone.View
   save: =>
     @view new Infobar.Save infobar: @
 
+  # Public: Dismiss the infobar
+  dismiss: =>
+    window.close()
+
+  # Internal: Render this view to @el
   view: (view) ->
     @el.html view.render().el

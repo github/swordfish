@@ -25,3 +25,9 @@ describe 'Autosave', ->
     it 'renders autosave view', ->
       expect(@el.text()).toMatch(/save/)
       expect(@el.text()).not.toMatch(/Unlock/)
+
+  describe 'dismiss', ->
+    it 'closes the window', ->
+      spyOn(window, 'close')
+      @infobar.dismiss()
+      expect(window.close).toHaveBeenCalled()

@@ -9,6 +9,9 @@ class @Extension
   unlock: (passphrase) ->
     @send unlock: passphrase
 
+  save: (attrs) ->
+    @send save: attrs
+
   # Internal: Send messages to the chrome extension
   send: (message) ->
     deferred = jQuery.Deferred()
