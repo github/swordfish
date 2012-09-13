@@ -25,6 +25,9 @@ describe 'KeypairAuthenticator', ->
       expect(request.type).toEqual('POST')
       expect(request.data).toEqual('public key')
 
+    it 'returns authenticator', ->
+      expect(@authenticator.request()).toBe(@authenticator)
+
   describe 'respond', ->
     it 'sends decrypted challenge response to server', ->
       @authenticator.request()

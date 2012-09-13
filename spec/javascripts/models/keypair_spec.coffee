@@ -10,34 +10,6 @@ describe 'Keypair', ->
     @privateKey = fixture('priv.pem')
     @keypair = new Keypair(@privateKey)
 
-  describe 'create', ->
-    beforeEach ->
-      spyOn(Keypair.prototype, 'unlock')
-      spyOn(Keypair.prototype, 'savePublicKey')
-      spyOn(Keypair.prototype, 'savePrivateKey')
-      Keypair.create(@privateKey, 'testing')
-
-    it 'unlocks the keypair', ->
-      expect(Keypair.prototype.unlock).toHaveBeenCalledWith('testing')
-
-    it 'saves the public key ', ->
-      expect(Keypair.prototype.savePublicKey).toHaveBeenCalled()
-
-    it 'saves the private key ', ->
-      expect(Keypair.prototype.savePrivateKey).toHaveBeenCalled()
-
-  describe 'savePublicKey', ->
-    beforeEach ->
-      @keypair.unlock('testing')
-
-    it 'saves public key to server', ->
-      @keypair.savePublicKey()
-      expect(@ajax).toHaveBeenCalled()
-
-      params = @ajax.mostRecentCall.args[0]
-      expect(params.url).toEqual('/key')
-      expect(params.data.replace(/\s/g, '')).toEqual(fixture('pub.pem').replace(/\s/g, ''))
-
   describe 'savePrivateKey', ->
     it 'saves private key to local storage', ->
       @keypair.savePrivateKey()
@@ -67,5 +39,5 @@ describe 'Keypair', ->
         expect(@keypair.publicKey.encrypt).toBeTruthy()
 
     describe 'with an incorrect password', ->
-      it 'returns true', ->
+      it 'returns false', ->
         expect(@keypair.unlock('wrong password')).toBe(false)

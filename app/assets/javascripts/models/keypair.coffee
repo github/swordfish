@@ -2,13 +2,6 @@ class @Keypair
   @localStorage: window.localStorage
   @ajax: jQuery.ajax
 
-  @create: (privateKeyPem, passphrase) ->
-    keypair = new @(privateKeyPem)
-    keypair.unlock(passphrase)
-    keypair.savePublicKey()
-    keypair.savePrivateKey()
-    keypair
-
   @load: ->
     new @(key) if key = @localStorage['privateKey']
 
@@ -17,13 +10,9 @@ class @Keypair
   savePrivateKey: () ->
     @constructor.localStorage['privateKey'] = @privateKeyPem
 
-  savePublicKey: ->
-    @constructor.ajax(
-      type:     'POST'
-      url:      '/key'
-      data:     @publicKeyPem()
-    )
-
+  # Public: Unlock the keypair with the given passphrase.
+  #
+  # Returns a jQuery.Deferred() that will resolve when successful.
   unlock: (password) ->
     if @privateKey = forge.pki.decryptRsaPrivateKey(@privateKeyPem, password)
       @publicKey = forge.pki.rsa.setPublicKey(@privateKey.n, @privateKey.e)
