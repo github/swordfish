@@ -2,11 +2,8 @@
 #= require_self
 #= require_tree ./infobar
 
-class @Infobar extends Backbone.View
-  constructor: (options) ->
-    super()
-
-    @el = options.el
+class @Infobar
+  constructor: (@id, @el) ->
     @extension = new Extension()
 
     @extension.isUnlocked().then (unlocked) =>

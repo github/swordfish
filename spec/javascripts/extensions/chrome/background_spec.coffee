@@ -34,10 +34,27 @@ describe 'Chrome background script', ->
         expect(@background.isUnlocked()).toBe(false)
 
     describe 'unlock', ->
-      it 'returns true if unlock succeeds', ->
-        spyOn(@keypair, 'unlock').andReturn(true)
-        expect(@background.unlock()).toBe(true)
+      describe 'success', ->
+        beforeEach ->
+          spyOn(@background.app, 'authenticate')
+          spyOn(@keypair, 'unlock').andReturn(true)
+          spyOn(@keypair, 'isUnlocked').andReturn(true)
 
-      it 'returns false if unlock fails', ->
-        spyOn(@keypair, 'unlock').andReturn(false)
-        expect(@background.unlock()).toBe(false)
+        it 'returns true', ->
+          expect(@background.unlock()).toBe(true)
+
+        it 'authenticates app', ->
+          @background.unlock()
+          expect(@background.app.authenticate).toHaveBeenCalled()
+
+      describe 'failure', ->
+        beforeEach ->
+          spyOn(@background.app, 'authenticate')
+          spyOn(@keypair, 'unlock').andReturn(false)
+          spyOn(@keypair, 'isUnlocked').andReturn(false)
+
+        it 'returns false', ->
+          expect(@background.unlock()).toBe(false)
+
+        it 'does not authenticate app', ->
+          expect(@background.app.authenticate).not.toHaveBeenCalled()
