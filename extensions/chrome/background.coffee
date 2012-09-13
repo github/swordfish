@@ -1,8 +1,10 @@
-#= require lib/jquery
-#= require models
+#= require application
 
 class @Background
   constructor: (@keypair) ->
+    @app = new Application()
+    @app.setKeypair(@keypair) if @keypair
+    @items = new Item.Collection([], keypair: @keypair)
     @submissions = {}
 
   # Dispatch messages from the content script and popup
@@ -13,9 +15,10 @@ class @Background
 
   # Recieve private key
   key: (key) ->
-    unless @keypair
-      @keypair = new Keypair(key)
-      @keypair.savePrivateKey()
+    unless @app.keypair
+      keypair = new Keypair(key)
+      @app.setKeypair(keypair)
+      @items.keypair = keypair
 
   submit: (params, sender) ->
     @submissions[sender.tab.id] = params
@@ -29,13 +32,13 @@ class @Background
         height: 40
 
   isUnlocked: ->
-    @keypair.isUnlocked()
+    @app.keypair.isUnlocked()
 
   unlock: (passphrase) ->
-    @keypair.unlock(passphrase)
+    @app.keypair.unlock(passphrase)
 
   setup: ->
     chrome.extension.onMessage.addListener @dispatch
 
-@app = new Background(Keypair.load())
-@app.setup()
+@background = new Background(Keypair.load())
+@background.setup()

@@ -19,6 +19,9 @@ class @Application
   constructor: ->
     @trigger 'initialize'
 
+  setKeypair: (@keypair) ->
+    @keypair.savePrivateKey()
+
   # FIXME: make a class for UI concerns and move this there
   layout: (layout) ->
     unless layout == @current_layout
