@@ -37,3 +37,4 @@ class @KeypairAuthenticator
   # Internal
   setHeader: (options, originalOptions, xhr) =>
     xhr.setRequestHeader('X-Challenge', @challenge)
+    undefined # return type affects dataType
