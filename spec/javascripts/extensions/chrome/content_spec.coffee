@@ -1,7 +1,4 @@
-window.chrome or= {}
-chrome.extension =
-  sendMessage: jasmine.createSpy('sendMessage')
-
+require '/assets/chromemock'
 require '/assets/chrome/content.js'
 
 describe 'Chrome content script', ->
@@ -31,5 +28,5 @@ describe 'Chrome content script', ->
       button.dispatchEvent(event)
 
     it 'sends message with form variables', ->
-      expected = {submit: {username:'bkeepers', password: 'testing'}}
+      expected = {submit: [{username:'bkeepers', password: 'testing'}]}
       expect(chrome.extension.sendMessage).toHaveBeenCalledWith(expected)

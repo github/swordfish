@@ -4,17 +4,19 @@
 # easily overriden in other browsers.
 class @Extension
   isUnlocked: ->
-    @send isUnlocked: true
+    @send 'isUnlocked'
 
   unlock: (passphrase) ->
-    @send unlock: passphrase
+    @send 'unlock', passphrase
 
   save: (attrs) ->
-    @send save: attrs
+    @send 'save', attrs
 
   # Internal: Send messages to the chrome extension
-  send: (message) ->
+  send: (message, args...) ->
     deferred = jQuery.Deferred()
-    chrome.extension.sendMessage message, ->
+    payload = {}
+    payload[message] = args
+    chrome.extension.sendMessage payload, ->
       deferred.resolve.apply(deferred, arguments)
     deferred

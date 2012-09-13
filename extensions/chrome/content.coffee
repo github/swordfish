@@ -2,14 +2,16 @@
 
 class Content
   constructor: ->
-    @send 'connect': true
+    @send 'connect'
 
   submit: (event) =>
     data = form2js(event.target, '.', true, null, true)
-    @send submit: data
+    @send 'submit', data
 
-  send: (message) ->
-    chrome.extension.sendMessage message
+  send: (message, args...) ->
+    payload = {}
+    payload[message] = args
+    chrome.extension.sendMessage payload
 
 content = new Content
 

@@ -7,8 +7,9 @@ class @Background
 
   # Dispatch messages from the content script and popup
   dispatch: (request, sender, response) =>
-    for message, payload of request
-      response(@[message](payload, sender)) if @[message]
+    for message, args of request
+      args.push sender
+      response(@[message](args...)) if @[message]
 
   # Recieve private key
   key: (key) ->
@@ -19,7 +20,7 @@ class @Background
   submit: (params, sender) ->
     @submissions[sender.tab.id] = params
 
-  connect: (x, sender) ->
+  connect: (sender) ->
     id = sender.tab.id
     if @submissions[id]
       chrome.experimental.infobars.show
