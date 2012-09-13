@@ -13,7 +13,7 @@ class @Application
       options.crossDomain = true
       options.url = "#{@host}#{originalOptions.url}"
 
-    undefined # return value affects dataType
+    undefined # return value effects dataType
 
   @on: (args...) ->
     @prototype.on(args...)
