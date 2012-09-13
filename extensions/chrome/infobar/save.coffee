@@ -9,8 +9,8 @@ class Infobar.Save extends Backbone.TemplateView
     @infobar = options.infobar
 
   submit: =>
-    name = @$('input[type=text]').val()
-    @infobar.extension.save(name: name).then(@done)
+    attrs = {title: @$('input[type=text]').val()}
+    @infobar.extension.save(@infobar.id, attrs).then(@done)
     false
 
   done: =>

@@ -31,6 +31,10 @@ class @Background
         path: "infobar.html##{id}"
         height: 40
 
+  save: (tab_id, attrs, sender) ->
+    attrs.data = @submissions[tab_id]
+    @items.create attrs
+
   isUnlocked: ->
     @app.keypair.isUnlocked()
 
@@ -42,6 +46,8 @@ class @Background
 
   setup: ->
     chrome.extension.onMessage.addListener @dispatch
+
+Application.host = '<%= ENV['APP_HOST'] %>'
 
 @background = new Background(Keypair.load())
 @background.setup()

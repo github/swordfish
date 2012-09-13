@@ -9,8 +9,8 @@ class @Extension
   unlock: (passphrase) ->
     @send 'unlock', passphrase
 
-  save: (attrs) ->
-    @send 'save', attrs
+  save: (id, attrs) ->
+    @send 'save', id, attrs
 
   # Internal: Send messages to the chrome extension
   send: (message, args...) ->

@@ -58,3 +58,20 @@ describe 'Chrome background script', ->
 
         it 'does not authenticate app', ->
           expect(@background.app.authenticate).not.toHaveBeenCalled()
+
+    describe 'save', ->
+      beforeEach ->
+        @sender = {tab: {id: '123'}}
+        @items = {create: jasmine.createSpy('create')}
+        @background.items = @items
+        @background.submit({username:'chrome', password:'secr3t'}, @sender)
+
+      it 'creates an item', ->
+        @background.save(@sender.tab.id, {name: 'Test'}, @sender)
+
+        expect(@items.create).toHaveBeenCalledWith
+          name: 'Test'
+          data:
+            username: 'chrome'
+            password: 'secr3t'
+

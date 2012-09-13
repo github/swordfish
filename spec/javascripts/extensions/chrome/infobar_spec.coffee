@@ -7,7 +7,7 @@ describe 'Autosave', ->
     @deferred = jQuery.Deferred()
     spyOn(Extension.prototype, 'isUnlocked').andReturn(@deferred)
     @el = $('<div/>')
-    window.infobar = @infobar = new Infobar(el: @el)
+    window.infobar = @infobar = new Infobar('1', @el)
 
   describe 'when keypair is locked', ->
     beforeEach ->

@@ -6,7 +6,7 @@ describe 'Infobar.Save', ->
   beforeEach ->
     @deferred = jQuery.Deferred()
     @extension = {save: jasmine.createSpy('save').andReturn(@deferred)}
-    @infobar = {extension: @extension, dismiss: jasmine.createSpy('dismiss')}
+    @infobar = {id: '2', extension: @extension, dismiss: jasmine.createSpy('dismiss')}
     @view = new Infobar.Save(infobar: @infobar)
     @view.render()
 
@@ -14,7 +14,7 @@ describe 'Infobar.Save', ->
     it 'sends unlock to extension', ->
       @view.$('input[type=text]').val('Test')
       @view.submit()
-      expect(@extension.save).toHaveBeenCalledWith({name: 'Test'})
+      expect(@extension.save).toHaveBeenCalledWith('2', {title: 'Test'})
 
     it 'returns false', ->
       expect(@view.submit()).toBe(false)
@@ -26,12 +26,3 @@ describe 'Infobar.Save', ->
 
       it 'dismisses infobar', ->
         expect(@infobar.dismiss).toHaveBeenCalled()
-
-  #   describe 'on failure', ->
-  #     beforeEach ->
-  #       @deferred.reject()
-  #       @view.submit()
-
-  #     it 'shows error', ->
-  #       @deferred.reject()
-  #       expect(@view.$('.error').text()).toEqual('Incorrect passphrase!')
