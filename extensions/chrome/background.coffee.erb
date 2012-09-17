@@ -29,10 +29,8 @@ class @Background
   connect: (sender) ->
     id = sender.tab.id
     if @submissions[id]
-      chrome.experimental.infobars.show
-        tabId: id
-        path: "infobar.html##{id}"
-        height: 40
+      chrome.tabs.sendMessage sender.tab.id,
+        infobar: ["infobar.html##{id}"]
 
   save: (tab_id, attrs, sender) ->
     @items.create _.extend(@submissions[tab_id], attrs)

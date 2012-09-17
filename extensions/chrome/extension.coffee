@@ -9,6 +9,9 @@ class @Extension
     jQuery.extend @, Events
     chrome.extension.onMessage.addListener @dispatch
 
+  url: (path) ->
+    chrome.extension.getURL(path)
+
   send: (message, args...) ->
     deferred = jQuery.Deferred()
     payload = {}

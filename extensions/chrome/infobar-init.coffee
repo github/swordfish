@@ -3,5 +3,5 @@
 jQuery ($) ->
   window.infobar = new Infobar(
     window.location.hash.slice(1),
-    $('body')
+    $('#content')
   )

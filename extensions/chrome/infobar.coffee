@@ -9,6 +9,8 @@ class @Infobar
     @extension.send('isUnlocked').then (unlocked) =>
       if unlocked then @save() else @unlock()
 
+    $(document).on 'click', '.dismiss', @dismiss
+
   unlock: =>
     @view new Infobar.Unlock infobar: @
 
@@ -17,7 +19,7 @@ class @Infobar
 
   # Public: Dismiss the infobar
   dismiss: =>
-    window.close()
+    parent.postMessage 'dismiss', '*'
 
   # Internal: Render this view to @el
   view: (view) ->

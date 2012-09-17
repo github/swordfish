@@ -2,6 +2,7 @@
 #= require lib/form2js
 #= require chrome/extension
 #= require chrome/content/autofill
+#= require chrome/iframebar
 
 class @Content
   keyCode: 191 # forward slash
@@ -10,6 +11,8 @@ class @Content
     @bind()
     @extension = new Extension
     @extension.send 'connect'
+
+    @extension.on 'infobar', @infobar
 
   bind: ->
     # Use native event handling since jQuery doesn't support capture
@@ -27,3 +30,6 @@ class @Content
 
   autofill: (params) =>
     new Autofill(params).submit() if params
+
+  infobar: (path) =>
+    new Iframebar(@extension, path)
