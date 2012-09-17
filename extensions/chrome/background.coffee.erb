@@ -48,9 +48,7 @@ class @Background
 
   autofill: (sender) ->
     host = @host(sender)
-    console.log 'autofilling', host
     if item = @items.forHost(host)
-      console.log 'item to autofill', item, item.data()
       item.data()
 
   setup: ->
