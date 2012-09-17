@@ -21,7 +21,10 @@ class @Background
       @items.keypair = keypair
 
   submit: (params, sender) ->
-    @submissions[sender.tab.id] = params
+    attrs =
+      host: @host(sender)
+      data: params
+    @submissions[sender.tab.id] = attrs
 
   connect: (sender) ->
     id = sender.tab.id
@@ -32,20 +35,33 @@ class @Background
         height: 40
 
   save: (tab_id, attrs, sender) ->
-    attrs.data = @submissions[tab_id]
-    @items.create attrs
+    @items.create _.extend(@submissions[tab_id], attrs)
 
   isUnlocked: ->
     @app.keypair.isUnlocked()
 
   unlock: (passphrase) ->
     if @app.keypair.unlock(passphrase)
-      @app.authenticate()
+      @app.authenticate().done => @items.fetch()
 
     @app.keypair.isUnlocked()
 
+  autofill: (sender) ->
+    host = @host(sender)
+    console.log 'autofilling', host
+    if item = @items.forHost(host)
+      console.log 'item to autofill', item, item.data()
+      item.data()
+
   setup: ->
     chrome.extension.onMessage.addListener @dispatch
+
+  # FIXME: extract to extension adapter for sender
+  host: (sender) ->
+    url = document.createElement('a')
+    url.href = sender.tab.url
+    url.host
+
 
 Application.host = '<%= ENV['APP_HOST'] %>'
 

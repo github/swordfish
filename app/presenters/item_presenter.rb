@@ -8,6 +8,7 @@ class ItemPresenter
     {
       'id'             => @item.id.to_s,
       'title'          => @item.title,
+      'host'           => @item.host,
       'encrypted_data' => @item.encrypted_data,
       'key'            => @share.key
     }

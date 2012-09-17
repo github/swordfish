@@ -1,18 +1,28 @@
+#= require lib/jquery
 #= require lib/form2js
+#= require chrome/extension
+#= require chrome/content/autofill
 
-class Content
-  constructor: ->
-    @send 'connect'
+class @Content
+  keyCode: 191 # forward slash
+
+  constructor: (@element) ->
+    @bind()
+    @extension = new Extension
+    @extension.send 'connect'
+
+  bind: ->
+    # Use native event handling since jQuery doesn't support capture
+    @element.addEventListener 'submit', @submit, true
+    @element.addEventListener 'keydown', @keydown, true
 
   submit: (event) =>
     data = form2js(event.target, '.', true, null, true)
-    @send 'submit', data
+    @extension.send 'submit', data
 
-  send: (message, args...) ->
-    payload = {}
-    payload[message] = args
-    chrome.extension.sendMessage payload
+  keydown: (event) =>
+    if event.keyCode == @keyCode && event.metaKey
+      @extension.send('autofill').then @autofill
 
-content = new Content
-
-document.addEventListener 'submit', content.submit, true
+  autofill: (params) =>
+    new Autofill(params).submit() if params
