@@ -34,6 +34,7 @@ class @Background
 
   save: (tab_id, attrs, sender) ->
     @items.create _.extend(@submissions[tab_id], attrs)
+    delete @submissions[tab_id]
 
   isUnlocked: ->
     @app.keypair.isUnlocked()
@@ -48,6 +49,9 @@ class @Background
     host = @host(sender)
     if item = @items.forHost(host)
       item.data()
+
+  dismiss: (sender) ->
+    delete @submissions[sender.tab.id]
 
   setup: ->
     chrome.extension.onMessage.addListener @dispatch

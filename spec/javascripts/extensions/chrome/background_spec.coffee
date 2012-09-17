@@ -86,6 +86,10 @@ describe 'Chrome background script', ->
             username: 'chrome'
             password: 'secr3t'
 
+      it 'clears saved login info', ->
+        @background.save(@sender.tab.id, {}, @sender)
+        expect(@background.submissions[@sender.tab.id]).toBe(undefined)
+
     describe 'autofill', ->
       describe 'when an item exists for the domain', ->
         beforeEach ->
@@ -106,3 +110,9 @@ describe 'Chrome background script', ->
         it 'returns undefined', ->
           expect(@background.autofill(@sender)).toBe(undefined)
 
+    describe 'dismiss', ->
+      it 'clears submissions for the tab', ->
+        @background.submit({username:'chrome', password:'secr3t'}, @sender)
+        expect(@background.submissions[@sender.tab.id]).toBeTruthy()
+        @background.dismiss(@sender)
+        expect(@background.submissions[@sender.tab.id]).toBe(undefined)
