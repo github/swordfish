@@ -6,7 +6,7 @@ class @Infobar
   constructor: (@id, @el) ->
     @extension = new Extension()
 
-    @extension.isUnlocked().then (unlocked) =>
+    @extension.send('isUnlocked').then (unlocked) =>
       if unlocked then @save() else @unlock()
 
   unlock: =>

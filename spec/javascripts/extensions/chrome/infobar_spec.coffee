@@ -5,7 +5,7 @@ require '/assets/chrome/infobar.js'
 describe 'Autosave', ->
   beforeEach ->
     @deferred = jQuery.Deferred()
-    spyOn(Extension.prototype, 'isUnlocked').andReturn(@deferred)
+    spyOn(Extension.prototype, 'send').andReturn(@deferred)
     @el = $('<div/>')
     window.infobar = @infobar = new Infobar('1', @el)
 

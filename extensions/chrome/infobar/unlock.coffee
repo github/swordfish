@@ -15,7 +15,7 @@ class Infobar.Unlock extends Backbone.TemplateView
 
   submit: (e) =>
     passphrase = @$('input[type=password]').val()
-    @infobar.extension.unlock(passphrase).done(@done).fail(@fail)
+    @infobar.extension.send('unlock', passphrase).done(@done).fail(@fail)
     false
 
   done: =>
