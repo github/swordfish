@@ -25,12 +25,18 @@ describe 'Chrome content script', ->
     spyOn(@content.extension, 'send').andReturn(@deferred)
 
   describe 'on form submit', ->
-    beforeEach ->
-      @form.find('button').trigger('click')
-
     it 'sends message with form variables', ->
+      @form.find('button').trigger('click')
       params = {username:'bkeepers', password: 'testing'}
       expect(@content.extension.send).toHaveBeenCalledWith('submit', params)
+
+    describe 'with data-swordfish-disable attribute', ->
+      beforeEach ->
+        @form.attr('data-swordfish-disable', true)
+
+      it 'does not sent message', ->
+        @form.find('button').trigger('click')
+        expect(@content.extension.send).not.toHaveBeenCalled()
 
   describe 'keydown', ->
     beforeEach ->

@@ -17,8 +17,9 @@ class @Content
     @element.addEventListener 'keydown', @keydown, true
 
   submit: (event) =>
-    data = form2js(event.target, '.', true, null, true)
-    @extension.send 'submit', data
+    unless $(event.target).attr('data-swordfish-disable')
+      data = form2js(event.target, '.', true, null, true)
+      @extension.send 'submit', data
 
   keydown: (event) =>
     if event.keyCode == @keyCode && event.metaKey

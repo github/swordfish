@@ -41,3 +41,7 @@ describe 'Autofill', ->
       @form.on 'submit', spy
       @autofill.submit()
       expect(spy).toHaveBeenCalled()
+
+    it 'adds data-swordfish-disable attribute', ->
+      @autofill.submit()
+      expect(@form.attr('data-swordfish-disable')).toBeTruthy()

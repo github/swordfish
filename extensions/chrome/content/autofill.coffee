@@ -12,4 +12,6 @@ class @Autofill
     for name, value of @params
       form.find("[name=#{name}]").val(value)
 
+    form.attr 'data-swordfish-disable', true
+
     form.submit()
