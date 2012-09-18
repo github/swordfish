@@ -12,6 +12,14 @@ Even if an attacker gets access to your server or database, all secure items are
 
 When you sign up, a RSA public/private keypair is generated in your browser. All sensitive data is encrypted with your private key, which is password-protected and never transferred to the server. No sensitive data is ever transmitted over the wire unless it is encrypted with secrets only available on the client.
 
+## Recommended Reading
+
+[Why passwords have never been weaker—and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/)
+A great article about password cracking techniques and the implications for choosing strong passwords.
+
+[Javascript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/)
+A thoughtful critique of JavaScript encryption, discussed in #28.
+
 ## Contributing
 
 If you find a security vulnerability:
