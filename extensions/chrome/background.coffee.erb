@@ -1,10 +1,9 @@
 #= require application
 
 class @Background
-  constructor: (@keypair) ->
+  constructor: () ->
     @app = new Application()
-    @app.setKeypair(@keypair) if @keypair
-    @items = new Item.Collection([], keypair: @keypair)
+    @items = new Item.Collection([], keypair: @app.keypair)
     @submissions = {}
 
   # Dispatch messages from the content script and popup
@@ -16,8 +15,7 @@ class @Background
   # Recieve private key
   key: (key) ->
     unless @app.keypair
-      keypair = new Keypair(key)
-      @app.setKeypair(keypair)
+      keypair = @app.setKey(key)
       @items.keypair = keypair
 
   submit: (params, sender) ->
@@ -65,5 +63,5 @@ class @Background
 
 Application.host = '<%= ENV['APP_HOST'] %>'
 
-@background = new Background(Keypair.load())
+@background = new Background()
 @background.setup()

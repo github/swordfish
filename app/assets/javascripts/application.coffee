@@ -19,10 +19,13 @@ class @Application
     @prototype.on(args...)
 
   constructor: ->
+    @keypair = Keypair.load()
     @trigger 'initialize'
 
-  setKeypair: (@keypair) ->
+  setKey: (key) ->
+    @keypair = new Keypair(key)
     @keypair.savePrivateKey()
+    @keypair
 
   authenticate: ->
     new KeypairAuthenticator(@keypair).request()

@@ -17,6 +17,6 @@ class Keypair.Views.Load extends Backbone.View
     reader.readAsText(file)
 
   load: (e) =>
-    @app.setKeypair new Keypair(e.target.result)
+    @app.setKey e.target.result
     Backbone.history.navigate 'key/unlock', true
 

@@ -25,8 +25,9 @@ describe 'Chrome background script', ->
 
   describe 'with a keypair', ->
     beforeEach ->
-      @keypair = new Keypair('key')
-      @background = new Background(@keypair)
+      @local['privateKey'] = 'key'
+      @background = new Background()
+      @keypair = @background.app.keypair
 
     describe 'isUnlocked', ->
       it 'responds true if unlocked', ->
