@@ -1,6 +1,7 @@
 class @Iframebar
   styles:
     position: 'fixed'
+    zIndex: 2147483648 # biggest 32bit integer
     top: 0
     left: 0
     width: '100%'
