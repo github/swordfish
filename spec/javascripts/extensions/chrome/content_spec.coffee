@@ -38,6 +38,14 @@ describe 'Chrome content script', ->
         @form.find('button').trigger('click')
         expect(@content.extension.send).not.toHaveBeenCalled()
 
+    describe 'with data-swordfish-disable attribute on parent element', ->
+      beforeEach ->
+        @form.wrap('<div></div>').parent().attr('data-swordfish-disable', true)
+
+      it 'does not sent message', ->
+        @form.find('button').trigger('click')
+        expect(@content.extension.send).not.toHaveBeenCalled()
+
   describe 'keydown', ->
     beforeEach ->
       spyOn(@content, 'autofill')
