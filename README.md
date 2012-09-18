@@ -14,14 +14,9 @@ When you sign up, a RSA public/private keypair is generated in your browser. All
 
 ## Recommended Reading
 
-[Why passwords have never been weaker—and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/)
-A great article about password cracking techniques and the implications for choosing strong passwords.
-
-[Javascript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/)
-A thoughtful critique of JavaScript encryption, discussed in [#28](https://github.com/github/swordfish/issues/28).
-
-[A JavaScript Implementation of TLS](http://digitalbazaar.com/2010/07/20/javascript-tls-1/)
-The background of [Forge](http://github.com/digitalbazaar/forge/blob/master/README), the encryption library used by Swordfish.
+* [Why passwords have never been weaker—and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/) - A great article about password cracking techniques and the implications for choosing strong passwords.
+* [Javascript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/) - A thoughtful critique of JavaScript encryption, discussed in [#28](https://github.com/github/swordfish/issues/28).
+* [A JavaScript Implementation of TLS](http://digitalbazaar.com/2010/07/20/javascript-tls-1/) - The background of [Forge](http://github.com/digitalbazaar/forge/blob/master/README), the encryption library used by Swordfish.
 
 ## Contributing
 
