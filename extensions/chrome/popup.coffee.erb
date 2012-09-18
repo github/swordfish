@@ -1,6 +1,11 @@
 #= require application
+#= require ui
 
 Application.host = "<%= ENV['APP_HOST'] %>"
 
 jQuery ->
-  window.app = new Application()
+  # get keypair from background
+  background = chrome.extension.getBackgroundPage().background
+  keypair = background.app.keypair
+
+  window.app = new Application(keypair)

@@ -18,8 +18,7 @@ class @Application
   @on: (args...) ->
     @prototype.on(args...)
 
-  constructor: ->
-    @keypair = Keypair.load()
+  constructor: (@keypair = Keypair.load()) ->
     @trigger 'initialize'
 
   setKey: (key) ->

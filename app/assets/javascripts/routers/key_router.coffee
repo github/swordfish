@@ -13,9 +13,9 @@ class @KeyRouter extends Backbone.Router
     )
     @on 'all', @ensureLayout
 
-    if @app.keypair = Keypair.load()
-      window.location.hash = "#key/unlock"
-    if !@app.keypair
+    if @app.keypair
+      window.location.hash = "#key/unlock" unless @app.keypair.isUnlocked()
+    else
       window.location.hash = "#key/new"
 
   newKey: ->
