@@ -28,6 +28,6 @@ describe 'Autosave', ->
 
   describe 'dismiss', ->
     it 'closes the window', ->
-      spyOn(window, 'close')
+      spyOn(parent, 'postMessage')
       @infobar.dismiss()
-      expect(window.close).toHaveBeenCalled()
+      expect(window.postMessage).toHaveBeenCalled()
