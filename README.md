@@ -20,6 +20,9 @@ A great article about password cracking techniques and the implications for choo
 [Javascript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/)
 A thoughtful critique of JavaScript encryption, discussed in #28.
 
+[A JavaScript Implementation of TLS](http://digitalbazaar.com/2010/07/20/javascript-tls-1/)
+The background of [Forge](http://github.com/digitalbazaar/forge/blob/master/README), the encryption library used by Swordfish.
+
 ## Contributing
 
 If you find a security vulnerability:
