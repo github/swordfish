@@ -1,3 +1,8 @@
+When 'I pause' do
+  puts "Pausing, press enter to continue."
+  STDIN.gets
+end
+
 When 'I wait an eternity' do
   $original_capybara_wait_time = Capybara.default_wait_time
   Capybara.default_wait_time = 60
