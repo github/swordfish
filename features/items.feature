@@ -23,6 +23,9 @@ Feature: Items
     When I follow "reveal"
     Then I should see "mypassword"
 
+    When I follow "hide"
+    Then I should not see "mypassword"
+
     When I follow "Edit"
     Then the "Title" field should contain "example.com"
     And the "Username" field should contain "myusername"
