@@ -7,11 +7,13 @@ class @Application
   @on: (args...) ->
     @prototype.on(args...)
 
-  constructor: ->
+  constructor: (@keypair = Keypair.load()) ->
     @trigger 'initialize'
 
-  setKeypair: (@keypair) ->
+  setKey: (key) ->
+    @keypair = new Keypair(key)
     @keypair.savePrivateKey()
+    @keypair
 
   authenticate: ->
     new KeypairAuthenticator(@keypair).request()
