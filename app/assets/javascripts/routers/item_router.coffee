@@ -25,6 +25,9 @@ class @ItemRouter extends Backbone.Router
     @app.layout @layout
 
   items: =>
+    if @items.getKeypair() == undefined
+      @items.setKeypair(@app.keypair)
+
     @items.fetch()
 
   newItem: (id) =>
