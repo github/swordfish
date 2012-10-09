@@ -25,10 +25,8 @@ class @ItemRouter extends Backbone.Router
     @app.layout @layout
 
   items: =>
-    if @items.getKeypair() == undefined
-      new Keypair.Views.Auth(app: @app)
-      @items.setKeypair(@app.keypair)
-
+    # ensure items collection has access to the keypair
+    @items.keypair ||= @app.keypair
     @items.fetch()
 
   newItem: (id) =>
