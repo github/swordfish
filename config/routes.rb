@@ -1,5 +1,5 @@
 Swordfish::Application.routes.draw do
-  resources :items
+  resources :items, :teams
 
   namespace :auth do
     resource :rsa, :only => [:create, :update], :controller => 'rsa'
