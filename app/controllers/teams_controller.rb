@@ -12,13 +12,9 @@ class TeamsController < ApplicationController
 
   def update
     team = Team.get(params[:id])
-    membership = Membership.first(:user_id => current_user.id, :team_id => team.id)
-    if membership
-      team.update_attributes(team_params)
-      render :json => TeamPresenter.new(team, membership)
-    else
-      head 404
-    end
+    membership = team.membership(current_user)
+    team.update_attributes(team_params)
+    render :json => TeamPresenter.new(team, membership)
   end
 
 private

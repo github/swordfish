@@ -49,7 +49,7 @@ describe TeamsController do
       end
 
       context 'when user does not have access' do
-        it { expect(subject.status).to be(404) }
+        it { expect { subject.status }.to raise_error(Toy::NotFound) }
       end
     end
   end
