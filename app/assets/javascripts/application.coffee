@@ -16,7 +16,8 @@ class @Application
     @keypair
 
   authenticate: ->
-    new KeypairAuthenticator(@keypair).request()
+    new KeypairAuthenticator(@keypair).request().done =>
+      @trigger 'authenticated'
 
   # FIXME: make a class for UI concerns and move this there
   layout: (layout) ->

@@ -11,6 +11,8 @@ class @ItemRouter extends Backbone.Router
     @app = options.app
     @on 'all', @ensureLayout
 
+    @app.on 'authenticated', @fetch
+
     @items = new Item.Collection([], keypair: @app.keypair)
 
     @layout = new Backbone.LayoutManager({
@@ -21,13 +23,15 @@ class @ItemRouter extends Backbone.Router
         "#details":   @details = new Backbone.View()
     })
 
+  fetch: =>
+    # ensure items collection has access to the keypair
+    @items.keypair ||= @app.keypair
+    @items.fetch()
+
   ensureLayout: =>
     @app.layout @layout
 
   items: =>
-    # ensure items collection has access to the keypair
-    @items.keypair ||= @app.keypair
-    @items.fetch()
 
   newItem: (id) =>
     @content new Item.Views.New(collection: @items)
