@@ -21,7 +21,8 @@ class @Content
 
   submit: (event) =>
     disabled = $(event.target).closest('[data-swordfish-disable]')
-    unless disabled.length
+    passworded = $(event.target).find("input[type='password']")
+    if disabled.length <= 0 && passworded.length > 0
       data = form2js(event.target, '.', true, null, true)
       @extension.send 'submit', data
 
