@@ -1,5 +1,7 @@
 Swordfish::Application.routes.draw do
-  resources :items
+  resources :items do
+    resources :shares
+  end
 
   resources :teams do
     resources :memberships

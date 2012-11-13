@@ -29,7 +29,11 @@ describe ItemsController do
     end
 
     describe 'update' do
-      let(:item) { Item.create! }
+      let(:item) { mock_model(Item, :id => BSON::ObjectId.new).as_null_object }
+
+      before do
+        Item.stub! :get! => item
+      end
 
       subject do
         put :update, :id => item.id.to_s, :title => 'Updated'
@@ -37,20 +41,23 @@ describe ItemsController do
 
       context 'when user has access' do
         before do
-          item.share_with current_user, 'key'
+          item.stub! :share_with => double(:share)
         end
 
         it { expect(subject.status).to be(200) }
 
         it 'updates item' do
+          item.should_receive :update_attributes
           subject
-          item.reload
-          expect(item.title).to eql('Updated')
         end
       end
 
       context 'when user does not have access' do
-        it { expect(subject.status).to be(404) }
+        before do
+          item.stub!(:share_for).and_raise(Toy::NotFound.new(1))
+        end
+
+        it { expect { subject.status }.to raise_error(Toy::NotFound) }
       end
     end
   end

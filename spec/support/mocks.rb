@@ -1,6 +1,6 @@
 module Mocks
   def mock_user(attrs = {})
-    double(:user, user_attrs(attrs)).as_null_object
+    mock_model(User, user_attrs(attrs)).as_null_object
   end
 
   def user_attrs(attrs = {})

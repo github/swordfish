@@ -12,6 +12,10 @@ class User
 
   before_create :set_fingerprint
 
+  def team_ids
+    Membership.all(:user_id => id).map(&:team_id)
+  end
+
 private
 
   def set_fingerprint
