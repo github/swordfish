@@ -33,6 +33,7 @@ Feature: Items
     Then the "Title" field should contain "example.com"
     And the "Username" field should contain "myusername"
     And the "Password" field should contain "mypassword"
+    And the "Confirm" field should contain "mypassword"
 
     When I fill in "Title" with "Example"
     And I fill in "Username" with "updated-username"
@@ -41,7 +42,7 @@ Feature: Items
     Then I should see "Example" within the item list
     And I should see "updated-username"
 
-  Scenario: does not save on mismatching password confirmation
+  Scenario: does not create on mismatching password confirmation
     When I follow "New Item"
     And I fill in "Title" with "example.com"
     And I fill in "Username" with "myusername"
@@ -53,3 +54,22 @@ Feature: Items
     And I fill in "Confirm" with "mypassword"
     And I press "Create"
     Then I should not see "example.com" within the item list
+
+  Scenario: requires matching passwords on update
+    When I follow "New Item"
+    And I fill in "Title" with "example.com"
+    And I fill in "Username" with "myusername"
+    And I fill in "Password" with "mypassword"
+    And I fill in "Confirm" with "mypassword"
+    And I press "Create"
+
+    When I follow "example.com"
+    And I follow "Edit"
+    And I fill in "Password" with "newpassword"
+    And I press "Save"
+    Then I should see "Save"
+
+    When I fill in "Confirm" with "newpassword"
+    And I press "Save"
+    And I follow "reveal"
+    Then I should see "newpassword"
