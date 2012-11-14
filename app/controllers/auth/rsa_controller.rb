@@ -3,7 +3,7 @@ class Auth::RsaController < ApplicationController
 
   def create
     challenge = RsaChallenge::Request.new(request.raw_post)
-    render :json => challenge.value
+    render :text => challenge.value, :content_type => 'text/plain'
   end
 
   def update

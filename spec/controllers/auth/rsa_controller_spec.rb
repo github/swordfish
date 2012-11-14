@@ -12,6 +12,10 @@ describe Auth::RsaController do
       expect(subject).to be_success
     end
 
+    it 'responds with text/plain content type' do
+      expect(subject.content_type).to eq('text/plain')
+    end
+
     it 'returns a challenge' do
       challenge = mock(:value => "foo")
       RsaChallenge::Request.should_receive(:new).and_return(challenge)

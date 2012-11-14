@@ -4,7 +4,6 @@ class @KeyRouter extends Backbone.Router
     'key/download': 'download'
     'key/load':     'load'
     'key/unlock':   'unlock'
-    'key/auth':     'auth'
 
   constructor: (options) ->
     super
@@ -14,9 +13,9 @@ class @KeyRouter extends Backbone.Router
     )
     @on 'all', @ensureLayout
 
-    if @app.keypair = Keypair.load()
-      window.location.hash = "#key/unlock"
-    if !@app.keypair
+    if @app.keypair
+      window.location.hash = "#key/unlock" unless @app.keypair.isUnlocked()
+    else
       window.location.hash = "#key/new"
 
   newKey: ->
@@ -30,9 +29,6 @@ class @KeyRouter extends Backbone.Router
 
   unlock: ->
     @layout.setView('#content', new Keypair.Views.Unlock(app: @app)).render()
-
-  auth: ->
-    new Keypair.Views.Auth(app: @app)
 
   ensureLayout: =>
     @app.layout @layout

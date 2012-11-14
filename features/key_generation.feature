@@ -23,12 +23,17 @@ Feature: Key Generation
 
   Scenario: Uploading key to sign in
     Given I am on the dashboard
-    And I follow "Load existing key"
-
+    When I follow "Load existing key"
     And I attach the file "spec/fixtures/priv.pem" to "key"
     And I fill in "passphrase" with "testing"
     And I press "Unlock"
     Then I should see "+"
+
+    When I follow "+"
+    And I fill in "Title" with "Loaded Key"
+    And I fill in "Username" with "Fixit!"
+    And I press "Create"
+    Then I should see "Loaded Key"
 
   Scenario: Failing to unlock key
     Given I have generated a key

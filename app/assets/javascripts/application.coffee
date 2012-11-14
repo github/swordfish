@@ -1,48 +1,24 @@
 #= require lib/jquery
-#= require lib/underscore
-#= require lib/backbone
-#= require forge
-#= require_tree ./lib
-#= require hogan
-#= require_tree ./templates
-#= require_tree ./models
-#= require_tree ./collections
-#= require_tree ./views
-#= require_tree ./routers
-#= require_self
-
-Backbone.LayoutManager.configure(
-  manage: true
-
-  fetch: (path) ->
-    HoganTemplates[path]
-
-  render: (template, context) ->
-    template.render(context || {})
-)
-
-_.extend Backbone.Collection.prototype,
-  load: (id) ->
-    result = @deferred()
-    if record = @get(id)
-      result.resolve(record)
-    else
-      finder = =>
-        @off 'reset', finder
-        result.resolve(@get(id))
-      @on 'reset', finder
-    result
-
-  deferred: ->
-    jQuery.Deferred()
+#= require models
 
 class @Application
+  _.extend @prototype, Backbone.Events
 
-  constructor: ->
-    new KeyRouter(app: @, keypair: @keypair)
-    new ItemRouter(app: @, keypair: @keypair)
-    Backbone.history.start()
+  @on: (args...) ->
+    @prototype.on(args...)
 
+  constructor: (@keypair = Keypair.load()) ->
+    @trigger 'initialize'
+
+  setKey: (key) ->
+    @keypair = new Keypair(key)
+    @keypair.savePrivateKey()
+    @keypair
+
+  authenticate: ->
+    new KeypairAuthenticator(@keypair).request()
+
+  # FIXME: make a class for UI concerns and move this there
   layout: (layout) ->
     unless layout == @current_layout
       @current_layout = layout

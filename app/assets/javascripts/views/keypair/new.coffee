@@ -21,5 +21,6 @@ class Keypair.Views.New extends Backbone.View
     @$('#status').text('Generating keys…')
 
   done: (publicKey, privateKey) =>
-    @app.keypair = Keypair.create(privateKey, @passphrase)
+    keypair = @app.setKey(privateKey)
+    keypair.unlock(@passphrase)
     Backbone.history.navigate "key/download", true

@@ -6,7 +6,6 @@ class Item.Views.List extends Backbone.View
   constructor: ->
     super
     @collection.on 'add reset', @render, @
-    @collection.fetch()
 
   beforeRender: =>
     @collection.each @add

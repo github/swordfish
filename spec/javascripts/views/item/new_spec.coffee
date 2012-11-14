@@ -1,4 +1,5 @@
 require '/assets/application.js'
+require '/assets/ui.js'
 
 describe 'Item.Views.New', ->
   beforeEach ->
