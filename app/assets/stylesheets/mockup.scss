@@ -329,6 +329,19 @@ form {
   }
 }
 
+#item-password-confirmation-status {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-size: 32px;
+  vertical-align: top;
+  &.match {
+    background-image: image-url('emoji/white_check_mark.png');
+  }
+  &.mismatch {
+    background-image: image-url('emoji/warning.png');
+  }
+}
 
 input[type=text], input[type=password], textarea {
   font-size: 22px;

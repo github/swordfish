@@ -1,14 +1,17 @@
 Feature: Items
 
-  Scenario: creating and editing an item
+  Background:
     Given I have generated a key
     And I am on the dashboard
     And I fill in "passphrase" with "testing"
     And I press "Unlock"
-    And I follow "New Item"
-    When I fill in "Title" with "example.com"
+
+  Scenario: creating and editing an item
+    When I follow "New Item"
+    And I fill in "Title" with "example.com"
     And I fill in "Username" with "myusername"
     And I fill in "Password" with "mypassword"
+    And I fill in "Confirm" with "mypassword"
     And I press "Create"
     Then I should see "example.com" within the item list
 
@@ -37,3 +40,16 @@ Feature: Items
 
     Then I should see "Example" within the item list
     And I should see "updated-username"
+
+  Scenario: does not save on mismatching password confirmation
+    When I follow "New Item"
+    And I fill in "Title" with "example.com"
+    And I fill in "Username" with "myusername"
+    And I fill in "Password" with "mypassword"
+    And I press "Create"
+    Then I should not see "example.com" within the item list
+
+    When I fill in "Password" with ""
+    And I fill in "Confirm" with "mypassword"
+    And I press "Create"
+    Then I should not see "example.com" within the item list

@@ -14,3 +14,13 @@ describe 'Item.Views.New', ->
     it 'cancels the normal form submission', ->
       @view.submit(@event)
       expect(@event.preventDefault).toHaveBeenCalled()
+
+    it 'does not create an item if the passwords do not match', ->
+      @view.passwordConfirmed = -> false
+      @view.submit(@event)
+      expect(@collection.create).not.toHaveBeenCalled()
+
+    it 'cancels the normal form submission if the passwords do not match', ->
+      @view.passwordConfirmed = -> false
+      @view.submit(@event)
+      expect(@event.preventDefault).toHaveBeenCalled()
