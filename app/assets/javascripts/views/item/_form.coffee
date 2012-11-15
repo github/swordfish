@@ -20,11 +20,13 @@ class Item.Views.Form extends Backbone.View
 
   submit: (event) =>
     event.preventDefault()
-    return unless @passwordConfirmed()
-    params = @$('form').toObject(mode: 'combine')
-    params.data ||= {}
-    params.data.password = @password()
-    @save(params)
+    if @passwordConfirmed()
+      params = @$('form').toObject(mode: 'combine')
+      params.data ||= {}
+      params.data.password = @password()
+      @save(params)
+    else
+      @$('.error').text("Password doesn't match Confirm. Please type your password again.")
 
   passwordConfirmed: ->
     @password() == @passwordConfirmation()
