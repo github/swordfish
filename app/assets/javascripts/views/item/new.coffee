@@ -1,13 +1,8 @@
 Item.Views ?= {}
 
-class Item.Views.New extends Backbone.View
+class Item.Views.New extends Item.Views.Form
   template: 'templates/item/new'
 
-  events:
-    'submit form': 'submit'
-
-  submit: (event) =>
-    params = @$('form').toObject(mode: 'combine')
+  save: (params) ->
     @collection.create params, success: (item) =>
-      Backbone.history.navigate "items/#{item.id}", true
-    false
+        Backbone.history.navigate "items/#{item.id}", true
