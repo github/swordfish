@@ -38,7 +38,7 @@ describe SharesController do
         item.stub!(:share_for).and_raise(Toy::NotFound.new(1))
       end
 
-      it { expect { subject.status }.to raise_error(Toy::NotFound) }
+      its(:status) { should be(404) }
     end
   end
 

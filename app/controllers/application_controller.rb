@@ -1,7 +1,13 @@
 class ApplicationController < ActionController::Base
   before_filter :sign_in_required
 
+  rescue_from Toy::NotFound, :with => :not_found
+
 private
+
+  def not_found(exception = nil)
+    head :not_found
+  end
 
   def sign_in_required
     head 401 unless signed_in?
