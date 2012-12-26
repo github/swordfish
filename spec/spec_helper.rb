@@ -27,6 +27,8 @@ RSpec.configure do |config|
       c.remove
       c.drop_indexes
     end
+
+    KeypairFactory.reset
   end
 end
 

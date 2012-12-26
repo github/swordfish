@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Auth::RsaController do
-  let(:public_key) { fixture('pub.pem') }
+  let(:public_key) { KeypairFactory.reserve.public_key }
 
   describe 'create' do
     subject do

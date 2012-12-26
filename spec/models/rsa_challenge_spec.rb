@@ -1,7 +1,9 @@
 require 'spec_helper'
 
 describe RsaChallenge do
-  let(:public_key) { fixture('pub.pem') }
+  let(:keypair) { KeypairFactory.reserve }
+  let(:public_key) { keypair.public_key }
+  let(:private_key) { keypair.private_key }
 
   describe RsaChallenge::Request do
     subject do
@@ -30,9 +32,8 @@ describe RsaChallenge do
     describe 'valid?' do
       context 'with a decrypted challenge' do
         before do
-          priv = OpenSSL::PKey::RSA.new(fixture('priv.pem'), 'testing')
           value = Base64.decode64(challenge.value)
-          @decrypted = Base64.encode64(priv.private_decrypt(value))
+          @decrypted = Base64.encode64(keypair.key.private_decrypt(value))
         end
 
         subject do
