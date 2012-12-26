@@ -7,6 +7,12 @@ Swordfish::Application.routes.draw do
     resources :memberships
   end
 
+  resources :users do
+    collection do
+      get :lookup
+    end
+  end
+
   namespace :auth do
     resource :rsa, :only => [:create, :update], :controller => 'rsa'
   end

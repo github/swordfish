@@ -7,6 +7,8 @@ class User
 
   self.include_root_in_json = false
 
+  attribute :name,        String
+  attribute :email,       String
   attribute :public_key,  String
   attribute :fingerprint, String
 
@@ -14,6 +16,10 @@ class User
 
   def team_ids
     Membership.all(:user_id => id).map(&:team_id)
+  end
+
+  def self.find_by_email!(email)
+    first(:email => email) || raise(Toy::NotFound, "email=#{email}")
   end
 
 private
