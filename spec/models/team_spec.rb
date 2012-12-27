@@ -23,4 +23,13 @@ describe Item do
       expect { team.membership(user) }.to raise_error(Toy::NotFound)
     end
   end
+
+  describe 'invite' do
+    it 'creates an invite' do
+      invite = team.invite('bkeepers@github.com')
+      expect(invite).to be_instance_of(Invite)
+      expect(invite).not_to be_new_record
+      expect(invite.email).to eql('bkeepers@github.com')
+    end
+  end
 end

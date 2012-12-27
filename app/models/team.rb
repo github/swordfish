@@ -12,4 +12,8 @@ class Team
     Membership.first(:team_id => id, :user_id => user.id) ||
       raise(Toy::NotFound, :team_id => id, :user_id => user.id)
   end
+
+  def invite(email)
+    Invite.create! :team_id => id, :email => email
+  end
 end

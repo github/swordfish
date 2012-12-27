@@ -5,6 +5,7 @@ Swordfish::Application.routes.draw do
 
   resources :teams do
     resources :memberships
+    resources :invites
   end
 
   resources :users do
