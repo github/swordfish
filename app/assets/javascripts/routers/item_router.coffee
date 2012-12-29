@@ -23,7 +23,7 @@ class @ItemRouter extends Backbone.Router
       template: "templates/main",
 
       views:
-        "#teams":     window.teams = new Team.Views.List(collection: @teams)
+        "#teams":     new Team.Views.List(collection: @teams)
         "#items":     new Item.Views.List(collection: @items)
         "#details":   @details = new Backbone.View()
     })
