@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "Swordfish",
+  "version": "0.1",
+  "description": "Share passwords with your scros.",
+  "homepage_url": "https://github.com/github/swordfish",
+  "icons": {
+    "128": "images/icon-128.png",
+    "16": "images/icon-16.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_title": "Swordfish",
+    "default_icon": "images/icon-19.png",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "js": ["content.js", "content-init.js"],
+      "matches": ["http://*/*", "https://*/*"]
+    },
+    {
+      "js": ["content-app.js"],
+      "matches": ["<%= ENV['APP_HOST'] %>/*"]
+    }
+  ],
+  "incognito": "spanning",
+  "permissions": [
+    "<%= ENV['APP_HOST'] %>/"
+  ],
+  "web_accessible_resources": [
+    "infobar.html"
+  ]
+}

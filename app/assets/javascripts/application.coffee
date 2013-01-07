@@ -4,6 +4,17 @@
 class @Application
   _.extend @prototype, Backbone.Events
 
+  # Host to make Ajax requests to
+  @host: null
+
+  # Ajax prefilter to prepend host to request url
+  @prependHost: (options, originalOptions, xhr) =>
+    if @host
+      options.crossDomain = true
+      options.url = "#{@host}#{originalOptions.url}"
+
+    return # return value effects dataType
+
   @on: (args...) ->
     @prototype.on(args...)
 
@@ -24,3 +35,5 @@ class @Application
       @current_layout = layout
       $(document.body).html(layout.el)
       layout.render()
+
+jQuery.ajaxPrefilter Application.prependHost

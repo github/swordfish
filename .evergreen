@@ -7,5 +7,9 @@ Evergreen.configure do |config|
   config.public_dir = 'public'
 end
 
+# Add extension directory to asset path
+Rails.application.assets.append_path Rails.root.join('extensions')
+Rails.application.assets.append_path Rails.root.join('spec', 'javascripts')
+
 require 'webmock'
 WebMock.disable_net_connect!(:allow_localhost => true)

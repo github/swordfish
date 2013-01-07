@@ -7,23 +7,6 @@
 $container-color: rgba(110,83,46,0.2);
 $shadow-color: opacify($container-color, 0.1);
 
-// ==== debugging ===
-
-#grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: image-url('mockup/grid.png');
-  display: none;
-  z-index: 100;
-
-  .grid & {
-    display: block;
-  }
-}
-
 // ==== basic ====
 
 body {
@@ -43,10 +26,12 @@ h1, h2, h3, h4, h5, h6 {
 // ==== layout =====
 
 @mixin pane {
-  position: absolute;
-  top: 45px;
-  bottom: 18px;
-  overflow: hidden;
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    top: 45px;
+    bottom: 18px;
+    overflow: hidden;
+  }
 
   footer {
     height: 53px;
@@ -56,43 +41,63 @@ h1, h2, h3, h4, h5, h6 {
     border-bottom-right-radius: 4px;
     @include background(linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,1)));
     padding: 0 18px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 3;
     text-align: right;
+    @media only screen and (min-width: 768px) {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+    }
   }
 
   .pane-content {
-    z-index: 2;
+    @media only screen and (min-width: 768px) {
+      z-index: 2;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      padding: 9px 0 72px 0;
+      overflow: auto;
+    }
+  }
+}
+
+
+// Desktop UI
+@media only screen and (min-width: 768px) {
+  #container {
     position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 9px 0 72px 0;
-    overflow: auto;
+    width: 960px;
+    top: 18px;
+    bottom: 18px;
+    left: 50%;
+    margin-left: -480px;
+  }
+}
+
+// Popup extension UI
+@media only screen and (max-width: 767px) {
+  #container {
+    margin: 18px;
   }
 }
 
 #container {
-  position: absolute;
-  width: 960px;
-  top: 18px;
-  bottom: 18px;
-  left: 50%;
-  margin-left: -480px;
   background-color: $container-color;
   box-shadow: inset 0px 0px 5px $shadow-color;
   border-radius: 4px;
 
   &.setup {
-    top: 50%;
-    width: 480px;
-    height: 300px;
-    margin-left: -240px;
-    margin-top: -150px;
+    @media only screen and (min-width: 768px) {
+      top: 50%;
+      width: 480px;
+      height: 300px;
+      margin-left: -240px;
+      margin-top: -150px;
+    }
 
     #content {
       @include pane;
@@ -371,4 +376,21 @@ button, .button {
 
 p.error {
   color: red;
+}
+
+// ==== debugging ===
+
+#grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: image-url('mockup/grid.png');
+  display: none;
+  z-index: 100;
+
+  .grid & {
+    display: block;
+  }
 }

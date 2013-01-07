@@ -23,6 +23,6 @@ class ItemsController < ApplicationController
 private
 
   def item_params
-    params.slice(:title, :encrypted_data)
+    params.slice(:title, :host, :encrypted_data)
   end
 end

@@ -20,3 +20,11 @@ guard 'cucumber' do
   watch(%r{^features/support/.+$})          { 'features' }
   watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
 end
+
+guard 'shell' do
+  watch(%r{^extensions/chrome/.+$}) do
+    print "building Chrome extension..."
+    `bundle exec rake extension:chrome:package`
+    puts "done"
+  end
+end

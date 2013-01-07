@@ -5,6 +5,7 @@ class Item
   self.include_root_in_json = false
 
   attribute :title, String
+  attribute :host, String
   attribute :encrypted_data, String
 
   def share_with(user, key)

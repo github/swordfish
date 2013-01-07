@@ -7,7 +7,7 @@
   <%= javascript_include_tag :application, :ui %>
   <%= yield :head %>
 </head>
-<body class="<%= Rails.env %>">
+<body class="<%= Rails.env %>" data-swordfish-disable>
   <%= yield %>
 </body>
 </html>

@@ -42,9 +42,17 @@ end
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
 require 'capybara/poltergeist'
-Capybara.default_driver = ENV['SELENIUM'] ? :selenium : :poltergeist
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+Capybara.default_driver = ENV['SELENIUM'] ? :selenium_chrome : :poltergeist
+
+Capybara.register_driver :selenium_chrome do |app|
+  require 'selenium-webdriver'
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  profile.add_extension Rails.root.join(*%w(build extensions swordfish.crx))
+  Capybara::Selenium::Driver.new app, :browser => :chrome, :profile => profile
+end
+
+Before("@chrome") do
+  Capybara.current_driver = :selenium_chrome
 end
 
 After do

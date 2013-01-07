@@ -13,6 +13,7 @@ group :assets do
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'hogan_assets'
+  gem 'crxmake'
 end
 
 group :development, :test do
@@ -30,4 +31,6 @@ group :guard do
   gem 'guard-bundler'
   gem 'guard-cucumber'
   gem 'guard-rspec'
+  gem 'guard-shell'
+
 end

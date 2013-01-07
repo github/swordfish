@@ -1,0 +1,1 @@
+new Content(document)

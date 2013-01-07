@@ -1,0 +1,67 @@
+#= require application
+
+class @Background
+  constructor: () ->
+    @app = new Application()
+    @items = new Item.Collection([], keypair: @app.keypair)
+    @submissions = {}
+
+  # Dispatch messages from the content script and popup
+  dispatch: (request, sender, response) =>
+    for message, args of request
+      args.push sender
+      response(@[message](args...)) if @[message]
+
+  # Recieve private key
+  key: (key) ->
+    unless @app.keypair
+      keypair = @app.setKey(key)
+      @items.keypair = keypair
+
+  submit: (params, sender) ->
+    attrs =
+      host: @host(sender)
+      data: params
+    @submissions[sender.tab.id] = attrs
+
+  connect: (sender) ->
+    id = sender.tab.id
+    if @submissions[id]
+      chrome.tabs.sendMessage sender.tab.id,
+        infobar: ["infobar.html##{id}"]
+
+  save: (tab_id, attrs, sender) ->
+    @items.create _.extend(@submissions[tab_id], attrs)
+    delete @submissions[tab_id]
+
+  isUnlocked: ->
+    @app.keypair.isUnlocked()
+
+  unlock: (passphrase) ->
+    if @app.keypair.unlock(passphrase)
+      @app.authenticate().done => @items.fetch()
+
+    @app.keypair.isUnlocked()
+
+  autofill: (sender) ->
+    host = @host(sender)
+    if item = @items.forHost(host)
+      item.data()
+
+  dismiss: (sender) ->
+    delete @submissions[sender.tab.id]
+
+  setup: ->
+    chrome.extension.onMessage.addListener @dispatch
+
+  # FIXME: extract to extension adapter for sender
+  host: (sender) ->
+    url = document.createElement('a')
+    url.href = sender.tab.url
+    url.host
+
+
+Application.host = '<%= ENV['APP_HOST'] %>'
+
+@background = new Background()
+@background.setup()
