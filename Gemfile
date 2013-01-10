@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>3.1.0'
+gem 'rails', '~> 3.1.10'
 gem 'bson_ext'
 gem 'mongo'
 gem 'toystore-mongo', :require => 'toystore-mongo'
