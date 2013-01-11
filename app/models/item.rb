@@ -1,6 +1,6 @@
 class Item
   include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['items']
+  adapter :mongo, Swordfish::Application.config.mongo['items'], :safe => true
 
   self.include_root_in_json = false
 

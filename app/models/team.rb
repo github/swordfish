@@ -1,6 +1,6 @@
 class Team
   include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['teams']
+  adapter :mongo, Swordfish::Application.config.mongo['teams'], :safe => true
 
   attribute :name, String
 

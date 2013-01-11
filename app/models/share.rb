@@ -1,6 +1,6 @@
 class Share
   include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['shares']
+  adapter :mongo, Swordfish::Application.config.mongo['shares'], :safe => true
 
   self.include_root_in_json = false
 
