@@ -57,7 +57,12 @@ class @ItemRouter extends Backbone.Router
 
   team: (id) =>
     @teams.load(id).then (team) =>
-      @content new Team.Views.Show(model: team)
+      @content new Team.Views.Show(
+        model: team
+        views:
+          '.new-membership': new Membership.Views.New(model: team)
+          '.memberships': new Membership.Views.List(model: team)
+      )
 
   editTeam: (id) =>
     @teams.load(id).then (team) =>

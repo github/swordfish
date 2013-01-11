@@ -15,6 +15,8 @@ module HtmlSelectorsHelpers
       '#items'
     when 'the details'
       '#details'
+    when 'the team members'
+      '.memberships'
     else
       raise "Can't find mapping from \"#{locator}\" to a selector.\n" +
         "Now, go and add a mapping in #{__FILE__}"

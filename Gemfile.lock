@@ -49,6 +49,7 @@ GEM
     childprocess (0.3.3)
       ffi (~> 1.0.6)
     chunky_png (1.2.5)
+    coderay (1.0.8)
     coffee-rails (3.1.1)
       coffee-script (>= 2.2.0)
       railties (~> 3.1.0)
@@ -74,6 +75,9 @@ GEM
       nokogiri (>= 1.5.0)
     diff-lcs (1.1.3)
     dotenv (0.1.0)
+    email_spec (1.4.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     eventmachine (0.12.10)
     evergreen (1.0.0)
@@ -122,6 +126,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.19)
     mongo (1.6.4)
       bson (~> 1.6.4)
@@ -137,6 +142,10 @@ GEM
       http_parser.rb (~> 0.5.3)
       multi_json (~> 1.0)
     polyglot (0.3.3)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
     rack (1.3.6)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -201,6 +210,7 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.3.3)
     sprockets (2.0.4)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -238,6 +248,7 @@ DEPENDENCIES
   compass-rails
   cucumber-rails
   dotenv
+  email_spec
   evergreen
   guard-bundler
   guard-cucumber
@@ -246,6 +257,7 @@ DEPENDENCIES
   mongo
   net-ssh
   poltergeist
+  pry
   rails (~> 3.1.0)
   rspec-rails
   sass-rails

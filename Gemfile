@@ -18,12 +18,14 @@ end
 group :development, :test do
   gem 'evergreen', :require => 'evergreen/rails'
   gem 'rspec-rails'
+  gem 'pry'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'webmock'
   gem 'poltergeist'
+  gem 'email_spec'
 end
 
 group :guard do

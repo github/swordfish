@@ -6,9 +6,10 @@ class TeamPresenter
 
   def as_json(options = {})
     {
-      'id'   => @team.id.to_s,
-      'name' => @team.name,
-      'key'  => @membership.key
+      'id'      => @team.id.to_s,
+      'name'    => @team.name,
+      'key'     => @membership.key,
+      'invites' => @team.invites.map {|invite| InvitePresenter.new(invite) }
     }
   end
 end

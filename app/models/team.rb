@@ -16,4 +16,8 @@ class Team
   def invite(email)
     Invite.create! :team_id => id, :email => email
   end
+
+  def invites
+    Invite.to(self)
+  end
 end

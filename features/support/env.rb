@@ -53,3 +53,5 @@ end
 After do
   page.execute_script 'localStorage.clear()'
 end
+
+require 'email_spec/cucumber'

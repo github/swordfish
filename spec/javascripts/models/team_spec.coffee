@@ -21,3 +21,11 @@ describe 'Team', ->
     it 'does not override existing key', ->
       team = new Team({key: 'existing key'}, collection: @collection)
       expect(team.get('key')).toEqual('existing key')
+
+  describe 'invite', ->
+    describe 'when the user does not exist', ->
+      it 'creates an invite', ->
+        @team = new Team({}, collection: @collection)
+        spyOn @team.invites, 'create'
+        @team.invite('bkeepers@github.com')
+        expect(@team.invites.create).toHaveBeenCalledWith(email: 'bkeepers@github.com')
