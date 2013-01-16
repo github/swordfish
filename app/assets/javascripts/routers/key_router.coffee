@@ -19,7 +19,7 @@ class @KeyRouter extends Backbone.Router
       window.location.hash = "#key/new"
 
   newKey: ->
-    @layout.setView('#content', new Keypair.Views.New(app: @app)).render()
+    @layout.setView('#content', new Keypair.Views.Create(app: @app)).render()
 
   download: ->
     @layout.setView('#content', new Keypair.Views.Download(app: @app)).render()

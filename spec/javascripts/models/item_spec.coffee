@@ -1,4 +1,4 @@
-require '/assets/application.js'
+#= require models
 
 describe 'Item', ->
   beforeEach ->
