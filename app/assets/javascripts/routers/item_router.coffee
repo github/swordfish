@@ -30,7 +30,7 @@ class @ItemRouter extends Backbone.Router
     @items.fetch()
 
   newItem: (id) =>
-    @content new Item.Views.New(collection: @items)
+    @content new Item.Views.Create(collection: @items)
 
   item: (id) =>
     @items.load(id).then (item) =>

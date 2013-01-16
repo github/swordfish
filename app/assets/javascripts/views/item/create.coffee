@@ -1,7 +1,7 @@
 Item.Views ?= {}
 
-class Item.Views.New extends Item.Views.Form
-  template: 'templates/item/new'
+class Item.Views.Create extends Item.Views.Form
+  template: 'templates/item/create'
 
   save: (params) ->
     @collection.create params, success: (item) =>

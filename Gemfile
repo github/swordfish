@@ -16,8 +16,9 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'evergreen', :require => 'evergreen/rails'
   gem 'rspec-rails'
+  gem 'jasminerice'
+  gem 'guard-jasmine'
 end
 
 group :test do

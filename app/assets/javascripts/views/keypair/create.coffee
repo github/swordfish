@@ -1,7 +1,7 @@
 Keypair.Views ?= {}
 
-class Keypair.Views.New extends Backbone.View
-  template: 'templates/keypair/new'
+class Keypair.Views.Create extends Backbone.View
+  template: 'templates/keypair/create'
 
   events:
     'submit form':  'generate'
