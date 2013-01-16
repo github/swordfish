@@ -1,5 +1,5 @@
-require '/assets/application.js'
-require '/assets/ui.js'
+#= require application
+#= require ui
 
 describe 'Item.Views.Create', ->
   beforeEach ->
