@@ -1,5 +1,5 @@
-require '/assets/lib/jquery.js'
-require '/assets/lib/underscore.js'
+require '/assets/jquery.js'
+require '/assets/underscore.js'
 require '/assets/forge.js'
 require '/assets/models/keypair.js'
 require '/assets/models/keypair_authenticator.js'

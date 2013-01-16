@@ -1,4 +1,4 @@
-require '/assets/lib/jquery.js'
+require '/assets/jquery.js'
 require '/assets/forge.js'
 require '/assets/models/keypair.js'
 

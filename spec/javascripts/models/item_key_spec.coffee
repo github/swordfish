@@ -1,4 +1,3 @@
-require '/assets/lib/aes.js'
 require '/assets/forge.js'
 require '/assets/models/item_key.js'
 
