@@ -1,7 +1,7 @@
 Team.Views ?= {}
 
-class Team.Views.New extends Backbone.View
-  template: 'templates/team/new'
+class Team.Views.Create extends Backbone.View
+  template: 'templates/team/create'
 
   events:
     'submit form': 'submit'

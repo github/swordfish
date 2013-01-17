@@ -1,7 +1,7 @@
 require '/assets/application.js'
 require '/assets/ui.js'
 
-describe 'Membership.Views.New', ->
+describe 'Membership.Views.Create', ->
   beforeEach ->
     @team = {invite: jasmine.createSpy('invite')}
     @event = {preventDefault: jasmine.createSpy('preventDefault')}

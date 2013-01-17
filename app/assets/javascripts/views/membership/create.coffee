@@ -1,7 +1,7 @@
 Membership.Views ?= {}
 
-class Membership.Views.New extends Backbone.View
-  template: 'templates/memberships/new'
+class Membership.Views.Create extends Backbone.View
+  template: 'templates/memberships/create'
 
   events:
     'submit form': 'submit'
