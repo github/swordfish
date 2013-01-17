@@ -1,6 +1,5 @@
-require '/assets/lib/aes.js'
-require '/assets/forge.js'
-require '/assets/models/item_key.js'
+#= require forge
+#= require models/item_key
 
 describe 'ItemKey', ->
   beforeEach ->

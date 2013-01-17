@@ -1,4 +1,4 @@
-#= require lib/aes
+#= require aes
 
 class @ItemKey
   # FIXME: replace with forge

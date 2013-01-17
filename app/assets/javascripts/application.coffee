@@ -1,4 +1,4 @@
-#= require lib/jquery
+#= require jquery
 #= require models
 
 class @Application

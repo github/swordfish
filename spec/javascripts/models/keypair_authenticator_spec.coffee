@@ -1,8 +1,8 @@
-require '/assets/lib/jquery.js'
-require '/assets/lib/underscore.js'
-require '/assets/forge.js'
-require '/assets/models/keypair.js'
-require '/assets/models/keypair_authenticator.js'
+#= require jquery
+#= require underscore
+#= require forge
+#= require models/keypair
+#= require models/keypair_authenticator
 
 describe 'KeypairAuthenticator', ->
   beforeEach ->

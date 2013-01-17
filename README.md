@@ -1,6 +1,6 @@
 # Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png)](http://travis-ci.org/github/swordfish)
 
-Swordfish is an experiment in builidng a group-optimized password management app. It is currently very alpha. [Browse all the issues](https://github.com/github/swordfish/issues?milestone=) to see what features are planned.
+Swordfish is an experiment in building a group-optimized password management app. It is currently very alpha. [Browse all the issues](https://github.com/github/swordfish/issues?milestone=) to see what features are planned.
 
 ![mockup](http://cl.ly/image/472B0N460j2I/content)
 
@@ -15,5 +15,6 @@ When you sign up, a RSA public/private keypair is generated in your browser. All
 ## Recommended Reading
 
 * [Why passwords have never been weaker—and crackers have never been stronger](http://arstechnica.com/security/2012/08/passwords-under-assault/) - A great article about password cracking techniques and the implications for choosing strong passwords.
-* [Javascript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/) - A thoughtful critique of JavaScript encryption, discussed in [#28](https://github.com/github/swordfish/issues/28).
+* [JavaScript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/) - A thoughtful critique of JavaScript encryption, discussed in [#28](https://github.com/github/swordfish/issues/28).
 * [A JavaScript Implementation of TLS](http://digitalbazaar.com/2010/07/20/javascript-tls-1/) - The background of [Forge](https://github.com/digitalbazaar/forge/blob/master/README.md), the encryption library used by Swordfish.
+* [Web Cryptography API](http://www.w3.org/2012/webcrypto/WebCryptoAPI/) - A draft W3C proposal for a JavaScript cryptography API. If all goes well, this will eventually replace Forge for all of the cryptography in Swordfish.

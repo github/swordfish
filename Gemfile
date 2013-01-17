@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>3.1.0'
+gem 'rails', '~> 3.1.10'
 gem 'bson_ext'
 gem 'mongo'
 gem 'toystore-mongo', :require => 'toystore-mongo'
@@ -16,8 +16,9 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'evergreen', :require => 'evergreen/rails'
   gem 'rspec-rails'
+  gem 'jasminerice'
+  gem 'guard-jasmine'
   gem 'pry'
 end
 
