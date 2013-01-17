@@ -1,0 +1,33 @@
+#= require ZeroClipboard
+
+Item.Views ?= {}
+
+class Item.Views.Show extends Backbone.View
+  template: 'templates/item/show'
+
+  events:
+    'click a.reveal': 'reveal'
+    'click a.hide':   'hide'
+
+  afterRender: ->
+    clip = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
+
+    console.log @$('#copy_link')[0]
+
+    clip.on 'complete', (client, args) ->
+      alert "Copied password to clipboard"
+
+
+  serialize: ->
+    _.extend @model.toJSON(), data: @model.data()
+
+  reveal: (e) =>
+    window.view = @
+    e.preventDefault()
+    @$('.password').text(@model.data().password)
+    @$el.addClass('revealed')
+
+  hide: (e) =>
+    e.preventDefault()
+    @$('.password').text('••••••••••••')
+    @$el.removeClass('revealed')
