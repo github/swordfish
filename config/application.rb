@@ -58,5 +58,6 @@ module Swordfish
 
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w( ui.js )
+    config.assets.paths << Rails.root.join("vendor", "assets", "swf")
   end
 end
