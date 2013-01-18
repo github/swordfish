@@ -137,7 +137,7 @@ GEM
     nokogiri (1.5.5)
     plucky (0.5.1)
       mongo (~> 1.5)
-    poltergeist (0.7.0)
+    poltergeist (1.0.2)
       capybara (~> 1.1)
       childprocess (~> 0.3)
       faye-websocket (~> 0.4, >= 0.4.4)
