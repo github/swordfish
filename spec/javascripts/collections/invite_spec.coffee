@@ -7,4 +7,4 @@ describe 'Invite.Collection', ->
 
   describe 'url', ->
     it 'uses the team id', ->
-      expect(@collection.url).toEqual('/teams/1/invites')
+      expect(@collection.url()).toEqual('/teams/1/invites')
