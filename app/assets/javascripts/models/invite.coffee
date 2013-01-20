@@ -1,4 +1,4 @@
 class @Invite extends Backbone.Model
-  @accept: (key) ->
+  @accept: (token) ->
     jQuery.ajax
-      url: "/invite/#{key}"
+      url: "/invite/#{token}"

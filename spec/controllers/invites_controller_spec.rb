@@ -39,14 +39,14 @@ describe InvitesController do
     end
 
     describe 'accept' do
-      let(:invite) { double(:invite, :key => 'key', :accept => nil) }
+      let(:invite) { double(:invite, :token => 'token', :accept => nil) }
 
       before do
-        Invite.stub! :from_key => invite
+        Invite.stub! :from_token => invite
       end
 
       subject do
-        get :accept, :key => invite.key
+        get :accept, :token => invite.token
       end
 
       it { expect(subject.status).to be(200) }

@@ -8,7 +8,7 @@ class InvitesController < ApplicationController
   end
 
   def accept
-    invite = Invite.from_key(params[:key])
+    invite = Invite.from_token(params[:token])
     invite.accept(current_user)
     head :ok
   end

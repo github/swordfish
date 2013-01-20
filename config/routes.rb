@@ -8,7 +8,7 @@ Swordfish::Application.routes.draw do
     resources :invites
   end
 
-  get 'invite/:key' => 'invites#accept', :as => :accept_invite
+  get 'invite/:token' => 'invites#accept', :as => :accept_invite
 
   resources :users do
     collection do

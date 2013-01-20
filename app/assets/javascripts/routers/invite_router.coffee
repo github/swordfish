@@ -1,7 +1,7 @@
 class @InviteRouter extends Backbone.Router
   routes:
-    'invite/:key': 'accept'
+    'invite/:token': 'accept'
 
-  accept: (key) ->
-    Invite.accept(key).then ->
+  accept: (token) ->
+    Invite.accept(token).then ->
       Backbone.history.navigate '', true

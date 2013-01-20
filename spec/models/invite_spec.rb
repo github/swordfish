@@ -2,21 +2,21 @@ require 'spec_helper'
 
 describe Invite do
   describe 'on create' do
-    it 'generates a key' do
+    it 'generates a token' do
       invite = Invite.create!
-      expect(invite.key).to be_present
-      expect(invite.key.size).to eql(16)
+      expect(invite.token).to be_present
+      expect(invite.token.size).to eql(16)
     end
   end
 
-  describe '.from_key' do
-    it 'finds existing invite with key' do
+  describe '.from_token' do
+    it 'finds existing invite with token' do
       invite = Invite.create!
-      expect(Invite.from_key(invite.key)).to eql(invite)
+      expect(Invite.from_token(invite.token)).to eql(invite)
     end
 
     it 'raises error if not found' do
-      expect { Invite.from_key('notfound') }.to raise_error(Toy::NotFound)
+      expect { Invite.from_token('notfound') }.to raise_error(Toy::NotFound)
     end
   end
 

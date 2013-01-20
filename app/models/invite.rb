@@ -4,15 +4,15 @@ class Invite
 
   attribute :team_id, BSON::ObjectId
   attribute :email,   String
-  attribute :key,     String
+  attribute :token,   String
   attribute :user_id, BSON::ObjectId
 
   before_create do
-    self.key = SecureRandom.urlsafe_base64(12)
+    self.token = SecureRandom.urlsafe_base64(12)
   end
 
-  def self.from_key(key)
-    first(:key => key) || raise(Toy::NotFound, "key=#{key}")
+  def self.from_token(token)
+    first(:token => token) || raise(Toy::NotFound, "token=#{token}")
   end
 
   def self.to(team)
