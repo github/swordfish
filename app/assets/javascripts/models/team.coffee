@@ -7,4 +7,4 @@ class @Team extends Backbone.Model
     new ItemKey(@collection.keypair.decrypt(@get('key')))
 
   invite: (email) ->
-    @invites.create email: email
+    @invites.create {email: email}, {wait: true}

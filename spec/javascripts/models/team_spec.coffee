@@ -28,4 +28,4 @@ describe 'Team', ->
         @team = new Team({}, collection: @collection)
         spyOn @team.invites, 'create'
         @team.invite('bkeepers@github.com')
-        expect(@team.invites.create).toHaveBeenCalledWith(email: 'bkeepers@github.com')
+        expect(@team.invites.create).toHaveBeenCalledWith({email: 'bkeepers@github.com'}, {wait: true})
