@@ -52,7 +52,7 @@ module RsaChallenge
     end
 
     def find_user
-      User.first(:fingerprint => @public_key.fingerprint)
+      User.where(:fingerprint => @public_key.fingerprint).first
     end
 
     def create_user

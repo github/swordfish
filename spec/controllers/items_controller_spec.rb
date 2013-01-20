@@ -16,7 +16,7 @@ describe ItemsController do
 
       it 'creates an item' do
         subject
-        expect(Item.first(:title => 'example.com')).to be_instance_of(Item)
+        expect(Item.where(:title => 'example.com').first).to be_instance_of(Item)
       end
     end
 
