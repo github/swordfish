@@ -1,5 +1,5 @@
 class InvitesController < ApplicationController
-  before_filter :ensure_team_admin
+  before_filter :ensure_team_admin, :except => :accept
 
   def create
     invite = current_team.invite(params[:email])

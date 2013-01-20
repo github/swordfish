@@ -16,6 +16,15 @@ Given 'I have generated and unlocked my key' do
   page.should have_content('Sign Out')
 end
 
+When 'I generate a key' do
+  fill_in 'passphrase', :with => 'testing'
+  step 'I wait an eternity'
+  click_button 'Generate Key'
+  page.should have_content("Download")
+  click_link 'Done'
+  page.should have_content('Sign Out')
+end
+
 Then /^"Download Private Key" should contain the private key$/ do
   find('a[download="swordfish.pem"]')['href'].should =~ /BEGIN%20ENCRYPTED%20PRIVATE%20KEY/
 end

@@ -12,4 +12,5 @@
 Application.on 'initialize', ->
   new KeyRouter(app: @)
   new ItemRouter(app: @)
+  new InviteRouter(app: @)
   Backbone.history.start()

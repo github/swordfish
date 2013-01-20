@@ -26,7 +26,8 @@ Feature: Teams
     And "shawn@example.com" should receive an email
 
     When I sign out
-    And I follow the link in the email
+    And I open the email
+    And I click the first link in the email
     And I generate a key
 
     Then I should see "GitHub"

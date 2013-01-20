@@ -2,4 +2,4 @@ You have been invited to share secure information with <%= @team.name %>.
 
 To accept the invitation, visit:
 
-    <%= accept_invite_url(@invite.key) %>
+    <%= "#{root_url}##{accept_invite_path(@invite.key)}" %>

@@ -13,6 +13,9 @@ class @KeyRouter extends Backbone.Router
     )
     @on 'all', @ensureLayout
 
+    # Save requested path
+    Backbone.history.store()
+
     if @app.keypair
       window.location.hash = "#key/unlock" unless @app.keypair.isUnlocked()
     else

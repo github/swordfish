@@ -21,7 +21,7 @@ class Keypair.Views.Unlock extends Backbone.View
       @fail()
 
   done: =>
-    Backbone.history.navigate '', true
+    Backbone.history.resume '', true
 
   fail: =>
     @$('p.error').text('Your passphrase was incorrect!')
