@@ -22,6 +22,8 @@ RSpec.configure do |config|
 
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
+  config.use_transactional_fixtures = true
+
 #  config.before do
 #    Swordfish::Application.config.mongo.collections.each do |c|
 #      c.remove
