@@ -23,6 +23,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'webmock'
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :guard do
