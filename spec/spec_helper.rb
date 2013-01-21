@@ -22,12 +22,12 @@ RSpec.configure do |config|
 
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
-  config.before do
-    Swordfish::Application.config.mongo.collections.each do |c|
-      c.remove
-      c.drop_indexes
-    end
-  end
+#  config.before do
+#    Swordfish::Application.config.mongo.collections.each do |c|
+#      c.remove
+#      c.drop_indexes
+#    end
+#  end
 end
 
 def fixture(name)

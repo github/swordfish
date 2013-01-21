@@ -5,3 +5,6 @@
 /.rbenv-version
 /bin
 /vendor/gems
+/nbproject/
+/db/*.sqlite3
+
