@@ -50,7 +50,7 @@ describe ItemsController do
       end
 
       context 'when user does not have access' do
-        it { expect(subject.status).to be(404) }
+        it { expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound) }
       end
     end
   end

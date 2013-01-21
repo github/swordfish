@@ -10,14 +10,10 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.find_by_id(params[:id])
-    share = Share.first(:conditions => { :user_id => current_user.id, :item_id => item.id})
-    if share
-      item.update_attributes(item_params)
-      render :json => ItemPresenter.new(item, share)
-    else
-      head 404
-    end
+    item = Item.find(params[:id])
+    share = item.share_for(current_user)
+    item.update_attributes(item_params)
+    render :json => ItemPresenter.new(item, share)
   end
 
 private

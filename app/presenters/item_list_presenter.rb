@@ -12,6 +12,6 @@ class ItemListPresenter
   end
 
   def as_json(options = nil)
-    items.map {|item| ItemPresenter.new(item, item.share) }.as_json(options)
+    items.map {|item| ItemPresenter.new(item, shares[item.id]) }.as_json(options)
   end
 end
