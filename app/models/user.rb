@@ -4,9 +4,6 @@ class User < ActiveRecord::Base
   
   self.include_root_in_json = false
 
-#  attribute :public_key,  String
-#  attribute :fingerprint, String
-
   before_create :set_fingerprint
 
 private

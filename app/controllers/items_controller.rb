@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find_by_id(params[:id])
-    share = Share.where(:user_id => current_user.id).where(:item_id => item.id).first
+    share = Share.first(:conditions => { :user_id => current_user.id, :item_id => item.id})
     if share
       item.update_attributes(item_params)
       render :json => ItemPresenter.new(item, share)
