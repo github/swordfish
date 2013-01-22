@@ -12,5 +12,7 @@ class Item.Views.ListItem extends Backbone.View
     _.extend @model.toJSON(), data: @model.data(), url_domain: @url_domain()
 
   url_domain: ->
-    @model.data().url.replace(/http(s)?:\/\//,"");
+    a = document.createElement('a')
+    a.href = @model.data().url
+    a.hostname
 
