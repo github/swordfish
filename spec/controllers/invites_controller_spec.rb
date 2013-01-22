@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe InvitesController do
-  let(:team) { double(:team, :id => BSON::ObjectId.new).as_null_object }
+  let(:team) { double(:team, :id => next_id).as_null_object }
   let(:email) { 'bkeepers@github.com' }
 
   before do
-    Team.stub! :get! => team
+    Team.stub! :find => team
   end
 
   context 'when signed in' do

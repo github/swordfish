@@ -10,12 +10,6 @@ Swordfish::Application.routes.draw do
 
   get 'invite/:token' => 'invites#accept', :as => :accept_invite
 
-  resources :users do
-    collection do
-      get :lookup
-    end
-  end
-
   namespace :auth do
     resource :rsa, :only => [:create, :update], :controller => 'rsa'
   end

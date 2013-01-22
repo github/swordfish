@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe TeamListPresenter do
-  let(:user) { mock_user }
+  let(:user) { User.create! }
   subject { TeamListPresenter.new(user) }
 
   describe 'teams' do

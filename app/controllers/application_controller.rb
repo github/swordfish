@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   before_filter :sign_in_required
 
-  rescue_from Toy::NotFound, :with => :not_found
-
 private
 
   def not_found(exception = nil)
@@ -20,7 +18,7 @@ private
   def current_user_from_challenge
     if request.headers['X-Challenge']
       challenge = RsaChallenge::Response.new(request.headers['X-Challenge'])
-      User.get!(challenge.user_id) if challenge.valid?
+      User.find(challenge.user_id) if challenge.valid?
     end
   end
 
@@ -29,7 +27,7 @@ private
   end
 
   def current_team
-    @team ||= Team.get!(params[:team_id])
+    @team ||= Team.find(params[:team_id])
   end
 
   def ensure_team_admin

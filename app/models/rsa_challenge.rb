@@ -36,7 +36,7 @@ module RsaChallenge
     end
 
     def user
-      @user ||= find_user || create_user
+      @user ||= User.with_public_key(@public_key)
     end
 
   private
@@ -49,14 +49,6 @@ module RsaChallenge
 
     def encrypted_challenge_values
       crypt :encrypt, challenge_values.join('--')
-    end
-
-    def find_user
-      User.first(:fingerprint => @public_key.fingerprint)
-    end
-
-    def create_user
-      User.create!(:public_key => @public_key.to_s)
     end
   end
 

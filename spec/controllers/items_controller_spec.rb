@@ -16,7 +16,7 @@ describe ItemsController do
 
       it 'creates an item' do
         subject
-        expect(Item.first(:title => 'example.com')).to be_instance_of(Item)
+        expect(Item.where(:title => 'example.com' ).first).to be_instance_of(Item)
       end
     end
 
@@ -29,10 +29,10 @@ describe ItemsController do
     end
 
     describe 'update' do
-      let(:item) { mock_model(Item, :id => BSON::ObjectId.new).as_null_object }
+      let(:item) { stub_model(Item, :id => next_id) }
 
       before do
-        Item.stub! :get! => item
+        Item.stub! :find => item
       end
 
       subject do
@@ -41,7 +41,7 @@ describe ItemsController do
 
       context 'when user has access' do
         before do
-          item.stub! :share_with => double(:share)
+          item.stub! :share_for => double(:share).as_null_object
         end
 
         it { expect(subject.status).to be(200) }
@@ -53,11 +53,7 @@ describe ItemsController do
       end
 
       context 'when user does not have access' do
-        before do
-          item.stub!(:share_for).and_raise(Toy::NotFound.new(1))
-        end
-
-        its(:status) { should be(404) }
+        it { expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound) }
       end
     end
   end

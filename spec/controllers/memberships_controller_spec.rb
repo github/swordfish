@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe MembershipsController do
-  let(:team) { double(:team, :id => BSON::ObjectId.new).as_null_object }
-  let(:user) { double(:user, :id => BSON::ObjectId.new).as_null_object }
+  let(:team) { double(:team, :id => next_id).as_null_object }
+  let(:user) { double(:user, :id => next_id).as_null_object }
   let(:key)  { 'userkey' }
 
   before do
-    Team.stub! :get! => team
-    User.stub! :get! => user
+    Team.stub! :find => team
+    User.stub! :find => user
   end
 
   context 'when signed in' do
@@ -31,7 +31,7 @@ describe MembershipsController do
 
     describe 'destroy' do
       let(:membership) { double(:membership, :destroy => true) }
-      let(:member) { double(:user, :id => BSON::ObjectId.new)}
+      let(:member) { double(:user, :id => next_id)}
 
       before do
         team.stub! :membership => membership

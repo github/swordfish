@@ -1,8 +1,6 @@
-class Membership
-  include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['memberships'], :safe => true
+class Membership < ActiveRecord::Base
 
-  attribute :team_id, BSON::ObjectId
-  attribute :user_id, BSON::ObjectId
-  attribute :key,     String
+  belongs_to :team
+  belongs_to :user
+
 end

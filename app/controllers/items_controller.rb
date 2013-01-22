@@ -10,9 +10,8 @@ class ItemsController < ApplicationController
   end
 
   def update
-    item = Item.get!(params[:id])
+    item = Item.find(params[:id])
     share = item.share_for(current_user)
-
     item.update_attributes(item_params)
     render :json => ItemPresenter.new(item, share)
   end

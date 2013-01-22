@@ -1,20 +1,15 @@
-class Item
-  include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['items'], :safe => true
+class Item < ActiveRecord::Base
+
+  has_many :shares
 
   self.include_root_in_json = false
 
-  attribute :title, String
-  attribute :encrypted_data, String
-
-  def share_with(object, key)
-    foreign_key = "#{object.class.model_name.singular}_id"
-    Share.create! :item_id => id, foreign_key => object.id, :key => key
+  def share_with(owner, key)
+    Share.create! :item => self, :owner => owner, :key => key
   end
 
   def share_for(user)
-    Share.first(:user_id => user.id) ||
-      Share.first(:team_id => user.team_ids) ||
-      raise(Toy::NotFound, :id => id, :user_id => user.id)
+    Share.owned_by(user).first!
   end
+
 end

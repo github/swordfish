@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ItemListPresenter do
-  let(:user) { mock_user }
+  let(:user) { User.create! }
   subject { ItemListPresenter.new(user) }
 
   describe 'items' do

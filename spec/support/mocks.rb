@@ -5,8 +5,9 @@ module Mocks
 
   def user_attrs(attrs = {})
     {
-      :id         => BSON::ObjectId.new,
-      :public_key => double(:public_key)
+      :id         => 1,
+      :public_key => double(:public_key),
+      :team_ids   => []
     }.merge(attrs)
   end
 end

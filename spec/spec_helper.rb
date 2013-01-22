@@ -22,12 +22,9 @@ RSpec.configure do |config|
 
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
-  config.before do
-    Swordfish::Application.config.mongo.collections.each do |c|
-      c.remove
-      c.drop_indexes
-    end
+  config.use_transactional_fixtures = true
 
+  config.before do
     KeypairFactory.reset
   end
 end

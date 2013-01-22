@@ -20,7 +20,7 @@ describe Item do
     end
 
     it 'raises error if user is not a member' do
-      expect { team.membership(user) }.to raise_error(Toy::NotFound)
+      expect { team.membership(user) }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 

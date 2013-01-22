@@ -16,12 +16,12 @@ describe Invite do
     end
 
     it 'raises error if not found' do
-      expect { Invite.from_token('notfound') }.to raise_error(Toy::NotFound)
+      expect { Invite.from_token('notfound') }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 
   describe 'accept' do
-    let(:user) { double(:user, :id => BSON::ObjectId.new) }
+    let(:user) { double(:user, :id => next_id) }
     before { subject.accept(user) }
 
     context 'on an unaccepted invite' do
@@ -31,7 +31,7 @@ describe Invite do
     end
 
     context 'on an accepted invite' do
-      subject { Invite.new :user_id => BSON::ObjectId.new }
+      subject { Invite.new :user_id => 99 }
 
       it 'returns false' do
         expect(subject.accept(user)).to be_false
@@ -45,7 +45,7 @@ describe Invite do
 
   describe 'accepted?' do
     it 'is true when user_id is set' do
-      expect(Invite.new(:user_id => BSON::ObjectId.new)).to be_accepted
+      expect(Invite.new(:user_id => next_id)).to be_accepted
     end
 
     it 'is false when user_id is not set' do

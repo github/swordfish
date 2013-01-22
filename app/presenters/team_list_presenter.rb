@@ -4,14 +4,16 @@ class TeamListPresenter
   end
 
   def memberships
-    @memberships ||= Membership.all(:user_id => @user.id).index_by(&:team_id)
+    @memberships ||= @user.memberships.index_by(&:team_id)
   end
 
   def teams
-    @teams ||= Team.all(:id => memberships.keys)
+    @teams ||= Team.where(:id => memberships.keys).all
   end
 
   def as_json(options = nil)
-    teams.map {|team| TeamPresenter.new(team, memberships[team.id]) }.as_json(options)
+    teams.map { |team|
+      TeamPresenter.new(team, memberships[team.id])
+    }.as_json(options)
   end
 end

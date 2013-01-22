@@ -4,11 +4,11 @@ class ItemListPresenter
   end
 
   def shares
-    @shares ||= Share.all(:user_id => @user.id).index_by(&:item_id)
+    @shares ||= Share.owned_by(@user).index_by(&:item_id)
   end
 
   def items
-    @items ||= Item.all(:id => shares.keys)
+    @items ||= Item.where(:id => shares.keys)
   end
 
   def as_json(options = nil)

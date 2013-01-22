@@ -1,12 +1,15 @@
-class Share
-  include Toy::Mongo
-  adapter :mongo, Swordfish::Application.config.mongo['shares'], :safe => true
+class Share < ActiveRecord::Base
+
+  belongs_to :item
+  belongs_to :owner, :polymorphic => true
 
   self.include_root_in_json = false
 
-  attribute :item_id, BSON::ObjectId
-  attribute :key,     String
+  def self.owned_by(user)
+    where(
+      "(owner_id = ? AND owner_type = ?) OR (owner_id in (?) AND owner_type = ?)",
+      user.id, 'User', user.team_ids, 'Team'
+    )
+  end
 
-  attribute :user_id, BSON::ObjectId
-  attribute :team_id, BSON::ObjectId
 end

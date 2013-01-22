@@ -10,24 +10,20 @@ describe RsaChallenge do
       RsaChallenge::Request.new(public_key)
     end
 
-    context 'with an existing user' do
-      let!(:user) { User.create!(:public_key => public_key) }
-
-      it 'finds user' do
-        expect(subject.user).to eql(user)
-      end
-    end
-
-    context 'with a new user' do
-      it 'creates a user' do
-      end
+    it 'finds user' do
+      user = mock(:user)
+      User.should_receive(:with_public_key).and_return(user)
+      expect(subject.user).to eql(user)
     end
   end
 
   describe RsaChallenge::Response do
-    let!(:user) { User.create!(:public_key => public_key) }
-
+    let(:user) { double(:user, :id => next_id) }
     let(:challenge) { RsaChallenge::Request.new(public_key) }
+
+    before do
+      User.stub!(:with_public_key).and_return(user)
+    end
 
     describe 'valid?' do
       context 'with a decrypted challenge' do

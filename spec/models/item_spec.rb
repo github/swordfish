@@ -12,7 +12,7 @@ describe Item do
         expect(share).to be_instance_of(Share)
         expect(share).not_to be_new_record
         expect(share.key).to eql('mykey')
-        expect(share.user_id).to eql(user.id)
+        expect(share.owner).to eql(user)
       end
     end
 
@@ -24,13 +24,13 @@ describe Item do
         expect(share).to be_instance_of(Share)
         expect(share).not_to be_new_record
         expect(share.key).to eql('mykey')
-        expect(share.team_id).to eql(team.id)
+        expect(share.owner).to eql(team)
       end
     end
   end
 
   describe 'share_for' do
-    let(:user) { User.new }
+    let(:user) { User.create! }
 
     it 'finds user share' do
       share = item.share_with(user, 'userkey')
@@ -38,7 +38,7 @@ describe Item do
     end
 
     it 'finds share through team' do
-      team = Team.new
+      team = Team.create!
       team.add user, 'userkey'
       share = item.share_with(team, 'teamkey')
       expect(item.share_for(user)).to eql(share)

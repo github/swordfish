@@ -15,7 +15,7 @@ describe TeamsController do
 
       it 'creates a team' do
         subject
-        expect(Team.first(:name => 'GitHub')).to be_instance_of(Team)
+        expect(Team.where(:name => 'GitHub').first).to be_instance_of(Team)
       end
     end
 
@@ -49,7 +49,7 @@ describe TeamsController do
       end
 
       context 'when user does not have access' do
-        its(:status) { should be(404) }
+        it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
       end
     end
   end

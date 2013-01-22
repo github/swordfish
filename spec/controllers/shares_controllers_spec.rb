@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe SharesController do
-  let(:team) { mock_model(Team, :id => BSON::ObjectId.new).as_null_object }
-  let(:item) { mock_model(Item, :id => BSON::ObjectId.new).as_null_object }
+  let(:team) { mock_model(Team, :id => next_id).as_null_object }
+  let(:item) { mock_model(Item, :id => next_id).as_null_object }
   let(:key)  { 'team-item-key' }
 
   before do
-    Team.stub! :get! => team
-    Item.stub! :get! => item
+    Team.stub! :find => team
+    Item.stub! :find => item
   end
 
   describe 'create' do
@@ -21,10 +21,6 @@ describe SharesController do
     end
 
     context 'when signed in' do
-      before do
-        # current_user
-      end
-
       it { expect(subject.status).to be(201) }
 
       it 'shares the item with the team' do
@@ -35,10 +31,11 @@ describe SharesController do
 
     context 'without access to the item' do
       before do
-        item.stub!(:share_for).and_raise(Toy::NotFound.new(1))
+        item.stub!(:share_for).and_raise(ActiveRecord::RecordNotFound.new(1))
       end
 
-      its(:status) { should be(404) }
+      # its(:status) { should be(404) }
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end
 

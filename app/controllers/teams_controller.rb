@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
   end
 
   def update
-    team = Team.get(params[:id])
+    team = Team.find(params[:id])
     membership = team.membership(current_user)
     team.update_attributes(team_params)
     render :json => TeamPresenter.new(team, membership)
