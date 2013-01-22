@@ -307,14 +307,6 @@ dl {
   }
 }
 
-.hover {
-  visibility: hidden;
-
-  .hover-target:hover &, .test & {
-    visibility: visible;
-  }
-}
-
 form {
   p {
     @include clearfix;
