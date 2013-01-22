@@ -16,7 +16,7 @@ describe ItemsController do
 
       it 'creates an item' do
         subject
-        expect(Item.first(:title => 'example.com')).to be_instance_of(Item)
+        expect(Item.where(:title => 'example.com' ).first).to be_instance_of(Item)
       end
     end
 
@@ -50,7 +50,7 @@ describe ItemsController do
       end
 
       context 'when user does not have access' do
-        it { expect(subject.status).to be(404) }
+        it { expect { subject.status }.to raise_error(ActiveRecord::RecordNotFound) }
       end
     end
   end

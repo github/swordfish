@@ -14,7 +14,7 @@ private
   def current_user_from_challenge
     if request.headers['X-Challenge']
       challenge = RsaChallenge::Response.new(request.headers['X-Challenge'])
-      User.get!(challenge.user_id) if challenge.valid?
+      User.find(challenge.user_id) if challenge.valid?
     end
   end
 
