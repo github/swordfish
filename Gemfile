@@ -1,9 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.1.10'
-gem 'bson_ext'
-gem 'mongo'
-gem 'toystore-mongo', :require => 'toystore-mongo'
+gem 'sqlite3'
 gem 'net-ssh' # for RSA key fingerprinting
 gem 'dotenv', :group => [:test, :development]
 
@@ -23,8 +21,9 @@ end
 
 group :test do
   gem 'cucumber-rails', :require => false
-  gem 'webmock'
+  gem 'webmock', :require => false
   gem 'poltergeist'
+  gem 'database_cleaner'
 end
 
 group :guard do
