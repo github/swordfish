@@ -11,6 +11,8 @@ class Item.Views.Show extends Backbone.View
 
   afterRender: ->
     @clipboard = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
+    @clipboard.on 'dataRequested', (client, args) =>
+      @clipboard.setText @model.data().password
 
   serialize: ->
     _.extend @model.toJSON(), data: @model.data()
