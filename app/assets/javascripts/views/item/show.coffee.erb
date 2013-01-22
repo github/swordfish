@@ -10,13 +10,7 @@ class Item.Views.Show extends Backbone.View
     'click a.hide':   'hide'
 
   afterRender: ->
-    clip = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
-
-    console.log @$('#copy_link')[0]
-
-    clip.on 'complete', (client, args) ->
-      alert "Copied password to clipboard"
-
+    @clipboard = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
 
   serialize: ->
     _.extend @model.toJSON(), data: @model.data()
