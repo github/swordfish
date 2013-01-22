@@ -9,9 +9,9 @@ class Item.Views.ListItem extends Backbone.View
     @model.on 'change', @render, @
 
   serialize: ->
-    _.extend @model.toJSON(), data: @model.data(), url_domain: @url_domain()
+    _.extend @model.toJSON(), data: @model.data(), domain: @domain()
 
-  url_domain: ->
+  domain: ->
     a = document.createElement('a')
     a.href = @model.data().url
     a.hostname
