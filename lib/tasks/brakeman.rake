@@ -9,6 +9,7 @@ namespace :brakeman do
       :app_path => ".",
       :output_files => files,
       :print_report => true,
+      :skip_checks => ['CheckForgerySetting'],
       :exit_on_warn => true
     )
   end
