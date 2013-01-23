@@ -14,6 +14,7 @@ Feature: Teams
     Then I should see "GitHub Staff" within the sidebar
     And I should see "GitHub Staff" within the details
 
+  @wip
   Scenario: Adding a new user to a team
     Given I have generated and unlocked my key
     And I create a team named "GitHub"
