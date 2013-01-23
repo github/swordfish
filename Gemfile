@@ -24,6 +24,7 @@ group :test do
   gem 'webmock', :require => false
   gem 'poltergeist'
   gem 'database_cleaner'
+  gem 'brakeman'
 end
 
 group :guard do
