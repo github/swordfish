@@ -42,6 +42,11 @@ Finally you can start the application.
 
     script/rails s
 
+Running the tests requries PhatomJS. If you're on Mac OS X you can use homebrew
+to install this for you.
+
+    brew install phantomjs
+
 If you hack on Swordfish and end up adding or editing features you will want to
 run the tests.
 
