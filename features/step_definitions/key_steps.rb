@@ -13,7 +13,7 @@ Given 'I have generated and unlocked my key' do
   visit path_to('the dashboard')
   fill_in 'passphrase', :with => 'testing'
   click_button 'Unlock'
-  page.should have_content('Sign Out')
+  page.should have_content('Lock')
 end
 
 When 'I generate a key' do
@@ -22,7 +22,7 @@ When 'I generate a key' do
   click_button 'Generate Key'
   page.should have_content("Download")
   click_link 'Done'
-  page.should have_content('Sign Out')
+  page.should have_content('Lock')
 end
 
 Then /^"Download Private Key" should contain the private key$/ do

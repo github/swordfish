@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  include ActiveModel::ForbiddenAttributesProtection
+
   self.include_root_in_json = false
 
   has_many :shares

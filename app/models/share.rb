@@ -1,5 +1,7 @@
 class Share < ActiveRecord::Base
 
+  include ActiveModel::ForbiddenAttributesProtection
+
   belongs_to :item
   belongs_to :owner, :polymorphic => true
 

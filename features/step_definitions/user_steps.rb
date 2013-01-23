@@ -17,11 +17,11 @@ Given 'I am signed in as "$email"' do |email|
   visit path_to('the dashboard')
   fill_in 'passphrase', :with => keypair.password
   click_button 'Unlock'
-  page.should have_content('Sign Out')
+  page.should have_content('Lock')
 end
 
 Given 'I sign out' do
   page.execute_script "localStorage.clear()"
-  click_link "Sign Out"
+  click_link "Lock"
   page.should have_content 'Create a Key'
 end
