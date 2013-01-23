@@ -1,4 +1,7 @@
 class Invite < ActiveRecord::Base
+
+  include ActiveModel::ForbiddenAttributesProtection
+
   before_create do
     self.token = SecureRandom.urlsafe_base64(12)
   end
@@ -18,4 +21,5 @@ class Invite < ActiveRecord::Base
   def accepted?
     user_id?
   end
+
 end

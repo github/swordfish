@@ -1,5 +1,7 @@
 class Team < ActiveRecord::Base
 
+  include ActiveModel::ForbiddenAttributesProtection
+
   has_many :memberships
 
   def add(user, key)
