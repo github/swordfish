@@ -4,6 +4,7 @@ gem 'rails', '3.2.11'
 gem 'sqlite3'
 gem 'net-ssh' # for RSA key fingerprinting
 gem 'dotenv', :group => [:test, :development]
+gem 'strong_parameters'
 
 group :assets do
   gem 'sass-rails'
@@ -24,7 +25,7 @@ group :test do
   gem 'webmock', :require => false
   gem 'poltergeist'
   gem 'database_cleaner'
-  gem 'brakeman'
+  gem 'brakeman', :require => false
 end
 
 group :guard do

@@ -19,6 +19,6 @@ class ItemsController < ApplicationController
 private
 
   def item_params
-    params.slice(:title, :encrypted_data)
+    params.permit(:title, :encrypted_data)
   end
 end
