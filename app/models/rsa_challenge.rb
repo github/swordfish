@@ -11,7 +11,7 @@ module RsaChallenge
     def crypt(cipher_method, value) #:nodoc:
       cipher = OpenSSL::Cipher::Cipher.new('aes-256-cbc')
       cipher.send(cipher_method)
-      cipher.pkcs5_keyivgen(ENV['AUTH_KEY'])
+      cipher.pkcs5_keyivgen(ENV['SECRET_TOKEN'])
       result = cipher.update(value)
       result << cipher.final
     end
