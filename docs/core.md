@@ -23,7 +23,7 @@ There are several areas of expertise needed to make Swordfish successful.
 
 Send a 2,000 word essay on why you think you would be a good fit for the core team, along with a portrait and profile photograph to…just kidding.
 
-Just get invovled. Send a pull request, comment on an issue, or participate in a discussion. If you are still interested in joining the core team after you've been involved for a few weeks, then get in touch with [Brandon Keepers](http://github.com/bkeepers).
+Just get involved. Send a pull request, comment on an issue, or participate in a discussion. If you are still interested in joining the core team after you've been involved for a few weeks, then get in touch with [Brandon Keepers](http://github.com/bkeepers).
 
 ## Members
 
