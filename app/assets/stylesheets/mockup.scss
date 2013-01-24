@@ -200,9 +200,13 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 4px 0 0 4px;
 
   .item {
+    display: block;
+    padding: 9px 18px;
+    img {
+      padding-right: 5px;
+    }
     a {
-      display: block;
-      padding: 9px 18px;
+      vertical-align: top;
     }
   }
 }
@@ -304,14 +308,6 @@ dl {
   dd {
     margin-left: 72px;
     min-height: 18px;
-  }
-}
-
-.hover {
-  visibility: hidden;
-
-  .hover-target:hover &, .test & {
-    visibility: visible;
   }
 }
 

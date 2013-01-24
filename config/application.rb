@@ -1,10 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "rails/test_unit/railtie"
-require "sprockets/railtie"
+require "rails/all"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -58,5 +54,6 @@ module Swordfish
 
     config.assets.initialize_on_precompile = false
     config.assets.precompile += %w( ui.js )
+    config.assets.paths << Rails.root.join("vendor", "assets", "swf")
   end
 end

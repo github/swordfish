@@ -1,13 +1,13 @@
-require '/assets/lib/jquery.js'
-require '/assets/forge.js'
-require '/assets/models/keypair.js'
+#= require jquery
+#= require forge
+#= require models/keypair
 
 describe 'Keypair', ->
   beforeEach ->
     Keypair.ajax = @ajax = jasmine.createSpy('ajax')
     Keypair.localStorage = @local = {}
 
-    @privateKey = fixture('priv.pem')
+    @privateKey = readFixtures('priv.pem.txt')
     @keypair = new Keypair(@privateKey)
 
   describe 'savePrivateKey', ->

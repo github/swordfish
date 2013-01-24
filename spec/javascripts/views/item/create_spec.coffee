@@ -1,10 +1,10 @@
-require '/assets/application.js'
-require '/assets/ui.js'
+#= require application
+#= require ui
 
-describe 'Item.Views.New', ->
+describe 'Item.Views.Create', ->
   beforeEach ->
     @collection = {create: jasmine.createSpy('create')}
-    @view = new Item.Views.New(collection: @collection)
+    @view = new Item.Views.Create(collection: @collection)
     @event = {preventDefault: jasmine.createSpy('preventDefault')}
 
   describe 'submit', ->

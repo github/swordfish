@@ -1,8 +1,8 @@
 #= require hogan
-#= require lib/backbone.layoutmanager
-#= require lib/form2js
-#= require lib/jquery.toObject
-#= require lib/mustache
+#= require backbone.layoutmanager
+#= require form2js
+#= require jquery.toObject
+#= require mustache
 #= require ext/backbone.layoutmanager
 
 #= require_tree ./templates

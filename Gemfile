@@ -1,11 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~>3.1.0'
-gem 'bson_ext'
-gem 'mongo'
-gem 'toystore-mongo', :require => 'toystore-mongo'
+gem 'rails', '3.2.11'
+gem 'sqlite3'
 gem 'net-ssh' # for RSA key fingerprinting
 gem 'dotenv', :group => [:test, :development]
+gem 'strong_parameters'
 
 group :assets do
   gem 'sass-rails'
@@ -16,14 +15,17 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'evergreen', :require => 'evergreen/rails'
   gem 'rspec-rails'
+  gem 'jasminerice'
+  gem 'guard-jasmine'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
-  gem 'webmock'
+  gem 'webmock', :require => false
   gem 'poltergeist'
+  gem 'database_cleaner'
+  gem 'brakeman', :require => false
 end
 
 group :guard do
