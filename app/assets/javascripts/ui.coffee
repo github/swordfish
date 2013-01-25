@@ -10,7 +10,17 @@
 #= require_tree ./routers
 
 Application.on 'initialize', ->
+  # Backbone doesn't initialize history until you define routes
+  Backbone.history = new Backbone.History
+
+  # Save the originally requested path
+  Backbone.history.store()
+
   new KeyRouter(app: @)
+
+  Backbone.history.start()
+
+Application.on 'ready', ->
   new ItemRouter(app: @)
   new InviteRouter(app: @)
-  Backbone.history.start()
+  Backbone.history.resume '', true

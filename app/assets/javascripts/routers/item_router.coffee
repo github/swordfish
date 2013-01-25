@@ -8,16 +8,12 @@ class @ItemRouter extends Backbone.Router
     'teams/:id':      'team'
     'teams/:id/edit': 'editTeam'
 
-  constructor: (options) ->
-    super
-
+  initialize: (options) ->
     @app = options.app
     @on 'all', @ensureLayout
 
-    @app.on 'authenticated', @fetch
-
-    @items = new Item.Collection([], keypair: @app.keypair)
-    @teams = new Team.Collection([], keypair: @app.keypair)
+    @items = @app.items
+    @teams = @app.teams
 
     @layout = new Backbone.LayoutManager({
       template: "templates/main",
@@ -27,14 +23,6 @@ class @ItemRouter extends Backbone.Router
         "#items":     new Item.Views.List(collection: @items)
         "#details":   @details = new Backbone.View()
     })
-
-  fetch: =>
-    # ensure items collection has access to the keypair
-    @items.keypair ||= @app.keypair
-    @items.fetch()
-
-    @teams.keypair ||= @app.keypair
-    @teams.fetch()
 
   ensureLayout: =>
     @app.layout @layout

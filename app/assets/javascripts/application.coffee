@@ -9,6 +9,16 @@ class @Application
 
   constructor: (@keypair = Keypair.load()) ->
     @trigger 'initialize'
+    @on 'authenticated', @bootstrap
+
+  bootstrap: =>
+    @items = new Item.Collection([], keypair: @keypair)
+    @teams = new Team.Collection([], keypair: @keypair)
+
+    @items.fetch()
+    @teams.fetch()
+
+    @trigger 'ready'
 
   setKey: (key) ->
     @keypair = new Keypair(key)
