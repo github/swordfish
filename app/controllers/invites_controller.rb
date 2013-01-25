@@ -12,4 +12,10 @@ class InvitesController < ApplicationController
     invite.accept(current_user)
     head :ok
   end
+
+  def fulfill
+    invite = Invite.from_token(params[:token])
+    invite.fulfill(params[:key])
+    head :ok
+  end
 end

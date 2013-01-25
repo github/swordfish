@@ -52,4 +52,20 @@ describe Invite do
       expect(Invite.new(:user_id => nil)).to_not be_accepted
     end
   end
+
+  describe 'fulfill' do
+    let(:team) { mock_model(Team, :add => nil) }
+    let(:user) { mock_model(User) }
+    let(:invite) { Invite.new(:team => team, :user => user) }
+
+    it 'adds the user to the team' do
+      team.should_receive(:add).with(user, 'key')
+      invite.fulfill('key')
+    end
+
+    it 'destroys the invite' do
+      invite.should_receive(:destroy)
+      invite.fulfill('key')
+    end
+  end
 end

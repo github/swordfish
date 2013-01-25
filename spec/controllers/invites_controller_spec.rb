@@ -56,6 +56,37 @@ describe InvitesController do
         subject
       end
     end
+
+    describe 'fulfill' do
+      let(:invite) { double(:invite, :token => 'token', :fulfill => nil) }
+      let(:key) { 'key' }
+
+      before do
+        Invite.stub! :from_token => invite
+      end
+
+      subject do
+        post :fulfill, :token => invite.token, :key => key
+      end
+
+      its(:status) { should be(200) }
+
+      it 'fulfills the invite' do
+        invite.should_receive(:fulfill).with(key)
+        subject
+      end
+    end
+
+    describe 'index' do
+      subject do
+        get :index
+      end
+
+      its(:status) { should be(200) }
+
+      # it 'gets invites for current user' do
+      # end
+    end
   end
 
   context 'when signed out' do
