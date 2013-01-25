@@ -20,8 +20,6 @@ Feature: Items
     And I press "Unlock"
     Then I should see "example.com"
 
-    When I follow "example.com"
-
     Then I should see "myusername"
     When I follow "reveal"
     Then I should see "mypassword"
