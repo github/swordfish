@@ -34,7 +34,6 @@ describe SharesController do
         item.stub!(:share_for).and_raise(ActiveRecord::RecordNotFound.new(1))
       end
 
-      # its(:status) { should be(404) }
       it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
   end

@@ -3,12 +3,15 @@ class @Invite extends Backbone.Model
     jQuery.ajax
       url: "/invites/#{token}"
 
-  constructor: ->
-    super
+  initialize: ->
     @user = new User(user_attrs) if user_attrs = @get('user')
 
   fulfill: (key) ->
     jQuery.ajax
-      url: "/invites/#{@get('token')}/fulfill"
+      type: 'POST'
+      url: @url() + "/fulfill"
       data:
         key: @user.publicKey().encrypt(key)
+
+  isAccepted: ->
+    !!@user

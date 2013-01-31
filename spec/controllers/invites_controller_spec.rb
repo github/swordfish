@@ -12,7 +12,7 @@ describe InvitesController do
     before { sign_in_as mock_user }
 
     describe 'create' do
-      let(:invite) { double(:invite, :to_json => 'json') }
+      let(:invite) { double(:invite).as_null_object }
 
       before do
         team.stub! :invite => invite
@@ -28,7 +28,7 @@ describe InvitesController do
       it { expect(subject.status).to be(201) }
 
       it 'creates an invite' do
-        team.should_receive(:invite).with(email).and_return({})
+        team.should_receive(:invite).with(email).and_return(invite)
         subject
       end
 
@@ -58,15 +58,15 @@ describe InvitesController do
     end
 
     describe 'fulfill' do
-      let(:invite) { double(:invite, :token => 'token', :fulfill => nil) }
+      let(:invite) { double(:invite, :id => 42, :fulfill => nil) }
       let(:key) { 'key' }
 
       before do
-        Invite.stub! :from_token => invite
+        team.invites.stub! :find => invite
       end
 
       subject do
-        post :fulfill, :token => invite.token, :key => key
+        post :fulfill, :team_id => team.id, :id => invite.id, :key => key
       end
 
       its(:status) { should be(200) }
@@ -75,17 +75,6 @@ describe InvitesController do
         invite.should_receive(:fulfill).with(key)
         subject
       end
-    end
-
-    describe 'index' do
-      subject do
-        get :index
-      end
-
-      its(:status) { should be(200) }
-
-      # it 'gets invites for current user' do
-      # end
     end
   end
 

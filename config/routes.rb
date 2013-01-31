@@ -5,11 +5,15 @@ Swordfish::Application.routes.draw do
 
   resources :teams do
     resources :memberships
-    resources :invites, :only => :create
+    resources :invites, :only => :create do
+      member do
+        post :fulfill
+      end
+    end
   end
 
+  get 'invites' => 'invites#index', :as => :invites
   get 'invites/:token' => 'invites#accept', :as => :accept_invite
-  post 'invites/:token/fulfill' => 'invites#fulfill'
 
   namespace :auth do
     resource :rsa, :only => [:create, :update], :controller => 'rsa'

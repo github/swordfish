@@ -4,8 +4,10 @@
 # the team key with the user's public key.
 class @InviteFulfiller
   constructor: (@teams) ->
-    @teams.on 'refresh', @refresh
+    @teams.on 'reset', @reset
 
-  refresh: =>
+  reset: =>
     @teams.each (team) ->
-      invite.fulfill(team.key().key) for invite in team.invites.accepted()
+      for invite in team.invites.accepted()
+        console.log 'fulfilling', invite.toJSON()
+        invite.fulfill(team.key().key)

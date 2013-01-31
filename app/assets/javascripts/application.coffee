@@ -15,6 +15,8 @@ class @Application
     @items = new Item.Collection([], keypair: @keypair)
     @teams = new Team.Collection([], keypair: @keypair)
 
+    new InviteFulfiller(@teams)
+
     @items.fetch()
     @teams.fetch()
 

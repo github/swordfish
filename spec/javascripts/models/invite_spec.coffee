@@ -13,14 +13,16 @@ describe 'Invite', ->
 
   describe 'fulfill', ->
     beforeEach ->
-      @invite = new Invite(token: 'token', user: {})
+      @collection = url: -> '/teams/1/invites'
+      @invite = new Invite({id: 42, user: {}}, {collection: @collection})
       @key = {encrypt: jasmine.createSpy('encrypt').andReturn('encrypted')}
       spyOn(@invite.user, 'publicKey').andReturn(@key)
       @invite.fulfill('key')
 
     it 'makes an ajax request', ->
       expect(jQuery.ajax).toHaveBeenCalledWith
-        url: '/invites/token/fulfill',
+        type: 'POST'
+        url: '/teams/1/invites/42/fulfill',
         data: {key: 'encrypted'}
 
     it 'encrypts key', ->
