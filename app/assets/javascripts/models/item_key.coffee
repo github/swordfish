@@ -1,5 +1,3 @@
-#= require base64
-
 class @ItemKey
   @cipher: forge.aes
   @key_size: 32
@@ -19,13 +17,13 @@ class @ItemKey
     encrypted_data = cipher.output.data
 
     JSON.stringify
-      iv  : base64.encode iv
-      data: base64.encode encrypted_data
+      iv  : forge.util.encode64 iv
+      data: forge.util.encode64 encrypted_data
 
   decrypt: (data) ->
     json_data      = JSON.parse data
-    iv             = base64.decode json_data['iv']
-    encrypted_data = base64.decode json_data['data']
+    iv             = forge.util.decode64 json_data['iv']
+    encrypted_data = forge.util.decode64 json_data['data']
     buffer         = forge.util.createBuffer encrypted_data
 
     cipher = forge.aes.startDecrypting @key, iv
