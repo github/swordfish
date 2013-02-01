@@ -1,5 +1,5 @@
-require '/assets/application.js'
-require '/assets/ui.js'
+#= require application
+#= require ui
 
 describe 'Membership.Views.Create', ->
   beforeEach ->
@@ -7,7 +7,7 @@ describe 'Membership.Views.Create', ->
     @event = {preventDefault: jasmine.createSpy('preventDefault')}
     @email = 'bkeepers@github.com'
 
-    @view = new Membership.Views.New(model: @team)
+    @view = new Membership.Views.Create(model: @team)
 
     @view.$el.append """
       <input type="email" value="#{@email}">
