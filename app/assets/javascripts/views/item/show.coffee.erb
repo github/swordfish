@@ -18,7 +18,6 @@ class Item.Views.Show extends Backbone.View
     _.extend @model.toJSON(), data: @model.data()
 
   reveal: (e) =>
-    window.view = @
     e.preventDefault()
     @$('.password').text(@model.data().password)
     @$el.addClass('revealed')
