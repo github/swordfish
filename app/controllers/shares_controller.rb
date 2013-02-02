@@ -3,9 +3,8 @@ class SharesController < ApplicationController
 
   def create
     team = Team.find(params[:team_id])
-
-    @item.share_with(team, params[:key])
-    head :created
+    share = @item.share_with(team, params[:key])
+    render :json => SharePresenter.new(share), :status => :created
   end
 
 private
