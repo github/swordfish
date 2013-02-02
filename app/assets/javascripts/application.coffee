@@ -8,6 +8,7 @@ class @Application
     @prototype.on(args...)
 
   constructor: (@keypair = Keypair.load()) ->
+    Backbone.View.prototype.app = @
     @trigger 'initialize'
     @on 'authenticated', @bootstrap
 
