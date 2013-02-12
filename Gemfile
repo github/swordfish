@@ -26,6 +26,8 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'brakeman', :require => false
+  gem 'launchy'
+  gem 'pry'
 end
 
 group :guard do
