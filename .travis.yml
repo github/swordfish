@@ -1,5 +1,7 @@
 language: ruby
 rvm:
   - 1.9.3
+env: GH_POSTGRESQL_USER=postgres
 before_script:
-  - "rake db:test:load"
+  - psql -c 'create database swordfish_test;' -U postgres
+  - rake db:test:load
