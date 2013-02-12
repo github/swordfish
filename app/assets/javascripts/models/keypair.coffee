@@ -5,17 +5,17 @@ class @Keypair
   @load: ->
     new @(key) if key = @localStorage['privateKey']
 
-  constructor: (@privateKeyPem) ->
+  constructor: (@pem) ->
 
   savePrivateKey: () ->
-    @constructor.localStorage['privateKey'] = @privateKeyPem
+    @constructor.localStorage['privateKey'] = @pem
 
   # Public: Unlock the keypair with the given passphrase.
   #
   # Returns a jQuery.Deferred() that will resolve when successful.
   unlock: (password) ->
-    if @privateKey = forge.pki.decryptRsaPrivateKey(@privateKeyPem, password)
-      @publicKey = forge.pki.rsa.setPublicKey(@privateKey.n, @privateKey.e)
+    if @privateKey = PrivateKey.decrypt(@pem, password)
+      @publicKey = @privateKey.publicKey()
 
     @isUnlocked()
 
@@ -23,10 +23,10 @@ class @Keypair
     !!@privateKey
 
   encrypt: (data) ->
-    forge.util.encode64(@publicKey.encrypt(data))
+    @publicKey.encrypt(data)
 
   decrypt: (data) ->
-    @privateKey.decrypt(forge.util.decode64(data))
+    @privateKey.decrypt(data)
 
   publicKeyPem: ->
     forge.pki.publicKeyToPem(@publicKey)

@@ -1,3 +1,3 @@
 class @User extends Backbone.Model
   publicKey: ->
-    forge.pki.publicKeyFromPem @get('public_key')
+    PublicKey.fromPem(@get('public_key'))

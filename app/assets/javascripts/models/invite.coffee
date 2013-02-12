@@ -12,8 +12,7 @@ class @Invite extends Backbone.Model
       type: 'POST'
       url: @url() + "/fulfill"
       data:
-        # FIXME: wrap public key and use in Keypair
-        key: forge.util.encode64(@user.publicKey().encrypt(key))
+        key: @user.publicKey().encrypt(key)
 
   isAccepted: ->
     !!@user

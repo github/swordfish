@@ -10,7 +10,7 @@ class @KeypairAuthenticator
     @constructor.ajax(
       type:     'POST'
       url:      '/auth/rsa'
-      data:     @keypair.publicKeyPem()
+      data:     @keypair.publicKey.pem()
       dataType: 'text'
     ).done @respond
     @

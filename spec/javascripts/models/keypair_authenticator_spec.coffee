@@ -9,8 +9,9 @@ describe 'KeypairAuthenticator', ->
     @deferred = jQuery.Deferred()
     KeypairAuthenticator.ajax = @ajax = jasmine.createSpy('ajax').andReturn(@deferred)
 
-    @keypair = new Keypair("key")
-    spyOn(@keypair, 'publicKeyPem').andReturn('public key')
+    @keypair =
+      publicKey:
+        pem: jasmine.createSpy().andReturn('public key')
 
     @authenticator = new KeypairAuthenticator(@keypair)
     spyOn(@authenticator, 'decryptChallenge').andReturn('decrypted challenge')
