@@ -9,5 +9,4 @@ class @InviteFulfiller
   reset: =>
     @teams.each (team) ->
       for invite in team.invites.accepted()
-        console.log 'fulfilling', invite.toJSON()
-        invite.fulfill(team.key().key)
+        invite.fulfill(team.key.key)

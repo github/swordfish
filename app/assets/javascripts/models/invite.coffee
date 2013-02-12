@@ -6,12 +6,14 @@ class @Invite extends Backbone.Model
   initialize: ->
     @user = new User(user_attrs) if user_attrs = @get('user')
 
+  # FIXME: move
   fulfill: (key) ->
     jQuery.ajax
       type: 'POST'
       url: @url() + "/fulfill"
       data:
-        key: @user.publicKey().encrypt(key)
+        # FIXME: wrap public key and use in Keypair
+        key: forge.util.encode64(@user.publicKey().encrypt(key))
 
   isAccepted: ->
     !!@user
