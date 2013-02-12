@@ -4,6 +4,7 @@ defaults: &defaults
   pool: 5
   host: localhost
   port: <%= ENV['GH_POSTGRESQL_PORT'] || 5432 %>
+  username: <%= ENV['GH_POSTGRESQL_USER'] || ENV['USER'] %>
   min_messages: WARNING
 
 development:
