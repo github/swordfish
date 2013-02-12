@@ -24,7 +24,3 @@ RSpec.configure do |config|
 
   config.use_transactional_fixtures = true
 end
-
-def fixture(name)
-  Rails.root.join('spec', 'fixtures', name).read
-end
