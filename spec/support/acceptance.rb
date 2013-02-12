@@ -45,4 +45,8 @@ RSpec.configure do |config|
   config.after :each, :capybara_feature => true do
     page.execute_script 'localStorage.clear()'
   end
+
+  config.before :each, :capybara_feature => true do
+    DatabaseCleaner.strategy = :truncation
+  end
 end

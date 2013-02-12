@@ -22,5 +22,17 @@ RSpec.configure do |config|
 
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
+
+  config.before do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before do
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 end
