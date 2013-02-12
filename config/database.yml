@@ -1,11 +1,16 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  port: <%= ENV['GH_POSTGRESQL_PORT'] || 5432 %>
+  username: <%= ENV['GH_POSTGRESQL_USER'] || ENV['USER'] %>
+  min_messages: WARNING
+
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
-  
+  <<: *defaults
+  database: swordfish_development
+
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
-  pool: 5
-  timeout: 5000
+  <<: *defaults
+  database: swordfish_test
