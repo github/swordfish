@@ -9,8 +9,19 @@ class ItemPresenter
       'id'             => @item.id.to_s,
       'title'          => @item.title,
       'encrypted_data' => @item.encrypted_data,
-      'key'            => @share.key,
+      'key'            => share,
       'shares'         => @item.shares.map {|s| SharePresenter.for(s).as_json }
     }
+  end
+
+  def share
+    if @share.owner_type == 'Team'
+      {
+        "team_id" => @share.owner_id,
+        "key" => @share.key
+      }
+    else
+      @share.key
+    end
   end
 end

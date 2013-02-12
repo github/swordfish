@@ -20,8 +20,7 @@ class @Application
 
     new InviteFulfiller(@teams)
 
-    @items.fetch()
-    @teams.fetch()
+    @teams.fetch().then => @items.fetch()
 
     @trigger 'ready'
 
