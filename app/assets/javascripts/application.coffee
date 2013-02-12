@@ -8,13 +8,15 @@ class @Application
     @prototype.on(args...)
 
   constructor: (@keypair = Keypair.load()) ->
-    Backbone.View.prototype.app = @
+    for base in [Backbone.View, Backbone.Model, Backbone.Collection]
+      base.prototype.app = @
+
     @trigger 'initialize'
     @on 'authenticated', @bootstrap
 
   bootstrap: =>
-    @items = new Item.Collection([], keypair: @keypair)
-    @teams = new Team.Collection([], keypair: @keypair)
+    @teams = new Team.Collection()
+    @items = new Item.Collection()
 
     new InviteFulfiller(@teams)
 

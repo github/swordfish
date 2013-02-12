@@ -6,26 +6,26 @@ describe 'Item', ->
       encrypt: jasmine.createSpy('encrypt').andReturn('encrypted')
       decrypt: jasmine.createSpy('decrypt').andReturn('decrypted')
 
-    @collection = {keypair: @keypair, url:'/items'}
+    Backbone.Model.prototype.app = {keypair: @keypair}
     spyOn(jQuery, 'ajax')
     spyOn(ItemKey, 'generate').andReturn('generated key')
 
   describe 'initialize', ->
     it 'generates a key', ->
 
-      item = new Item({}, collection: @collection)
+      item = new Item()
       expect(item.get('key')).toEqual('encrypted')
       expect(ItemKey.generate).toHaveBeenCalled()
       expect(@keypair.encrypt).toHaveBeenCalledWith('generated key')
 
     it 'does not override existing key', ->
-      item = new Item({key: 'existing key'}, collection: @collection)
+      item = new Item({key: 'existing key'})
       expect(item.get('key')).toEqual('existing key')
 
   describe 'set', ->
     beforeEach ->
       spyOn(ItemKey.prototype, 'encrypt').andReturn('encrypted-data')
-      @item = new Item({}, {collection: @collection})
+      @item = new Item()
       @item.set(data: {foo: 'bar'})
 
     it 'encrypts data', ->
@@ -41,8 +41,8 @@ describe 'Item', ->
 
   describe 'share', ->
     beforeEach ->
-      @item = new Item({id: 42, key: 'itemkey'}, collection: @collection)
-      @team = new Team({id: 43}, collection: @collection)
+      @item = new Item({id: 42, key: 'itemkey'})
+      @team = new Team({id: 43})
 
       spyOn(@item.shares, 'create')
       spyOn(@team.key, 'encrypt').andReturn('EncryptedWithTeamKey')
