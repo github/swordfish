@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.12'
 gem 'sqlite3'
 gem 'net-ssh' # for RSA key fingerprinting
 gem 'dotenv', :group => [:test, :development]
