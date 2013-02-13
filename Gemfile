@@ -21,15 +21,15 @@ group :development, :test do
 end
 
 group :test do
-  gem 'cucumber-rails', :require => false
   gem 'webmock', :require => false
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'brakeman', :require => false
+  gem 'launchy'
+  gem 'pry'
 end
 
 group :guard do
   gem 'guard-bundler'
-  gem 'guard-cucumber'
   gem 'guard-rspec'
 end
