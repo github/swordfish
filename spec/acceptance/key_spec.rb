@@ -28,7 +28,7 @@ feature 'Key Management' do
     expect(page).to be_unlocked
 
     # Ensure item creation works with loaded key
-    create_item :title => 'Loaded Key'
+    create_item 'Title' => 'Loaded Key'
     expect(page).to have_content('Loaded Key')
   end
 

@@ -20,8 +20,9 @@ module AcceptanceSpecHelpers
 
   def create_item(attrs = {})
     click_link '+'
-    fill_in 'Title', :with => attrs[:title] || 'title'
-    fill_in 'Username', :with => attrs[:username] || 'username'
+    item_attrs(attrs).each do |key,value|
+      fill_in key, :with => value
+    end
     click_button 'Create'
   end
 
@@ -31,6 +32,18 @@ module AcceptanceSpecHelpers
     block.call
   ensure
     Capybara.default_wait_time = wait_time
+  end
+
+  ### ATTRIBUTES
+
+  def item_attrs(attrs = {})
+    {
+      'Title'    => 'title',
+      'URL'      => 'http://example.com',
+      'Username' => 'username',
+      'Password' => 'password',
+      'Confirm'  => 'password'
+    }.merge(attrs)
   end
 
   ### MATCHERS

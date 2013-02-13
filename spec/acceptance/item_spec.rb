@@ -8,12 +8,12 @@ feature 'Items' do
   end
 
   scenario 'creating and editing an item' do
-    click_link 'New Item'
-    fill_in "Title",    :with => "example.com"
-    fill_in "Username", :with => "myusername"
-    fill_in "Password", :with => "mypassword"
-    fill_in "Confirm",  :with => "mypassword"
-    click_button "Create"
+    create_item(
+      "Title"    => "example.com",
+      "Username" => "myusername",
+      "Password" => "mypassword",
+      "Confirm"  => "mypassword"
+    )
 
     within('#items') { expect(page).to have_content('example.com') }
 
