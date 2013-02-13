@@ -117,7 +117,7 @@ GEM
       treetop (~> 1.4.8)
     method_source (0.8.1)
     mime-types (1.21)
-    multi_json (1.5.1)
+    multi_json (1.6.0)
     net-ssh (2.5.2)
     nokogiri (1.5.6)
     pg (0.14.1)
