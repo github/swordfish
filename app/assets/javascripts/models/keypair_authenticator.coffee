@@ -28,7 +28,7 @@ class @KeypairAuthenticator
 
   # Internal: Decrypt the challenge from the server.
   decryptChallenge: (challenge) ->
-    forge.util.encode64(@keypair.decrypt(forge.util.decode64(challenge)))
+    forge.util.encode64(@keypair.decrypt(challenge))
 
   # Internal
   setupAjax: =>

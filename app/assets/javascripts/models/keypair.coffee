@@ -23,10 +23,10 @@ class @Keypair
     !!@privateKey
 
   encrypt: (data) ->
-    @publicKey.encrypt(data)
+    forge.util.encode64(@publicKey.encrypt(data))
 
   decrypt: (data) ->
-    @privateKey.decrypt(data)
+    @privateKey.decrypt(forge.util.decode64(data))
 
   publicKeyPem: ->
     forge.pki.publicKeyToPem(@publicKey)
