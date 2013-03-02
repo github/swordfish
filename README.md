@@ -37,7 +37,7 @@ Use the `bootstrap` script to get the environment set up.
 
 Now you will need to run the database migrations before you run the server.
 
-    bundle exec rake db:migrate
+    bundle exec rake db:create db:migrate
 
 Finally you can start the application.
 
