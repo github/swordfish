@@ -43,7 +43,7 @@ Finally you can start the application.
 
     script/rails s
 
-Running the tests requries PhatomJS. If you're on Mac OS X you can use homebrew
+Running the tests requries PhantomJS. If you're on Mac OS X you can use homebrew
 to install this for you.
 
     brew install phantomjs
