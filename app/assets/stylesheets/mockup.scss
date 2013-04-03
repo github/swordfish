@@ -132,7 +132,6 @@ h1, h2, h3, h4, h5, h6 {
       left: 18px;
       right: 18px;
       padding: 18px;
-
     }
   }
 
@@ -280,9 +279,6 @@ h1, h2, h3, h4, h5, h6 {
 
   header {
     margin: 36px 0;
-    // margin: 0 -36px 36px;
-    // padding: 18px 36px;
-    // border-bottom: 1px solid rgba(#000, 0.05);
   }
 
   .pane-content {
@@ -291,15 +287,9 @@ h1, h2, h3, h4, h5, h6 {
     padding-right: 36px;
   }
 
-  // section {
-  //   padding-bottom: 9px;
-  //   margin-bottom: 9px;
-  // }
-
   h1 {
     margin-bottom: 0;
     font-size: 30px;
-    // line-height: 54px;
   }
   h2 {
     font-size: 18px
@@ -313,16 +303,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .password-actions {
-    // background: #f6f7f7;
-    // border-radius: 2px;
     display: inline-block;
     margin-left: 18px;
-    // padding: 0 5px;
 
     .icon {
       opacity: 0.25;
       &:hover { opacity: 1; }
-      // font-size: 2.1em;
     }
 
   }
@@ -350,18 +336,6 @@ dl {
 
   dt {
     @extend %label;
-    // clear: left;
-    // float: left;
-    // width: 90px;
-    // text-align: right;
-    // padding: 0 9px;
-    // color: #999;
-    // font-weight: normal;
-    // background: rgba(#000, 0.025);
-    // box-shadow: inset -1px 0px 0px rgba(#000, 0.1);
-    // text-transform: uppercase;
-    // font-size: 0.8em;
-    // text-shadow: 0 1px 1px #fff;
   }
 
   dd {
@@ -374,8 +348,6 @@ dl {
 
 %label {
   width: 90px;
-  // background: rgba(#000, 0.025);
-  // box-shadow: inset -1px 0px 0px rgba(#000, 0.1);
   clear: left;
   float: left;
   text-align: right;
@@ -393,12 +365,6 @@ form {
 
     label {
       @extend %label;
-      // display: block;
-      // float: left;
-      // width: 84px;
-      // margin-right: 9px;
-      // color: #999;
-      // text-align: right;
       line-height: 36px;
     }
   }
@@ -420,7 +386,6 @@ form {
 
 input[type=text], input[type=password], textarea {
   font-size: 22px;
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
 }
 
 input.wide {
