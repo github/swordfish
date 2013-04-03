@@ -1,12 +1,19 @@
-<div id="container">
-  <header id="header">
+<header id="header">
+  <div class="container">
     <h1>Swordfish</h1>
-    <nav>
-      <a href="/">Lock</a>
-    </nav>
-  </header>
+    <a class="button" href="#/items/new">
+      <span class="icon entypo plus"></span>
+      New Item
+    </a>
+  </div>
+</header>
+<div id="container">
   <div id="content">
-    <div id="vaults"></div>
+    <div id="vaults">
+      <div class="vault selected">
+        <a href="#"><span class="icon entypo user"></span> Personal</a>
+      </div>
+    </div>
 
     <div id="items"></div>
 

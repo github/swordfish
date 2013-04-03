@@ -1,11 +1,17 @@
+@import 'compass/css3';
 @import 'compass/reset';
 @import "blueprint";
+@import "entypo";
 
 @include blueprint-typography;
 
-
 $container-color: rgba(110,83,46,0.2);
 $shadow-color: opacify($container-color, 0.1);
+$highlight-color: #62C9A6;
+$highlight-hover-color: lighten($highlight-color, 7%);
+
+$header-z-index: 50;
+$content-z-index: 25;
 
 // ==== debugging ===
 
@@ -26,82 +32,98 @@ $shadow-color: opacify($container-color, 0.1);
 
 // ==== basic ====
 
+$container-border-radius: 3px;
+
+%light {
+  background: #f6f7f7;
+  box-shadow: inset 0 -1px 0px #fff, 0 0 1px rgba(#000, 0.6), 0 1px 6px rgba(#000, 0.3);
+  border-radius: $container-border-radius;
+}
+
+* { box-sizing: border-box; }
+
+body, input, button {
+  font-family: "Helvetica Nueue", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+}
+
 body {
-  font-family: "Lucida Grande", Arial, Helvetica, sans-serif;
-  background-image: image-url('mockup/retina_wood.png');
+  background: #272829;
 }
 
 a {
-  text-decoration: none;
+  &, &:visited {
+    color: darken($highlight-color, 10%);
+    text-decoration: none;
+  }
+  &:hover { color: $highlight-color; }
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-weight: 100;
+  letter-spacing: -1px;
+  font-weight: bold;
 }
 
 // ==== layout =====
 
-@mixin pane {
+%pane {
   position: absolute;
-  top: 45px;
-  bottom: 18px;
+  top: 0;
+  bottom: 0px;
   overflow: hidden;
+  z-index: $content-z-index;
 
   footer {
     height: 53px;
-    border-top: 1px solid #f7f7f7;
     line-height: 54px;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    @include background(linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,1)));
+    border-bottom-left-radius: $container-border-radius;
+    border-bottom-right-radius: $container-border-radius;
     padding: 0 18px;
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: 3;
     text-align: right;
   }
 
   .pane-content {
-    z-index: 2;
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    padding: 9px 0 72px 0;
     overflow: auto;
   }
 }
 
-#container {
-  position: absolute;
+.container {
+  position: relative;
   width: 960px;
-  top: 18px;
+  margin: 0 auto;
+}
+
+#container {
+  @extend .container;
+  z-index: $content-z-index;
+  position: absolute;
+  top: 100px;
   bottom: 18px;
-  left: 50%;
-  margin-left: -480px;
-  background-color: $container-color;
-  box-shadow: inset 0px 0px 5px $shadow-color;
-  border-radius: 4px;
+  left: 0;
+  right: 0;
 
   &.setup {
     top: 50%;
     width: 480px;
     height: 300px;
-    margin-left: -240px;
     margin-top: -150px;
+    background: #fff;
+    border-radius: 3px;
 
     #content {
-      @include pane;
-      background: #fff;
-      top: 18px;
+      top: 0;
       left: 18px;
       right: 18px;
-      box-shadow: 0px 0px 4px $shadow-color;
-      border-radius: 4px;
       padding: 18px;
 
     }
@@ -112,155 +134,189 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-@import 'compass/css3';
-
 #header {
-  height: 45px;
-  padding: 0 18px;
-  border-radius: 4px 4px 0 0;
-  position: relative;
+  padding: 0;
+  z-index: $header-z-index;
+
+  .container {
+    @extend %light;
+    margin-top: 18px;
+    overflow: hidden;
+    padding: 0 18px;
+  }
 
   h1 {
+    padding-left: 35px;
+    background: url(asset-path('mockup/logo.png', image)) no-repeat left center;
+    background-size: 15%;
+    text-transform: lowercase;
     font-size: 22px;
-    line-height: 45px;
-    color: #666;
-    letter-spacing: 2px;
+    line-height: 64px;
+    color: #000;
+    display: inline-block;
+    float: left;
+    width: 195px;
+    margin: 0 ;
+  }
+
+  .button {
+    margin: 12px 0;
+    float: right;
   }
 
   #search, nav   {
-    line-height: 27px;
-    position: absolute;
-    top: 9px;
-    right: 18px;
-    float: right;
+    line-height: 64px;
+    float: left;
 
     input {
-      font-size: 14px;
-      width: 200px;
-      line-height: 18px;
+      -webkit-appearance: textfield;
+      border-radius: 2px;
+      border: 1px solid rgba(#000, 0.2);
+      box-shadow: 0 1px 1px #fff;
+      font-size: 15px;
+      width: 250px;
+      padding: 5px 3px;
+      outline: none;
+      -webkit-font-smoothing: antialiased;
     }
   }
 }
 
 #vaults {
-  @include pane;
+  @extend %pane;
+  border-radius: $container-border-radius;
+  box-shadow:
+    inset 0 0 3px rgba(#000, 0.3),
+    inset 0 -1px rgba(#fff, 0.1),
+    0 0 1px rgba(#fff, 0.1);
+  background: rgba(#000, 0.1);
   left: 0px;
-  width: 192px;
-  padding-left: 18px;
-  z-index: 20;
+  width: 182px;
+  color: #fff;
 
-  .selected {
-    background: #fff;
-    box-shadow: -1px 1px 4px $shadow-color;
-  }
-
-  h1 {
-    margin: 9px 0;
-    color: #999;
-    color: rgba(0,0,0,0.4);
-    text-shadow: 0px 1px 1px rgba(255,255,255,0.3);
-    font-size: 11px;
-    line-height: 18px;
-    font-weight: normal;
-    text-transform: uppercase;
-    position: relative;
-
-    .add {
-      position: absolute;
-      top: 0;
-      right: 9px;
-    }
+  .icon {
+    font-size: 3em;
+    vertical-align: sub;
+    margin-right: 6px;
   }
 
   .vault {
-    border-radius: 4px 0 0 4px;
+    opacity: 0.5;
+    &:hover    { opacity: 0.8; }
+    &.selected { opacity: 0.95; }
 
     a {
-      color: #000;
       display: block;
-      padding: 18px;
-    }
-
-    img {
-      @extend .icon;
+      color: inherit;
+      line-height: 54px;
+      padding: 0 18px;
     }
   }
 }
 
 #items {
-  @include pane;
-  background: #fff;
-  z-index: 10;
-
-  left: 210px;
+  @extend %pane;
+  @extend %light;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  left: 200px;
   right: 50%;
-  border-right: 1px dotted #f7f7f7;
-
-  box-shadow: -1px 0px 4px $shadow-color;
-  border-radius: 4px 0 0 4px;
 
   .item {
+    width: 10;
     display: block;
-    padding: 9px 18px;
+    line-height: 44px;
+    padding: 0 9px;
+    box-shadow: inset 0 -1px rgba(#000, 0.025), inset 0 1px 1px rgba(#fff, 0.5);
+    &:first-child { border-top: none; }
+    &:last-child { border-bottom: none; }
+    color: #666;
+    text-shadow: 0 1px #fff;
+
     img {
-      padding-right: 5px;
+      padding: 5px;
+      background-color: #fff;
+      border-radius: 3px;
+      width: 26px;
+      height: 26px;
+      margin-right: 10px;
+      box-shadow: 0 0 1px rgba(#000, 0.1);
     }
+
     a {
-      vertical-align: top;
+      display: block;
+      color: inherit;
+    }
+
+    &:hover {
+      background-color: rgba(#fff, 0.3);
+    }
+
+    &.selected {
+      background-color: $highlight-color;
+      text-shadow: none;
+      font-weight: 600;
+      color: #fff;
     }
   }
 }
 
 #details {
-  z-index: 20;
-
-  @include pane;
-  background: #fff;
+  @extend %pane;
+  @extend %light;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
   left: 50%;
-  right: 18px;
-  border-radius: 0 4px 4px 0;
-  box-shadow: 1px 0px 4px $shadow-color;
+  right: 0;
+  background: #fff;
 
   header {
-    margin-bottom: 36px;
+    margin: 36px 0;
+    // margin: 0 -36px 36px;
+    // padding: 18px 36px;
+    // border-bottom: 1px solid rgba(#000, 0.05);
   }
 
   .pane-content {
-    padding-left: 18px;
-    padding-right: 18px;
+    bottom: 54px;
+    padding-left: 36px;
+    padding-right: 36px;
   }
 
-  section {
-    @include clearfix;
-    padding-bottom: 9px;
-    margin-bottom: 9px;
-  }
+  // section {
+  //   padding-bottom: 9px;
+  //   margin-bottom: 9px;
+  // }
 
   h1 {
     margin-bottom: 0;
-    font-weight: 100;
-    line-height: 54px;
+    font-size: 30px;
+    // line-height: 54px;
+  }
+  h2 {
+    font-size: 18px
   }
 
   .url {
-    color: #bbb;
+    color: rgba(#000, 0.5);
     span {
-      color: #ddd;
+      opacity: 0.5;
     }
   }
 
-  .preview {
-    float: right;
-    width: 168px;
-    height: 126px;
-    border-radius: 4px;
-    overflow: hidden;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.4);
-    margin-right: 4px;
+  .password-actions {
+    // background: #f6f7f7;
+    // border-radius: 2px;
+    display: inline-block;
+    margin-left: 18px;
+    // padding: 0 5px;
 
-    img {
-      width: 100%;
+    .icon {
+      opacity: 0.25;
+      &:hover { opacity: 1; }
+      // font-size: 2.1em;
     }
+
   }
 
   .hide { display: none; }
@@ -268,47 +324,59 @@ h1, h2, h3, h4, h5, h6 {
     .hide   { display: inline; }
     .reveal { display: none; }
   }
-
-
 }
 
 .icon {
-  width: 18px;
-  height: 18px;
+  display: inline-block;
   vertical-align: middle;
   display: inline-block;
-  margin-right: 4px;
-  text-indent: -2000px;
-  overflow: hidden;
-
-  &.text {
-    font-family: "Times New Roman", serif;
-    text-indent: 0;
-    background: #ccc;
-    color: #FFF;
-    border-radius: 9px;
-    font-weight: bold;
-    font-size: 14px;
-    font-style: italic;
-    line-height: 19px;
-    text-align: center;
-  }
+}
+.entypo {
+  font-size: 2em;
+  top: -1px;
+  position: relative;
 }
 
 dl {
+  line-height: 24px;
+
   dt {
-    clear: left;
-    float: left;
-    width: 63px;
-    text-align: right;
-    padding-right: 9px;
-    color: #999;
-    font-weight: normal;
+    @extend %label;
+    // clear: left;
+    // float: left;
+    // width: 90px;
+    // text-align: right;
+    // padding: 0 9px;
+    // color: #999;
+    // font-weight: normal;
+    // background: rgba(#000, 0.025);
+    // box-shadow: inset -1px 0px 0px rgba(#000, 0.1);
+    // text-transform: uppercase;
+    // font-size: 0.8em;
+    // text-shadow: 0 1px 1px #fff;
   }
+
   dd {
-    margin-left: 72px;
+    margin-left: 90px;
     min-height: 18px;
+    padding-left: 9px;
   }
+}
+
+
+%label {
+  width: 90px;
+  // background: rgba(#000, 0.025);
+  // box-shadow: inset -1px 0px 0px rgba(#000, 0.1);
+  clear: left;
+  float: left;
+  text-align: right;
+  padding: 0 9px;
+  color: #999;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  text-shadow: 0 1px 1px #fff;
 }
 
 form {
@@ -316,12 +384,13 @@ form {
     @include clearfix;
 
     label {
-      display: block;
-      float: left;
-      width: 84px;
-      margin-right: 9px;
-      color: #999;
-      text-align: right;
+      @extend %label;
+      // display: block;
+      // float: left;
+      // width: 84px;
+      // margin-right: 9px;
+      // color: #999;
+      // text-align: right;
       line-height: 36px;
     }
   }
@@ -344,7 +413,6 @@ form {
 input[type=text], input[type=password], textarea {
   font-size: 22px;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
-  font-weight: 100;
 }
 
 input.wide {
@@ -352,19 +420,45 @@ input.wide {
   box-sizing: border-box;
 }
 
-button, .button {
-  background-color:#fff;
-  border-radius:3px;
-  border:1px solid #dadada;
-  @include background(linear-gradient(#fff 0%, #f1f1f1 35%, #f1f1f1 65%, #fff 100%));
-  box-shadow: inset 0 0 3px #fff, 0px 1px 2px rgba(100, 100, 100, 0.1);
-  font-weight:bold;
-  padding:9px 18px;
+button, a.button {
+  display: inline-block;
+  background-color: $highlight-color;
+  color: #f7f7f7;
+  border-radius:2px;
+  border:none;
+  border: 1px solid darken(desaturate($highlight-color, 10%), 3%);
+  text-shadow: 0px -1px darken(desaturate($highlight-color, 5%), 15%);
+  box-shadow:
+    inset 0 -3px 10px rgba(#000, 0.05),
+    inset 0 1px 1px rgba(#fff, 0.2);
+  padding: 0 18px;
+  line-height: 36px;
   text-decoration:none;
-  text-shadow:1px 1px 0px #ffffff;
   text-align: center;
+  font-weight: bold;
+
+  &:hover {
+    background: $highlight-hover-color;
+  }
 }
 
 p.error {
   color: red;
+}
+
+
+.strength-meter {
+  width: 100px;
+  margin-top: -4px;
+
+  background-color: #f1f1f1;
+  box-shadow: inset 0px 1px 1px rgba(#000, 0.1);
+
+  .strength {
+    height: 2px;
+
+    &.strong { background-color: $highlight-color; }
+    &.average { background-color: #E2C94F; }
+    &.weak { background-color: #C25330; }
+  }
 }
