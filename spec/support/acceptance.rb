@@ -19,7 +19,7 @@ module AcceptanceSpecHelpers
   end
 
   def create_item(attrs = {})
-    click_link '+'
+    click_link 'New Item'
     item_attrs(attrs).each do |key,value|
       fill_in key, :with => value
     end
@@ -49,7 +49,7 @@ module AcceptanceSpecHelpers
   ### MATCHERS
 
   def be_unlocked
-    have_content('+') # yeah, yeah, this sucks
+    have_content('New Item')
   end
 end
 

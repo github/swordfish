@@ -49,14 +49,4 @@ feature 'Key Management' do
     unlock_key
     expect(page).to be_unlocked
   end
-
-  scenario 'Locking key' do
-    generate_key
-    visit root_path
-    unlock_key
-
-    click_link 'Lock'
-
-    expect(page).to have_content('Unlock')
-  end
 end

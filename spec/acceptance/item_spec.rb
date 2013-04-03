@@ -43,7 +43,7 @@ feature 'Items' do
   end
 
   scenario 'mismatching password confirmation' do
-    click_link "+"
+    click_link "New Item"
     fill_in "Title", :with => "example.com"
     fill_in "Username", :with => "myusername"
     fill_in "Password", :with => "mypassword"
