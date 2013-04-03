@@ -13,7 +13,7 @@ feature 'Key Management' do
       expect(page).to have_content('Download Private Key')
     end
 
-    click_link 'Done'
+    click_link 'Download Private Key'
     expect(page).to be_unlocked
   end
 

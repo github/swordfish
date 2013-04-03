@@ -43,7 +43,7 @@ $container-border-radius: 3px;
 * { box-sizing: border-box; }
 
 body, input, button {
-  font-family: "Helvetica Nueue", Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
 }
@@ -61,8 +61,8 @@ a {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  font-weight: 100;
   letter-spacing: -1px;
-  font-weight: bold;
 }
 
 // ==== layout =====
@@ -113,12 +113,19 @@ h1, h2, h3, h4, h5, h6 {
   right: 0;
 
   &.setup {
+    @extend %pane;
+    bottom: auto;
+
     top: 50%;
     width: 480px;
     height: 300px;
     margin-top: -150px;
     background: #fff;
     border-radius: 3px;
+
+    h1 {
+      font-size: 2.5em;
+    }
 
     #content {
       top: 0;
@@ -156,7 +163,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     float: left;
     width: 195px;
-    margin: 0 ;
+    margin: 0;
+    font-weight: bold;
   }
 
   .button {
