@@ -6,3 +6,4 @@
 /bin
 /vendor/gems
 /db/*.sqlite3
+.ruby-version

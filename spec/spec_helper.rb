@@ -22,13 +22,11 @@ RSpec.configure do |config|
 
   config.expect_with(:rspec) { |c| c.syntax = :expect }
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   config.before do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean
     KeypairFactory.reset
   end
-end
-
-def fixture(name)
-  Rails.root.join('spec', 'fixtures', name).read
 end

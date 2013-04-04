@@ -16,8 +16,8 @@ class @KeypairAuthenticator
     @
 
   # Internal: Respond to the challenge from the server.
-  respond: (data) =>
-    @challenge = @decryptChallenge(data)
+  respond: (challenge) =>
+    @challenge = @decryptChallenge(challenge)
 
     @constructor.ajax(
       type:     'PUT'

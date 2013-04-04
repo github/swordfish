@@ -27,6 +27,3 @@ class @Keypair
 
   decrypt: (data) ->
     @privateKey.decrypt(data)
-
-  publicKeyPem: ->
-    forge.pki.publicKeyToPem(@publicKey)

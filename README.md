@@ -27,6 +27,7 @@ the wire unless it is encrypted with secrets only available on the client.
 * [JavaScript Cryptography Considered Harmful](http://www.matasano.com/articles/javascript-cryptography/) - A thoughtful critique of JavaScript encryption, discussed in [#28](https://github.com/github/swordfish/issues/28).
 * [A JavaScript Implementation of TLS](http://digitalbazaar.com/2010/07/20/javascript-tls-1/) - The background of [Forge](https://github.com/digitalbazaar/forge/blob/master/README.md), the encryption library used by Swordfish.
 * [Web Cryptography API](http://www.w3.org/2012/webcrypto/WebCryptoAPI/) - A draft W3C proposal for a JavaScript cryptography API. If all goes well, this will eventually replace Forge for all of the cryptography in Swordfish.
+* [Megabad: A quick look at the state of Mega’s encryption](http://arstechnica.com/business/2013/01/megabad-a-quick-look-at-the-state-of-megas-encryption/) - Mega essentially uses the same approach as Swordfish: RSA keys for each user, coupled with a randomly generated key for AES encryption of each item.
 
 ## Working on Swordfish
 
@@ -36,13 +37,13 @@ Use the `bootstrap` script to get the environment set up.
 
 Now you will need to run the database migrations before you run the server.
 
-    bundle exec rake db:migrate
+    bundle exec rake db:create db:migrate
 
 Finally you can start the application.
 
     script/rails s
 
-Running the tests requries PhatomJS. If you're on Mac OS X you can use homebrew
+Running the tests requries PhantomJS. If you're on Mac OS X you can use homebrew
 to install this for you.
 
     brew install phantomjs
