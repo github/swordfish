@@ -20,3 +20,10 @@ guard :jasmine do
   watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
   watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)(?:\.\w+)*$}) { |m| "spec/javascripts/#{ m[1] }_spec.#{ m[2] }" }
 end
+
+guard 'livereload', :apply_js_live => false do
+  watch(%r{^spec/javascripts/.+$})
+  watch(%r{^app/assets/javascripts/.+$})
+  watch(%r{^app/assets/stylesheets/.+$})
+  watch(%r{^vendor/assets/stylesheets/.+$})
+end

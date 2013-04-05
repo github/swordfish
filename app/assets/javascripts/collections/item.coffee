@@ -2,6 +2,6 @@ class Item.Collection extends Backbone.Collection
   model: Item
   url: '/items'
 
-  constructor: (models, options) ->
+  initialize: (models, options) ->
     @keypair = options.keypair
-    super
+    _.extend @, new Backbone.Picky.SingleSelect(@)

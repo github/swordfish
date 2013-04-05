@@ -1,33 +1,38 @@
-<form class="pane-content">
-  <h1>Create a New Item</h1>
-  <p class="error"></p>
-  <p>
-    <label for="item-title">Title</label>
-    <input id="item-title" type="text" name="title">
-  </p>
+<form>
+  <div class="pane-content">
+    <header>
+      <h1>Create a New Item</h1>
+    </header>
 
-  <p>
-    <label for="item-url">URL</label>
-    <input id="item-url" type="text" name="data.url">
-  </p>
+    <p class="error"></p>
+    <p>
+      <label for="item-title">Title</label>
+      <input id="item-title" type="text" name="title">
+    </p>
 
-  <p>
-    <label for="item-username">Username</label>
-    <input id="item-username" type="text" name="data.username">
-  </p>
+    <p>
+      <label for="item-url">URL</label>
+      <input id="item-url" type="text" name="data.url">
+    </p>
 
-  <p>
-    <label for="item-password">Password</label>
-    <input id="item-password" type="password">
-  </p>
+    <p>
+      <label for="item-username">Username</label>
+      <input id="item-username" type="text" name="data.username">
+    </p>
 
-  <p>
-    <label for="item-confirm-password">Confirm</label>
-    <input id="item-confirm-password" type="password">
-    <span id="item-password-confirmation-status"></span>
-  </p>
+    <p>
+      <label for="item-password">Password</label>
+      <input id="item-password" type="password">
+    </p>
 
-  <footer class="buttons">
+    <p>
+      <label for="item-confirm-password">Confirm</label>
+      <input id="item-confirm-password" type="password">
+      <span id="item-password-confirmation-status"></span>
+    </p>
+  </div>
+
+  <footer>
     <button type="submit">Create</button>
   </footer>
 </form>

@@ -1,34 +1,35 @@
-<form class="pane-content">
-  <h1>{{title}}</h1>
-  <p class="error"></p>
-  <p>
-    <label for="item-title">Title</label>
-    <input id="item-title" type="text" name="title" value="{{title}}">
-  </p>
+<form>
+  <div class="pane-content">
+    <header><h1>{{title}}</h1></header>
+    <p class="error"></p>
+    <p>
+      <label for="item-title">Title</label>
+      <input id="item-title" type="text" name="title" value="{{title}}">
+    </p>
 
-  {{#data}}
-  <p>
-    <label for="item-url">URL</label>
-    <input id="item-url" type="text" name="data.url" value="{{url}}">
-  </p>
+    {{#data}}
+    <p>
+      <label for="item-url">URL</label>
+      <input id="item-url" type="text" name="data.url" value="{{url}}">
+    </p>
 
-  <p>
-    <label for="item-username">Username</label>
-    <input id="item-username" type="text" name="data.username" value="{{username}}">
-  </p>
+    <p>
+      <label for="item-username">Username</label>
+      <input id="item-username" type="text" name="data.username" value="{{username}}">
+    </p>
 
-  <p>
-    <label for="item-password">Password</label>
-    <input id="item-password" type="password" value="{{password}}">
-  </p>
+    <p>
+      <label for="item-password">Password</label>
+      <input id="item-password" type="password" value="{{password}}">
+    </p>
 
-  <p>
-    <label for="item-confirm-password">Confirm</label>
-    <input id="item-confirm-password" type="password" value="{{password}}">
-    <span id="item-password-confirmation-status"></span>
-  </p>
-  {{/data}}
-
+    <p>
+      <label for="item-confirm-password">Confirm</label>
+      <input id="item-confirm-password" type="password" value="{{password}}">
+      <span id="item-password-confirmation-status"></span>
+    </p>
+    {{/data}}
+  </div>
   <footer class="buttons">
     <button type="submit">Save</button>
   </footer>

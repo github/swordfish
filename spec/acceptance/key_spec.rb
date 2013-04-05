@@ -13,7 +13,7 @@ feature 'Key Management' do
       expect(page).to have_content('Download Private Key')
     end
 
-    click_link 'Done'
+    click_link 'Download Private Key'
     expect(page).to be_unlocked
   end
 
@@ -48,15 +48,5 @@ feature 'Key Management' do
 
     unlock_key
     expect(page).to be_unlocked
-  end
-
-  scenario 'Locking key' do
-    generate_key
-    visit root_path
-    unlock_key
-
-    click_link 'Lock'
-
-    expect(page).to have_content('Unlock')
   end
 end

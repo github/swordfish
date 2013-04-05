@@ -6,51 +6,28 @@
   <%= javascript_include_tag :mockup %>
 </head>
 <body>
-  <div id="container">
-    <header id="header">
+  <header id="header">
+    <div class="container">
       <h1>Swordfish</h1>
+      <a class="button" href="">
+        <span class="icon entypo plus"></span>
+        New Item
+      </a>
       <form id="search">
         <input type="search" placeholder="Search…">
       </form>
-    </header>
+    </div>
+  </header>
+  <div id="container">
     <div id="vaults">
-      <h1 class="hover-target">
-        My Vaults
-        <a class="add icon text hover" href="">+</a>
-      </h1>
-      <div class="vault selected">
-        <a href="#">
-          <%= image_tag 'mockup/person.png' %>
-          Personal
-        </a>
-      </div>
-
-      <h1 class="hover-target">
-        Shared Vaults
-        <a class="add icon text hover" href="">+</a>
-      </h1>
-      <div class="vault">
-        <a href="#">
-          <img src="https://github.com/favicon.ico">
-          GitHub
-        </a>
-      </div>
-      <div class="vault">
-        <a href="#">
-          <img src="http://en.opensuse.org/images/thumb/a/a9/Ruby.png/128px-Ruby.png">
-          Ruby Group
-        </a>
-      </div>
-      <div class="vault">
-        <a href="#">
-          <%= image_tag 'mockup/home.png' %>
-          Home
-        </a>
-      </div>
+      <div class="vault selected"><a href="#"><span class="icon entypo user"></span> Personal</a></div>
+      <div class="vault"><a href="#"><span class="icon entypo-social github"></span> GitHub</a></div>
+      <div class="vault"><a href="#"><span class="icon entypo box"></span> Ruby Group</a></div>
+      <div class="vault"><a href="#"><span class="icon entypo home"></span> House</a></div>
     </div>
     <div id="items">
       <div class="pane-content">
-        <div class="item">
+        <div class="item selected">
           <a href="#">
             <img src="http://apple.com/favicon.ico" class="icon">
             Apple
@@ -171,9 +148,6 @@
           </a>
         </div>
       </div>
-      <footer>
-        <a class="icon text" href="#" title="New Item">+</a>
-      </footer>
     </div>
     <div id="details">
       <div class="pane-content">
@@ -181,13 +155,20 @@
           <h1>Speaker Deck</h1>
           <a class="url" href=""><span>http://</span>speakerdeck.com<span>/signin</span></a>
         </header>
+
         <section>
-          <div class="preview">
-            <img src="http://f.cl.ly/items/230g2U353c120w0L0Q28/Screen%20Shot%202012-07-25%20at%203.15.59%20PM.png">
-          </div>
           <dl>
             <dt>Username</dt> <dd>brandon@opensoul.org</dd>
-            <dt>Password</dt> <dd>••••••••••</dd>
+            <dt>Password</dt> <dd>••••••••••
+              <span class="password-actions">
+                <span title="Reveal" class="reveal icon entypo lock-open"></span>
+                <span title="Hide" class="hide icon entypo lock"></span>
+                <span class="icon entypo clipboard"></span>
+              </span>
+              <div class="strength-meter">
+                <div style="width: 88%" class="strength strong"></div>
+              </div>
+            </dd>
           </dl>
         </section>
 

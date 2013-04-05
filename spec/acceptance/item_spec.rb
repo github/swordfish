@@ -23,9 +23,9 @@ feature 'Items' do
     click_link "example.com"
     expect(page).to have_content("myusername")
 
-    click_link "reveal"
+    click_link "Reveal"
     expect(page).to have_content("mypassword")
-    click_link "hide"
+    click_link "Hide"
     expect(page).to have_no_content("mypassword")
 
     click_link "Edit"
@@ -43,7 +43,7 @@ feature 'Items' do
   end
 
   scenario 'mismatching password confirmation' do
-    click_link "+"
+    click_link "New Item"
     fill_in "Title", :with => "example.com"
     fill_in "Username", :with => "myusername"
     fill_in "Password", :with => "mypassword"
@@ -66,7 +66,7 @@ feature 'Items' do
 
     fill_in "Confirm", :with => "newpassword"
     click_button "Save"
-    click_link "reveal"
+    click_link "Reveal"
     expect(page).to have_content("newpassword")
   end
 end

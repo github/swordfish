@@ -34,4 +34,5 @@ end
 group :guard do
   gem 'guard-bundler'
   gem 'guard-rspec'
+  gem 'guard-livereload'
 end

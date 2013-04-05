@@ -1,4 +1,4 @@
-#= require lib/jquery
+#= require jquery
 
 $(document).on 'keypress', (e) ->
   if e.keyCode == 96

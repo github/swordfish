@@ -10,6 +10,7 @@ class Item.Views.Show extends Backbone.View
     'click a.hide':   'hide'
 
   afterRender: ->
+    @model.select()
     @clipboard = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
     @clipboard.on 'dataRequested', (client, args) =>
       @clipboard.setText @model.data().password
@@ -18,7 +19,6 @@ class Item.Views.Show extends Backbone.View
     _.extend @model.toJSON(), data: @model.data()
 
   reveal: (e) =>
-    window.view = @
     e.preventDefault()
     @$('.password').text(@model.data().password)
     @$el.addClass('revealed')
