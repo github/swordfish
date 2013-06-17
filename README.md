@@ -1,4 +1,4 @@
-# Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png)](http://travis-ci.org/github/swordfish)
+# Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png?branch=master)](http://travis-ci.org/github/swordfish)
 
 Swordfish is an experiment in building a group-optimized password management
 app. It is currently very alpha.
