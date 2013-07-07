@@ -26,13 +26,7 @@ RSpec.configure do |config|
 
   config.before do
     DatabaseCleaner.strategy = :truncation
-  end
-
-  config.before do
-    DatabaseCleaner.start
-  end
-
-  config.after do
     DatabaseCleaner.clean
+    KeypairFactory.reset
   end
 end

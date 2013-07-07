@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
 
 private
 
+  def not_found(exception = nil)
+    head :not_found
+  end
+
   def sign_in_required
     head 401 unless signed_in?
   end
@@ -22,4 +26,11 @@ private
     !!current_user
   end
 
+  def current_team
+    @team ||= Team.find(params[:team_id])
+  end
+
+  def ensure_team_admin
+    @membership = current_team.membership(current_user)
+  end
 end

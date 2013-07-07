@@ -6,11 +6,12 @@ class Item < ActiveRecord::Base
 
   self.include_root_in_json = false
 
-  def share_with(user, key)
-    Share.create! :item_id => id, :user_id => user.id, :key => key
+  def share_with(owner, key)
+    Share.create! :item => self, :owner => owner, :key => key
   end
 
   def share_for(user)
-    shares.where(:user_id => user.id).first!
+    Share.owned_by(user).first!
   end
+
 end

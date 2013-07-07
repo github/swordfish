@@ -26,7 +26,7 @@ describe 'Keypair', ->
       it 'returns keypair with public/private key', ->
         keypair = Keypair.load(@privateKey)
         expect(keypair).toBeTruthy()
-        expect(keypair.privateKeyPem).toBe(@privateKey)
+        expect(keypair.pem).toBe(@privateKey)
 
   describe 'unlock', ->
     describe 'with the correct password', ->

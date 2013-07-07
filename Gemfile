@@ -20,11 +20,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'jasminerice'
   gem 'guard-jasmine'
+  gem 'pry'
 end
 
 group :test do
   gem 'webmock', :require => false
   gem 'poltergeist'
+  gem 'email_spec'
   gem 'database_cleaner'
   gem 'brakeman', :require => false
   gem 'launchy'

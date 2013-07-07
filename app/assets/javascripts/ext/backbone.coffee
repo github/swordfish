@@ -15,3 +15,10 @@ _.extend Backbone.Collection.prototype,
   deferred: ->
     jQuery.Deferred()
 
+_.extend Backbone.History.prototype,
+  store: (path = window.location.hash) ->
+    @originalLocation = path
+
+  resume: (path, options) ->
+    @navigate @originalLocation || path, options
+    delete @originalLocation

@@ -18,9 +18,23 @@ module AcceptanceSpecHelpers
     click_button 'Unlock'
   end
 
+  def sign_out
+    page.execute_script "localStorage.clear()"
+    visit '/'
+    page.should have_content 'Create a Key'
+  end
+
   def create_item(attrs = {})
     click_link '+'
     item_attrs(attrs).each do |key,value|
+      fill_in key, :with => value
+    end
+    click_button 'Create'
+  end
+
+  def create_team(attrs = {})
+    click_link 'New Team'
+    team_attrs(attrs).each do |key,value|
       fill_in key, :with => value
     end
     click_button 'Create'
@@ -43,6 +57,12 @@ module AcceptanceSpecHelpers
       'Username' => 'username',
       'Password' => 'password',
       'Confirm'  => 'password'
+    }.merge(attrs)
+  end
+
+  def team_attrs(attrs = {})
+    {
+      'Name' => 'Team Name'
     }.merge(attrs)
   end
 

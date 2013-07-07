@@ -1,0 +1,9 @@
+<form>
+  <select name="team">
+    <option value="">Select a team…</option>
+    {{#teams}}
+    <option value="{{id}}">{{name}}</option>
+    {{/teams}}
+  </select>
+  <button>Share</button>
+</form>

@@ -29,7 +29,11 @@ describe ItemsController do
     end
 
     describe 'update' do
-      let(:item) { Item.create! }
+      let(:item) { stub_model(Item, :id => next_id) }
+
+      before do
+        Item.stub! :find => item
+      end
 
       subject do
         put :update, :id => item.id.to_s, :title => 'Updated'
@@ -37,15 +41,14 @@ describe ItemsController do
 
       context 'when user has access' do
         before do
-          item.share_with current_user, 'key'
+          item.stub! :share_for => double(:share).as_null_object
         end
 
         it { expect(subject.status).to be(200) }
 
         it 'updates item' do
+          item.should_receive :update_attributes
           subject
-          item.reload
-          expect(item.title).to eql('Updated')
         end
       end
 

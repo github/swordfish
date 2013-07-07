@@ -1,12 +1,13 @@
 module Mocks
   def mock_user(attrs = {})
-    double(:user, user_attrs(attrs)).as_null_object
+    mock_model(User, user_attrs(attrs)).as_null_object
   end
 
   def user_attrs(attrs = {})
     {
       :id         => 1,
-      :public_key => double(:public_key)
+      :public_key => double(:public_key),
+      :team_ids   => []
     }.merge(attrs)
   end
 end

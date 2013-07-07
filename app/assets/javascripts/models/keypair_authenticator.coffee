@@ -10,14 +10,14 @@ class @KeypairAuthenticator
     @constructor.ajax(
       type:     'POST'
       url:      '/auth/rsa'
-      data:     @keypair.publicKeyPem()
+      data:     @keypair.publicKey.pem()
       dataType: 'text'
     ).done @respond
     @
 
   # Internal: Respond to the challenge from the server.
-  respond: (data) =>
-    @challenge = @decryptChallenge(data)
+  respond: (challenge) =>
+    @challenge = @decryptChallenge(challenge)
 
     @constructor.ajax(
       type:     'PUT'
