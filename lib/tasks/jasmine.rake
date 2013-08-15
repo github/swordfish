@@ -1,4 +1,5 @@
-if %(development test).include? ENV['RACK_ENV']
+begin
   require 'guard/jasmine/task'
   Guard::JasmineTask.new
+rescue LoadError
 end
