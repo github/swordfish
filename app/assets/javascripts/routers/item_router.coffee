@@ -26,7 +26,7 @@ class @ItemRouter extends Backbone.Router
 
   items: =>
     # ensure items collection has access to the keypair
-    @itemsCollection.keypair ||= @app.keypair
+    @itemsCollection.keypair = @app.keypair
     @itemsCollection.fetch()
 
   newItem: (id) =>
