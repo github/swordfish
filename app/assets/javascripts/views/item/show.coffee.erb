@@ -10,7 +10,8 @@ class Item.Views.Show extends Backbone.View
     'click a.hide':   'hide'
 
   afterRender: ->
-    @clipboard = new ZeroClipboard @$('#copy_link')[0], moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
+    ZeroClipboard.config moviePath: "<%= asset_path 'ZeroClipboard.swf' %>"
+    @clipboard = new ZeroClipboard @$('#copy_link')[0]
     @clipboard.on 'dataRequested', (client, args) =>
       @clipboard.setText @model.data().password
 
