@@ -1,25 +1,7 @@
 # Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png?branch=master)](http://travis-ci.org/github/swordfish)
 
-Swordfish is an experiment in building a group-optimized password management
-app. It is currently very alpha.
-[Browse all the issues](https://github.com/github/swordfish/issues?milestone=)
-to see what features are planned.
-
-![mockup](http://cl.ly/image/472B0N460j2I/content)
-
-## Is it secure?
-
-Storing passwords on a server might seem like filling a lake in Alaska with
-honey and expecting to keep bears out. I don't think it's like that. Why?
-
-Even if an attacker gets access to your server or database, all secure items are
-encrypted client side. The server has no idea what it is storing and no way of
-decrypting it.
-
-When you sign up, a RSA public/private keypair is generated in your browser. All
-sensitive data is encrypted with your private key, which is password-protected
-and never transferred to the server. No sensitive data is ever transmitted over
-the wire unless it is encrypted with secrets only available on the client.
+Swordfish was an experiment in building a group-optimized password management
+app. It is unmaintained and is likely insecure.
 
 ## Recommended Reading
 
