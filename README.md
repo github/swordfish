@@ -1,3 +1,5 @@
+**NOTE: This repository is no longer supported or updated by GitHub. If you wish to continue to develop this code yourself, we recommend you fork it.**
+
 # Swordfish [![Build Status](https://secure.travis-ci.org/github/swordfish.png?branch=master)](http://travis-ci.org/github/swordfish)
 
 Swordfish was an experiment in building a group-optimized password management
