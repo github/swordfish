@@ -52,3 +52,5 @@ If you hack on Swordfish and end up adding or editing features you will want to
 run the tests.
 
     bundle exec rake
+
+Want to join the [core team](https://github.com/github/swordfish/blob/master/docs/core.md)?
