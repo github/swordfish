@@ -6,5 +6,6 @@ Swordfish::Application.routes.draw do
   end
 
   match 'mockup', :to => 'dashboard#mockup'
+  match "signout", :to => "session#signout"
   root :to => 'dashboard#index'
 end
